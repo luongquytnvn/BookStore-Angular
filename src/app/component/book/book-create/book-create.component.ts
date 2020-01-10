@@ -29,9 +29,9 @@ export class BookCreateComponent implements OnInit {
       id: '',
       name: '',
       price: '',
-      image: '',
+      picture: '',
       description: '',
-      quantity: ''
+      amount: ''
     });
     this.useFile = File;
   }
@@ -40,15 +40,12 @@ export class BookCreateComponent implements OnInit {
     if (this.createBookForm.valid) {
       const {value} = this.createBookForm;
       this.book = value;
-      const formData = new FormData();
-      formData.append('file', this.useFile);
+      this.book.picture = this.previewUrl;
       this.bookService.createBook(this.book).subscribe(
-        next => this.uploadService.uploadFile(formData).subscribe(
-          upFile => {
-            this.ngOnInit();
-            // this.router.navigate(['book-create']);
-          }
-        )
+        next => {
+          console.log(next);
+          this.ngOnInit();
+        }
       );
     } else {
       console.log('error');
