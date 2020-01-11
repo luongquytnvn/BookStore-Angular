@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {IBook} from '../IBook';
+import {BookService} from '../book.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-book-delete',
@@ -6,10 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-delete.component.css']
 })
 export class BookDeleteComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  book: IBook;
+  constructor(
+    private bookService: BookService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
   }
 
+  ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    this.bookService.getBook(id).subscribe(
+      next => {
+        this.book = next;
+      },
+      error => {
+        this.book = null;
+        console.log(error);
+      }
+    );
+  }
+
+  deleteBook(id) {
+    console.log(id);
+    this.bookService.deleteBook(id).subscribe(next => {
+        this.router.navigate(['book-list']);
+    });
+  }
 }

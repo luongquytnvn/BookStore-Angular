@@ -1,1 +1,24 @@
-<p>book-detail works!</p>
+<h2>Book detail</h2>
+<div class="col-6 offset-3" *ngIf="book">
+    <img [src]="[book.picture]" class="profile-img-card offset-3" style="width: 50%"/>
+  <table class="table">
+    <tr>
+      <td>Name:</td>
+      <td>{{book.name}}</td>
+    </tr>
+    <tr>
+      <td>Price:</td>
+      <td>{{book.price}}</td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td>{{book.description}}</td>
+    </tr>
+    <tr>
+      <td>Amount:</td>
+      <td>{{book.amount}}</td>
+    </tr>
+  </table>
+  <input class="btn btn-primary btn-block" value="Back to book list" routerLink="/book-list">
+</div>
+
