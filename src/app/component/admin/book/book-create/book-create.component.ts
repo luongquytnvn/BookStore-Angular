@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../book.service';
 import {IBook} from '../IBook';
 import {Router} from '@angular/router';
-import {UploadService} from '../../../upload/upload.service';
 
 @Component({
   selector: 'app-book-create',
@@ -18,7 +17,6 @@ export class BookCreateComponent implements OnInit {
   message = false;
   constructor(
     private bookService: BookService,
-    private uploadService: UploadService,
     private fb: FormBuilder,
     private router: Router
   ) {
