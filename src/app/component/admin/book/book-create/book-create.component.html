@@ -53,11 +53,13 @@
     </div>
     <div class="form-group">
       <label>Picture</label>
-      <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)">
+      <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" multiple>
     </div>
     <div class="form-group" style="height: 100px">
       <div class="image-preview" *ngIf="previewUrl">
-        <img [src]="previewUrl" height="100"/>
+        <div class="float-left" *ngFor="let preview of previewUrl">
+          <img [src]="preview" height="100"/>
+        </div>
       </div>
     </div>
     <div class="form-group">
