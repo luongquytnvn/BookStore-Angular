@@ -1,1 +1,32 @@
-<p>language-edit works!</p>
+<div class="col-6 offset-3">
+  <div *ngIf="message">
+    <div class="alert alert-success">
+      <strong>Success!</strong> You have editted a language
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="Back to author list" routerLink="/language-list">
+    </div>
+  </div>
+  <form
+    *ngIf="!message"
+    name="form"
+    [formGroup]="languageForm"
+    (ngSubmit)="languageForm.valid && onSubmit()">
+
+
+    <div class="form-group">
+      <label>Language name</label>
+      <input type="text" class="form-control" formControlName="name">
+      <div class="alert-danger" *ngIf="languageForm.get('name').invalid && languageForm.get('name').touched"
+           style="color: red">
+        Language name must be at least 1 characters
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Save</button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Cancel</button>
+    </div>
+  </form>
+</div>
