@@ -24,7 +24,7 @@
       <label>Content</label>
       <textarea class="form-control" formControlName="content"></textarea>
       <div class="alert-danger" *ngIf="commentForm.get('content').invalid && commentForm.get('content').touched" style="color: aqua">
-        Content is required
+        The content cannot be empty
       </div>
     </div>
     <div class="form-group">
