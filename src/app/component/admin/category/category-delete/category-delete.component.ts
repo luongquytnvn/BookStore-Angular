@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./category-delete.component.css']
 })
 export class CategoryDeleteComponent implements OnInit {
-    category: ICategory[];
+    category: ICategory;
   constructor(
     private categoryService: CategoryService,
     private route: ActivatedRoute,

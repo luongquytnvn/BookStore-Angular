@@ -11,8 +11,8 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getCategory(id: number): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(this.url + '/' + id);
+  getCategory(id: number): Observable<ICategory> {
+    return this.http.get<ICategory>(this.url + '/' + id);
   }
 
   createCategory(category: ICategory): Observable<any> {
