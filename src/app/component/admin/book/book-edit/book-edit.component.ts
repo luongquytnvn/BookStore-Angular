@@ -66,9 +66,8 @@ export class BookEditComponent implements OnInit {
     this.bookService.getBook(id).subscribe(
       next => {
         const book = next;
-        console.log(next.bookPictures);
+        console.log(next);
         this.bookForm.patchValue(book);
-        this.bookPictures = next.bookPictures;
         this.authors = next.authors;
         this.languages = next.languages;
         this.category = next.category;
