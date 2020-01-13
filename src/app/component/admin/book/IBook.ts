@@ -7,4 +7,7 @@ export interface IBook {
   price: number;
   description: string;
   amount: number;
+  authors: any[];
+  publishing: any;
+  category: any;
 }

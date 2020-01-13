@@ -27,7 +27,10 @@ export class BookService {
       price: book.price,
       description: book.description,
       amount: book.amount,
-      bookPictures: book.bookPictures
+      bookPictures: book.bookPictures,
+      authors: book.authors,
+      publishing: book.publishing,
+      category: book.category
     });
   }
 

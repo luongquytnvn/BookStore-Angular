@@ -5,6 +5,10 @@ import {IBook} from '../IBook';
 import {Router} from '@angular/router';
 import {IBookPicture} from '../IBookPicture';
 import {BookPictureService} from '../book-picture.service';
+import {AuthorService} from '../../author/author.service';
+import {CategoryService} from '../../category/category.service';
+import {LanguageService} from '../../language/language.service';
+import {PublishingService} from '../../publishing/publishing.service';
 
 @Component({
   selector: 'app-book-create',
@@ -15,12 +19,23 @@ export class BookCreateComponent implements OnInit {
   bookForm: FormGroup;
   useFile: any[];
   book: IBook;
+  authorList: any;
+  authors: any;
+  categoryList: any;
+  category: any;
+  languageList: any;
+  publishingList: any;
+  publishing: any;
   previewUrl: any[];
   message = false;
   bookPictures: any[];
 
   constructor(
     private bookService: BookService,
+    private authorService: AuthorService,
+    private categoryService: CategoryService,
+    private languageService: LanguageService,
+    private publishingService: PublishingService,
     private bookPictureService: BookPictureService,
     private fb: FormBuilder,
     private router: Router
@@ -33,24 +48,29 @@ export class BookCreateComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(1)]],
       price: ['', [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required]],
-      amount: ['', [Validators.required, Validators.min(0)]]
+      amount: ['', [Validators.required, Validators.min(0)]],
+      authors: [''],
     });
+    this.authorService.getAuthorList().subscribe(next => this.authorList = next);
+    this.categoryService.getCategoryList().subscribe(next => this.categoryList = next);
+    this.languageService.getLanguageList().subscribe(next => this.languageList = next);
+    this.publishingService.getPublishingList().subscribe(next => this.publishingList = next);
     this.useFile = [];
     this.previewUrl = [];
     this.bookPictures = [];
+    this.authors = [];
   }
 
   onSubmit() {
     if (this.bookForm.valid) {
       const {value} = this.bookForm;
       this.book = value;
-      console.log(this.book);
+      console.log(value.category);
       for (const preview of this.previewUrl) {
         this.bookPictureService.createBookPicture(preview).subscribe(
           next => {
-            console.log(next);
             this.bookPictures.push({
-              id: next.id
+              id: next
             });
           }
         );
@@ -65,15 +85,14 @@ export class BookCreateComponent implements OnInit {
 
   onSelectFile(event) {
     this.useFile = event.srcElement.files;
-    console.log(this.useFile);
     this.preview();
   }
 
   createBook() {
     this.book.bookPictures = this.bookPictures;
     console.log(this.bookPictures);
+    this.book.authors = this.authors;
     this.bookService.createBook(this.book).subscribe(next => {
-      console.log(next);
       this.ngOnInit();
       this.message = true;
     });
@@ -96,6 +115,24 @@ export class BookCreateComponent implements OnInit {
         }
       };
     }
-    console.log(this.previewUrl);
+  }
+
+  addAuthor(id) {
+    if (id != null && this.checkAuthor(id)) {
+      this.authorService.getAuthor(id).subscribe(next => this.authors.push(next));
+    }
+  }
+
+  checkAuthor(id) {
+    for (const a of this.authors) {
+      if (a.id === id) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  addCategory(id) {
+    this.categoryService.getCategory(id).subscribe(next => this.category = next);
   }
 }
