@@ -30,7 +30,8 @@ export class BookService {
       bookPictures: book.bookPictures,
       authors: book.authors,
       publishing: book.publishing,
-      category: book.category
+      category: book.category,
+      languages: book.languages
     });
   }
 

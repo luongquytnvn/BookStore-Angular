@@ -10,4 +10,5 @@ export interface IBook {
   authors: any[];
   publishing: any;
   category: any;
+  languages: any[];
 }

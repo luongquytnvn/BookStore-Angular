@@ -24,6 +24,7 @@ export class BookCreateComponent implements OnInit {
   categoryList: any;
   category: any;
   languageList: any;
+  languages: any;
   publishingList: any;
   publishing: any;
   previewUrl: any[];
@@ -55,17 +56,18 @@ export class BookCreateComponent implements OnInit {
     this.categoryService.getCategoryList().subscribe(next => this.categoryList = next);
     this.languageService.getLanguageList().subscribe(next => this.languageList = next);
     this.publishingService.getPublishingList().subscribe(next => this.publishingList = next);
+    this.languageService.getLanguageList().subscribe(next => this.languageList = next);
     this.useFile = [];
     this.previewUrl = [];
     this.bookPictures = [];
     this.authors = [];
+    this.languages = [];
   }
 
   onSubmit() {
     if (this.bookForm.valid) {
       const {value} = this.bookForm;
       this.book = value;
-      console.log(value.category);
       for (const preview of this.previewUrl) {
         this.bookPictureService.createBookPicture(preview).subscribe(
           next => {
@@ -90,8 +92,10 @@ export class BookCreateComponent implements OnInit {
 
   createBook() {
     this.book.bookPictures = this.bookPictures;
-    console.log(this.bookPictures);
     this.book.authors = this.authors;
+    this.book.languages = this.languages;
+    this.book.category = this.category;
+    this.book.publishing = this.publishing;
     this.bookService.createBook(this.book).subscribe(next => {
       this.ngOnInit();
       this.message = true;
@@ -134,5 +138,24 @@ export class BookCreateComponent implements OnInit {
 
   addCategory(id) {
     this.categoryService.getCategory(id).subscribe(next => this.category = next);
+  }
+
+  addPublishing(id) {
+    this.publishingService.getPublishing(id).subscribe(next => this.publishing = next);
+  }
+
+  addLanguage(id) {
+    if (id != null && this.checkLanguage(id)) {
+      this.languageService.getLanguage(id).subscribe(next => this.languages.push(next));
+    }
+  }
+
+  checkLanguage(id) {
+    for (const lang of this.languages) {
+      if (lang.id === id) {
+        return false;
+      }
+    }
+    return true;
   }
 }
