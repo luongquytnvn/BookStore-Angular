@@ -35,12 +35,10 @@ import { LanguageListComponent } from './component/admin/language/language-list/
 import { LanguageCreateComponent } from './component/admin/language/language-create/language-create.component';
 import { LanguageEditComponent } from './component/admin/language/language-edit/language-edit.component';
 import { LanguageDeleteComponent } from './component/admin/language/language-delete/language-delete.component';
-import { LanguageDetailComponent } from './component/admin/language/language-detail/language-detail.component';
 import { PublishingListComponent } from './component/admin/publishing/publishing-list/publishing-list.component';
 import { PublishingCreateComponent } from './component/admin/publishing/publishing-create/publishing-create.component';
 import { PublishingEditComponent } from './component/admin/publishing/publishing-edit/publishing-edit.component';
 import { PublishingDeleteComponent } from './component/admin/publishing/publishing-delete/publishing-delete.component';
-import { PublishingDetailComponent } from './component/admin/publishing/publishing-detail/publishing-detail.component';
 import {BookDeleteComponent} from './component/admin/book/book-delete/book-delete.component';
 import {BookEditComponent} from './component/admin/book/book-edit/book-edit.component';
 import {BookCreateComponent} from './component/admin/book/book-create/book-create.component';
@@ -81,12 +79,10 @@ import {BookListComponent} from './component/admin/book/book-list/book-list.comp
     LanguageCreateComponent,
     LanguageEditComponent,
     LanguageDeleteComponent,
-    LanguageDetailComponent,
     PublishingListComponent,
     PublishingCreateComponent,
     PublishingEditComponent,
     PublishingDeleteComponent,
-    PublishingDetailComponent,
   ],
   imports: [
     BrowserModule,

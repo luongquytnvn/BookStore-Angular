@@ -33,12 +33,11 @@ import {LanguageListComponent} from '../component/admin/language/language-list/l
 import {LanguageCreateComponent} from '../component/admin/language/language-create/language-create.component';
 import {LanguageEditComponent} from '../component/admin/language/language-edit/language-edit.component';
 import {LanguageDeleteComponent} from '../component/admin/language/language-delete/language-delete.component';
-import {LanguageDetailComponent} from '../component/admin/language/language-detail/language-detail.component';
 import {PublishingListComponent} from '../component/admin/publishing/publishing-list/publishing-list.component';
 import {PublishingCreateComponent} from '../component/admin/publishing/publishing-create/publishing-create.component';
 import {PublishingEditComponent} from '../component/admin/publishing/publishing-edit/publishing-edit.component';
 import {PublishingDeleteComponent} from '../component/admin/publishing/publishing-delete/publishing-delete.component';
-import {PublishingDetailComponent} from '../component/admin/publishing/publishing-detail/publishing-detail.component';
+
 
 
 const routes: Routes = [
@@ -73,12 +72,10 @@ const routes: Routes = [
   { path: 'language-create', component: LanguageCreateComponent },
   { path: 'language-edit/:id', component: LanguageEditComponent },
   { path: 'language-delete/:id', component: LanguageDeleteComponent },
-  { path: 'language-detail/:id', component: LanguageDetailComponent },
   { path: 'publishing-list', component: PublishingListComponent },
   { path: 'publishing-create', component: PublishingCreateComponent },
   { path: 'publishing-edit/:id', component: PublishingEditComponent },
   { path: 'publishing-delete/:id', component: PublishingDeleteComponent },
-  { path: 'publishing-detail/:id', component: PublishingDetailComponent },
 ];
 
 @NgModule({
