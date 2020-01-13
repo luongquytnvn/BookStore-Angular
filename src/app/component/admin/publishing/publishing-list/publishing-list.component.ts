@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublishingListComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
