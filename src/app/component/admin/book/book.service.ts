@@ -16,8 +16,16 @@ export class BookService {
     return this.http.get<IBook[]>(this.url);
   }
 
+  getBookListByDate(): Observable<IBook[]> {
+    return this.http.get<IBook[]>(this.url + '/date-create');
+  }
+
   getBook(id: number): Observable<IBook> {
     return this.http.get<IBook>(this.url + '/' + id);
+  }
+
+  addVoteBook(id: number): Observable<any> {
+    return this.http.get<any>(this.url + '/vote/' + id);
   }
 
   createBook(book: IBook): Observable<any> {

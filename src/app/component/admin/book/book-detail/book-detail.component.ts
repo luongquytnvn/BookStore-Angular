@@ -3,6 +3,7 @@ import {IBook} from '../IBook';
 import {BookService} from '../book.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
+import {AppComponent} from '../../../../app.component';
 
 @Component({
   selector: 'app-book-detail',
@@ -15,10 +16,12 @@ export class BookDetailComponent implements OnInit {
     private bookService: BookService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private  app: AppComponent
   ) { }
 
   ngOnInit() {
+    this.app.setIsShow(true);
     const id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.bookService.getBook(id).subscribe(

@@ -9,6 +9,8 @@ import {AuthorService} from '../../author/author.service';
 import {CategoryService} from '../../category/category.service';
 import {LanguageService} from '../../language/language.service';
 import {PublishingService} from '../../publishing/publishing.service';
+import {TokenStorageService} from '../../../../user/_services/token-storage.service';
+import {AppComponent} from '../../../../app.component';
 
 @Component({
   selector: 'app-book-create',
@@ -39,11 +41,17 @@ export class BookCreateComponent implements OnInit {
     private publishingService: PublishingService,
     private bookPictureService: BookPictureService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private token: TokenStorageService,
+    private app: AppComponent
   ) {
   }
 
   ngOnInit() {
+    if (!this.token.getToken()) {
+      this.router.navigate(['/login']);
+    }
+    this.app.setIsShow(true);
     this.bookForm = this.fb.group({
       id: '',
       name: ['', [Validators.required, Validators.minLength(1)]],

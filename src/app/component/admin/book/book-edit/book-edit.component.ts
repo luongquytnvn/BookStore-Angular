@@ -8,6 +8,7 @@ import {CategoryService} from '../../category/category.service';
 import {LanguageService} from '../../language/language.service';
 import {PublishingService} from '../../publishing/publishing.service';
 import {BookPictureService} from '../book-picture.service';
+import {AppComponent} from '../../../../app.component';
 
 @Component({
   selector: 'app-book-edit',
@@ -39,11 +40,13 @@ export class BookEditComponent implements OnInit {
     private bookPictureService: BookPictureService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private app: AppComponent
   ) {
   }
 
   ngOnInit() {
+    this.app.setIsShow(true);
     this.bookForm = this.fb.group({
       id: '',
       price: ['', [Validators.required, Validators.min(0)]],
