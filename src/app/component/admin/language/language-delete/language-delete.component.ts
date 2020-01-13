@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ILanguage} from "../ILanguage";
-import {LanguageService} from "../language.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ILanguage} from '../ILanguage';
+import {LanguageService} from '../language.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-language-delete',
