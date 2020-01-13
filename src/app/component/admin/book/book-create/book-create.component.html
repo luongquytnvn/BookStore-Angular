@@ -98,7 +98,7 @@
     <div class="form-group" style="height: 100px">
       <div class="image-preview" *ngIf="previewUrl">
         <div class="float-left" *ngFor="let preview of previewUrl">
-          <img [src]="preview" height="100"/>
+          <img [src]="preview" height="100"/><span>x</span>
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@
       <button class="btn btn-primary btn-block">Create</button>
     </div>
     <div class="form-group">
-      <input class="btn btn-primary btn-block" value="Cancel" routerLink="">
+      <input class="btn btn-primary btn-block" value="Back to book list" routerLink="/book-list">
     </div>
   </form>
 </div>
