@@ -86,7 +86,9 @@ export class BookCreateComponent implements OnInit {
   }
 
   onSelectFile(event) {
+    this.useFile = [];
     this.useFile = event.srcElement.files;
+    console.log(this.useFile);
     this.preview();
   }
 
@@ -119,6 +121,7 @@ export class BookCreateComponent implements OnInit {
         }
       };
     }
+    console.log(this.previewUrl);
   }
 
   addAuthor(id) {

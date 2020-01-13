@@ -7,7 +7,7 @@ import {IBook} from './IBook';
   providedIn: 'root'
 })
 export class BookService {
-  private url = 'http://localhost:8080/api/admin/book';
+  private url = 'http://localhost:8080/api/book';
 
   constructor(private http: HttpClient) {
   }
@@ -36,7 +36,17 @@ export class BookService {
   }
 
   editBook(book: IBook): Observable<any> {
-    return this.http.put(this.url + '/' + book.id, book);
+    return this.http.put(this.url + '/' + book.id, {
+      name: book.name,
+      price: book.price,
+      description: book.description,
+      amount: book.amount,
+      bookPictures: book.bookPictures,
+      authors: book.authors,
+      publishing: book.publishing,
+      category: book.category,
+      languages: book.languages
+    });
   }
 
   deleteBook(id: number): Observable<any> {

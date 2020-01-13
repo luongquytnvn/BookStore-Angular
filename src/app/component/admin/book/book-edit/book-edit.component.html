@@ -1,67 +1,112 @@
 <div class="col-6 offset-3">
+  <h2 class="text-center">Edit Book</h2>
   <div *ngIf="message">
     <div class="alert alert-success">
       <strong>Success!</strong> You have edited a book
     </div>
     <div>
       <div class="form-group">
+        <input class="btn btn-primary btn-block" value="Edit new book" (click)="message = !message">
+      </div>
+      <div class="form-group">
         <input class="btn btn-primary btn-block" value="Back to book list" routerLink="/book-list">
       </div>
     </div>
   </div>
-    <form
-      *ngIf="!message"
-      name="form"
-      [formGroup]="bookForm"
-      (ngSubmit)="bookForm.valid && onSubmit()"
-      novalidate
-    >
-      <div class="form-group">
-        <label>Book name</label>
-        <input type="text" class="form-control" formControlName="name"/>
-        <div class="alert-danger" *ngIf="bookForm.get('name').invalid && bookForm.get('name').touched"
-             style="color: red">
-          Book name must be at least 1 characters
+  <form
+    *ngIf="!message"
+    name="form"
+    [formGroup]="bookForm"
+    (ngSubmit)="bookForm.valid && onSubmit()"
+    novalidate
+  >
+    <div class="form-group">
+      <label>Book name</label>
+      <input type="text" class="form-control" formControlName="name"/>
+      <div class="alert-danger" *ngIf="bookForm.get('name').invalid && bookForm.get('name').touched"
+           style="color: red">
+        Book name must be at least 1 characters
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" class="form-control" formControlName="price"/>
+      <div class="alert-danger" *ngIf="bookForm.get('price').invalid && bookForm.get('price').touched"
+           style="color: red">
+        Price is greater than or equal to zero
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control h-auto" formControlName="description"></textarea>
+      <div class="alert-danger" *ngIf="bookForm.get('description').invalid && bookForm.get('description').touched"
+           style="color: red">
+        Description is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Amount</label>
+      <input type="number" class="form-control" formControlName="amount"/>
+      <div class="alert-danger" *ngIf="bookForm.get('amount').invalid && bookForm.get('amount').touched"
+           style="color: red">
+        Price is greater than or equal to zero
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Author</label>
+      <div *ngFor="let author of authors">
+        <p>{{author.name}}</p>
+      </div>
+      <select class="form-control" (change)="addAuthor(addAu.value)" #addAu>
+        <option value="null">None</option>
+        <option *ngFor="let a of authorList" value="{{a.id}}">{{a.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Language</label>
+      <div *ngFor="let language of languages">
+        <p>{{language.name}}</p>
+      </div>
+      <select class="form-control" (change)="addLanguage(addLang.value)" #addLang>
+        <option value="null">None</option>
+        <option *ngFor="let lang of languageList" value="{{lang.id}}">{{lang.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <select class="form-control" (change)="addCategory(addCa.value)" #addCa>
+        <option value="">None</option>
+        <option *ngFor="let c of categoryList" value="{{c.id}}">{{c.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Publishing</label>
+      <select class="form-control" (change)="addPublishing(addPub.value)" #addPub>
+        <option value="">None</option>
+        <option *ngFor="let p of publishingList" value="{{p.id}}">{{p.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Picture</label>
+      <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" multiple>
+    </div>
+    <div class="form-group" style="height: 100px">
+      <div class="image-preview" *ngIf="previewUrl">
+        <div class="float-left" *ngFor="let preview of previewUrl">
+          <img [src]="preview" height="100"/><span>x</span>
         </div>
       </div>
-      <div class="form-group">
-        <label>Price</label>
-        <input type="number" class="form-control" formControlName="price"/>
-        <div class="alert-danger" *ngIf="bookForm.get('price').invalid && bookForm.get('price').touched"
-             style="color: red">
-          Price is greater than or equal to zero
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Description</label>
-        <textarea class="form-control" formControlName="description"></textarea>
-        <div class="alert-danger" *ngIf="bookForm.get('description').invalid && bookForm.get('description').touched"
-             style="color: red">
-          Description is required
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Amount</label>
-        <input type="number" class="form-control" formControlName="amount"/>
-        <div class="alert-danger" *ngIf="bookForm.get('amount').invalid && bookForm.get('amount').touched"
-             style="color: red">
-          Price is greater than or equal to zero
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Picture</label>
-        <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)">
-      </div>
-      <div class="form-group"  style="height: 100px">
-        <div class="image-preview" *ngIf="previewUrl">
-          <img [src]="previewUrl" height="100"/>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">Save</button>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">Cancel</button>
-      </div>
-    </form>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Save</button>
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="Back to book list" routerLink="/book-list">
+    </div>
+  </form>
 </div>
