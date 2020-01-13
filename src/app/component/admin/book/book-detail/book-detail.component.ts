@@ -24,6 +24,7 @@ export class BookDetailComponent implements OnInit {
     this.bookService.getBook(id).subscribe(
       next => {
         this.book = next;
+        console.log(this.book);
       },
       error => {
         console.log(error);

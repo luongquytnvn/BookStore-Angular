@@ -45,6 +45,9 @@ import {BookDeleteComponent} from './component/admin/book/book-delete/book-delet
 import {BookEditComponent} from './component/admin/book/book-edit/book-edit.component';
 import {BookCreateComponent} from './component/admin/book/book-create/book-create.component';
 import {BookListComponent} from './component/admin/book/book-list/book-list.component';
+import { BookPublicComponent } from './component/public/book-public/book-public.component';
+import { BookHotComponent } from './component/public/book-hot/book-hot.component';
+import { BookNewComponent } from './component/public/book-new/book-new.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +90,9 @@ import {BookListComponent} from './component/admin/book/book-list/book-list.comp
     PublishingEditComponent,
     PublishingDeleteComponent,
     PublishingDetailComponent,
+    BookPublicComponent,
+    BookHotComponent,
+    BookNewComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,17 @@ export class BookService {
 
   createBook(book: IBook): Observable<any> {
     console.log(book);
-    return this.http.post(this.url, book);
+    return this.http.post(this.url, {
+      name: book.name,
+      price: book.price,
+      description: book.description,
+      amount: book.amount,
+      bookPictures: book.bookPictures,
+      authors: book.authors,
+      publishing: book.publishing,
+      category: book.category,
+      languages: book.languages
+    });
   }
 
   editBook(book: IBook): Observable<any> {

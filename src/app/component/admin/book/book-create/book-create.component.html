@@ -1,4 +1,5 @@
 <div class="col-6 offset-3">
+  <h2 class="text-center">Create new Book</h2>
   <div *ngIf="message">
     <div class="alert alert-success">
       <strong>Success!</strong> You have created a new book
@@ -37,7 +38,7 @@
     </div>
     <div class="form-group">
       <label>Description</label>
-      <textarea class="form-control" formControlName="description"></textarea>
+      <textarea class="form-control h-auto" formControlName="description"></textarea>
       <div class="alert-danger" *ngIf="bookForm.get('description').invalid && bookForm.get('description').touched"
            style="color: red">
         Description is required
@@ -51,13 +52,54 @@
         Price is greater than or equal to zero
       </div>
     </div>
+
+    <div class="form-group">
+      <label>Author</label>
+      <div *ngFor="let author of authors">
+          <p>{{author.name}}</p>
+      </div>
+      <select class="form-control" (change)="addAuthor(addAu.value)" #addAu>
+        <option value="null">None</option>
+        <option *ngFor="let a of authorList" value="{{a.id}}">{{a.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Language</label>
+      <div *ngFor="let language of languages">
+        <p>{{language.name}}</p>
+      </div>
+      <select class="form-control" (change)="addLanguage(addLang.value)" #addLang>
+        <option value="null">None</option>
+        <option *ngFor="let lang of languageList" value="{{lang.id}}">{{lang.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <select class="form-control" (change)="addCategory(addCa.value)" #addCa>
+        <option value="">None</option>
+        <option *ngFor="let c of categoryList" value="{{c.id}}">{{c.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Publishing</label>
+      <select class="form-control" (change)="addPublishing(addPub.value)" #addPub>
+        <option value="">None</option>
+        <option *ngFor="let p of publishingList" value="{{p.id}}">{{p.name}}</option>
+      </select>
+    </div>
+
     <div class="form-group">
       <label>Picture</label>
-      <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)">
+      <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" multiple>
     </div>
     <div class="form-group" style="height: 100px">
       <div class="image-preview" *ngIf="previewUrl">
-        <img [src]="previewUrl" height="100"/>
+        <div class="float-left" *ngFor="let preview of previewUrl">
+          <img [src]="preview" height="100"/>
+        </div>
       </div>
     </div>
     <div class="form-group">
