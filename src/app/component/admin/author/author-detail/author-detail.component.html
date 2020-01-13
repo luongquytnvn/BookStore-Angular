@@ -1,1 +1,18 @@
-<p>author-detail works!</p>
+<h2>Author detail</h2>
+<div class="col-6 offset-3" *ngIf="author">
+  <table class="table">
+    <tr>
+      <td>Name:</td>
+      <td>{{ author.name }}</td>
+    </tr>
+    <tr>
+      <td>Info:</td>
+      <td>{{ author.inFor }}</td>
+    </tr>
+    <tr>
+      <td>Country:</td>
+      <td>{{ author.country }}</td>
+    </tr>
+  </table>
+  <input class="btn btn-primary btn-block" value="Back to author list" routerLink="/author-list">
+</div>
