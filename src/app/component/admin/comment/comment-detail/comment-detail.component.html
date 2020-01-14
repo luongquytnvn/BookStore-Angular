@@ -1,1 +1,14 @@
-<p>comment-detail works!</p>
+<h2>Comment Detail</h2>
+<div class="col-6 offset-3" *ngIf="comment">
+  <table class="table">
+    <tr>
+      <td>Name:</td>
+      <td>{{comment.name}}</td>
+    </tr>
+    <tr>
+      <td>Content:</td>
+      <td>{{comment.content}}</td>
+    </tr>
+  </table>
+  <input class="btn btn-primary btn-block" value="Back to comment list" routerLink="/comment-list">
+</div>
