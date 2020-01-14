@@ -1,6 +1,6 @@
 <h2>Book delete</h2>
 <div class="col-6 offset-3" *ngIf="book">
-  <img src="{{book.picture}}" class="profile-img-card offset-3" style="width: 50%"/>
+  <img [src]="[book.bookPictures[0].src]" class="profile-img-card offset-3" style="width: 50%"/>
   <table class="table">
     <tr>
       <td>Name:</td>
@@ -17,6 +17,30 @@
     <tr>
       <td>Amount:</td>
       <td>{{book.amount}}</td>
+    </tr>
+    <tr>
+      <td>Days on the shelves:</td>
+      <td>{{book.amount}}</td>
+    </tr>
+    <tr>
+      <td>Author:</td>
+      <td><div *ngFor="let author of book.authors">{{author.name}}</div></td>
+    </tr>
+    <tr>
+      <td>Language:</td>
+      <td><div *ngFor="let language of book.languages">{{language.name}}</div></td>
+    </tr>
+    <tr>
+      <td>Publishing:</td>
+      <td>{{book.publishing.name}}</td>
+    </tr>
+    <tr>
+      <td>Category:</td>
+      <td>{{book.category.name}}</td>
+    </tr>
+    <tr>
+      <td>Picture about book</td>
+      <td><div *ngFor="let picture of book.bookPictures, index as i"><img *ngIf="i!=0" src="{{picture.src}}" width="200px"></div></td>
     </tr>
   </table>
   <input class="btn btn-primary btn-block" value="Delete book" data-toggle="modal" data-target="#exampleModal">

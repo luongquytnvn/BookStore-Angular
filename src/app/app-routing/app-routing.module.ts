@@ -39,6 +39,8 @@ import {PublishingCreateComponent} from '../component/admin/publishing/publishin
 import {PublishingEditComponent} from '../component/admin/publishing/publishing-edit/publishing-edit.component';
 import {PublishingDeleteComponent} from '../component/admin/publishing/publishing-delete/publishing-delete.component';
 import {PublishingDetailComponent} from '../component/admin/publishing/publishing-detail/publishing-detail.component';
+import {BookPublicComponent} from '../component/public/book-public/book-public.component';
+import {BookNewComponent} from '../component/public/book-new/book-new.component';
 
 
 const routes: Routes = [
@@ -79,6 +81,9 @@ const routes: Routes = [
   { path: 'publishing-edit/:id', component: PublishingEditComponent },
   { path: 'publishing-delete/:id', component: PublishingDeleteComponent },
   { path: 'publishing-detail/:id', component: PublishingDetailComponent },
+  { path: 'book-public', component: BookPublicComponent },
+  { path: 'book-new', component: BookNewComponent },
+  { path: '', redirectTo: '/book-public', pathMatch: 'full' },
 ];
 
 @NgModule({

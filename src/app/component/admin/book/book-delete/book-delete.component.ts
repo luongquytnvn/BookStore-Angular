@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IBook} from '../IBook';
 import {BookService} from '../book.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AppComponent} from '../../../../app.component';
 
 @Component({
   selector: 'app-book-delete',
@@ -13,11 +14,13 @@ export class BookDeleteComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private app: AppComponent
   ) {
   }
 
   ngOnInit() {
+    this.app.setIsShow(true);
     const id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.bookService.getBook(id).subscribe(

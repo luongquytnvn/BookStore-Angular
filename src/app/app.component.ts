@@ -12,6 +12,7 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
+  isShow = false;
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
@@ -26,6 +27,9 @@ export class AppComponent {
 
       this.username = user.username;
     }
+  }
+  setIsShow(isShow: boolean) {
+    this.isShow = isShow;
   }
 
   logout() {

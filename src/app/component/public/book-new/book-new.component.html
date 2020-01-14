@@ -1,0 +1,13 @@
+<h3 class="border-bottom">Book new</h3>
+<div class="row">
+  <div *ngFor="let book of bookList">
+    <div style="width: 200px; float: left;margin-left: 25px">
+      <img [src]="book.bookPictures[0].src" class="m-auto mt-10" width="185px">
+      <b>{{book.name}}</b>
+      <div>
+        <span>{{book.price}}</span>
+      </div>
+      <div><img src="/assets/images/tim.png" width="30px" (click)="addVoteBook(book.id)"></div>
+    </div>
+  </div>
+</div>
