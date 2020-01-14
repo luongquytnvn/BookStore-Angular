@@ -20,4 +20,10 @@ export class BookPublicComponent implements OnInit {
       (this.content = this.content = JSON.parse(err.error).message));
   }
 
+  addVoteBook(id) {
+    this.bookService.addVoteBook(id).subscribe(next => {
+      console.log(next);
+      this.ngOnInit();
+    }, error => console.log(error));
+  }
 }

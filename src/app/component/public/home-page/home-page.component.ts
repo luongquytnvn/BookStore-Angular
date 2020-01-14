@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {IBook} from '../../admin/book/IBook';
+import {BookService} from '../../admin/book/book.service';
 
 @Component({
   selector: 'app-home-page',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-
-  constructor() { }
+  bookListNew: IBook[];
+  content: any;
+  constructor(
+    private bookService: BookService
+  ) { }
 
   ngOnInit() {
+    this.bookService.getBookListByDate().subscribe(next => {
+      this.bookListNew = next;
+      console.log(next);
+    }, err =>
+      (this.content = this.content = JSON.parse(err.error).message));
   }
 
 }
