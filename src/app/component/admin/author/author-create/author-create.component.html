@@ -1,1 +1,50 @@
-<p>author-create works!</p>
+<div class="col-6 offset-3">
+  <div *ngIf="message">
+    <div class="alert alert-success">
+      <strong>Success!</strong> You have created a new author
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="create new author" (click)="message = !message">
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="back to author list" routerLink="/author-list">
+    </div>
+  </div>
+  <form
+  *ngIf="!message"
+  name="form"
+  [formGroup]="authorForm"
+  (ngSubmit)="authorForm.valid && onSubmit()"
+
+  >
+    <div class="form-group">
+      <label>Author name</label>
+      <input type="text" class="form-control" formControlName="name">
+      <div class="alert-danger" *ngIf="authorForm.get('name').invalid && authorForm.get('name').touched"
+      style="color: red">
+        Author name must be at least 1 characters
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Info</label>
+      <input type="text" class="form-control" formControlName="inFor">
+      <div class="alert-danger" *ngIf="authorForm.get('inFor').invalid && authorForm.get('inFor').touched"
+      style="color: red">
+        Info is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Country</label>
+      <input type="text" class="form-control" formControlName="country">
+      <div class="alert-danger" *ngIf="authorForm.get('country').invalid && authorForm.get('country').touched">
+        Country is required
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Create</button>
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="Cancel" routerLink="/author-list">
+    </div>
+  </form>
+</div>
