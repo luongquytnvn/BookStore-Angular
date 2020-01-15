@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IBook} from '../../admin/book/IBook';
 import {BookService} from '../../admin/book/book.service';
+import {timeInterval} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-page',
@@ -8,18 +9,17 @@ import {BookService} from '../../admin/book/book.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  bookListNew: IBook[];
-  content: any;
-  constructor(
-    private bookService: BookService
-  ) { }
-
+  bookNewList: IBook[];
+  constructor(private bookService: BookService) {
+  }
   ngOnInit() {
     this.bookService.getBookListByDate().subscribe(next => {
-      this.bookListNew = next;
-      console.log(next);
-    }, err =>
-      (this.content = this.content = JSON.parse(err.error).message));
+      this.bookNewList = next;
+      console.log(this.bookNewList);
+    });
   }
 
+  addCart(id: number) {
+    
+  }
 }

@@ -1,66 +1,15 @@
-<div style="height: 40px"></div>
-<header class="row" style="height: 200px; background-color: aqua">
-  <img src="assets/images/logo.PNG" style="height: 100%; width: 20%">
-  <img src="assets/images/header.png" style="height: 100%; width: 80%">
-</header>
-<nav class="navbar navbar-light bg-light row mt-1 mb-1 pt-0 pb-0 navbar-expand-sm ">
-  <div class="dropdown-toggle navbar-brand" id="navbarDropdown" role="button" data-toggle="dropdown"
-       aria-haspopup="true" aria-expanded="false">
-    Category
-  </div>
-  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="#">Category</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Author</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Language</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Language</a>
-  </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar2"
-          aria-controls="navbar2" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbar2">
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-<div class="row" style="background-color: #dedede; height: auto; margin-top: 5px">
-<!--  <div class="col-2 bg-danger p-0" style="height: auto">-->
-<!--    <ul class="list-group">-->
-<!--      <li class="list-group-item">dasdad</li>-->
-<!--      <li class="list-group-item">dasdad</li>-->
-<!--      <li class="list-group-item">dasdad</li>-->
-<!--      <li class="list-group-item">dasdad</li>-->
-<!--      <li class="list-group-item">dasdad</li>-->
-<!--    </ul>-->
-<!--  </div>-->
-<!--  <article class="col-10 bg-info" style="height: auto">-->
-    <div class="row ml-1">
-      <div class="col-6 p-0 " style="height: auto">
-        <div class="w-100 h-50 bg-white">
-          <h3 class="border-bottom" style="background-color: red">Book new</h3>
-          <div class="row">
-            <div *ngFor="let book of bookListNew">
-              <div style="width: 20%; float: left;margin-left: 60px;margin-bottom: 50px;height: 90%">
-                <img [src]="book.bookPictures[0].src" class="m-auto mt-10" width="150px" height="90%">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w-100 h-50 bg-warning">
-        </div>
-      </div>
-      <div class="col-6 p-0" style="height: auto; background-color: #b588de">
-        <img src="assets/images/banner_web_sach-hay-ngay-tet_925x412.jpg" style="width: 100%">
-        <img src="assets/images/banner_web_tiec-bao-sinh-vien_925x412_CS3.jpg" style="width: 100%">
+<app-cover></app-cover>
+<div>
+  <h3>Book new</h3>
+  <div class="card-group">
+    <div class="card col-2" *ngFor="let bookNew of bookNewList">
+      <img class="card-img-top" src="{{bookNew.bookPictures[0].src}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{bookNew.name}}</h5>
+        <div class="card-text">
+          <p>{{bookNew.price}}</p>
+        <button class="btn btn-primary" (click)="addCart(bookNew.id)">Go somewhere</button>
       </div>
     </div>
-<!--  </article>-->
-</div>
-<div class="container-fluid" style="margin-top: 10px">
-  <router-outlet></router-outlet>
+  </div>
 </div>
