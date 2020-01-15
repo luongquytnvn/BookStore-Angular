@@ -1,1 +1,37 @@
-<p>comment-create works!</p>
+<div class="col-6 offset-3">
+  <div *ngIf="message">
+    <div class="alert alert-success">
+      <strong>Success!</strong> You have create a new comment
+    </div>
+    <div>
+      <div class="form-group">
+        <input class="btn btn-primary btn-block" value="Create new comment" (click)="message = !message">
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary btn-block" value="Back to comment list" routerLink="/comment-list">
+      </div>
+    </div>
+  </div>
+  <form *ngIf="!message" name="form" [formGroup]="commentForm" (ngSubmit)="commentForm.valid && onSubmit()" novalidate>
+    <div class="form-group">
+      <label>Comment name</label>
+      <input type="text" class="form-control" formControlName="name"/>
+      <div class="alert-danger" *ngIf="commentForm.get('name').invalid && commentForm.get('name').touched" style="color: aqua">
+        Comment name must be at least 1 characters
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Content</label>
+      <textarea class="form-control" formControlName="content"></textarea>
+      <div class="alert-danger" *ngIf="commentForm.get('content').invalid && commentForm.get('content').touched" style="color: aqua">
+        The content cannot be empty
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Create</button>
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="Cancel" routerLink="">
+    </div>
+  </form>
+</div>

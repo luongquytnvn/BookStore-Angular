@@ -1,1 +1,16 @@
-<p>publishing-list works!</p>
+<h2>Publishing list</h2>
+<p><a routerLink="/publishing-create">Create new publishing</a></p>
+<table class="table table-hover border">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let publishing of publishingList">
+    <td>{{ publishing.name }}</td>
+    <td><a [routerLink]="['/publishing-edit',publishing.id]">Edit</a></td>
+    <td><a [routerLink]="['/publishing-delete',publishing.id]">Delete</a></td>
+  </tr>
+</table>

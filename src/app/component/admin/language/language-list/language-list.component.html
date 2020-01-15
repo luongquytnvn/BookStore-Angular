@@ -1,1 +1,16 @@
-<p>language-list works!</p>
+<h2>Language list</h2>
+<p><a routerLink="/language-create">Create new language</a></p>
+<table class="table">
+  <thead>
+  <tr>
+    <td>Name</td>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let language of languageList">
+    <td>{{ language.name }}</td>
+    <td><a [routerLink]="['/language-edit',language.id]">Edit</a></td>
+    <td><a [routerLink]="['/language-delete',language.id]">Delete</a></td>
+  </tr>
+</table>

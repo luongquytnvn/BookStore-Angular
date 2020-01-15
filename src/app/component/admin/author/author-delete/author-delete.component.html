@@ -1,1 +1,40 @@
-<p>author-delete works!</p>
+<h2>Author delete</h2>
+<div class="col-6 offset-3" *ngIf="author">
+  <table class="table">
+    <tr>
+      <td>Name:</td>
+      <td>{{ author.name }}</td>
+    </tr>
+    <tr>
+      <td>Info:</td>
+      <td>{{ author.inFor }}</td>
+    </tr>
+    <tr>
+      <td>Country:</td>
+      <td>{{ author.country }}</td>
+    </tr>
+  </table>
+  <input class="btn btn-primary btn-block" value="Delete author" data-toggle="modal" data-target="#exampleModal">
+  <input class="btn btn-primary btn-block" value="Cancel" routerLink="/author-list">
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Vũ Đại Village </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure delete this author?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="deleteAuthor(author.id)" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

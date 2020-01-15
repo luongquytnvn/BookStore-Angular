@@ -1,1 +1,20 @@
-<p>author-list works!</p>
+<h2>Author list</h2>
+<p><a routerLink="/author-create">Create new a Author</a></p>
+<table class="table table-hover border">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Info</th>
+    <th>Country</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let author of authorList">
+    <td><a [routerLink]="['/author-detail', author.id]">{{ author.name }}</a></td>
+    <td>{{ author.inFor }}</td>
+    <td>{{ author.country }}</td>
+    <td><a [routerLink]="['/author-edit',author.id]">Edit</a></td>
+    <td><a [routerLink]="['/author-delete',author.id]">Delete</a></td>
+  </tr>
+</table>

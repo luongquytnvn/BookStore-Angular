@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {IComment} from '../IComment';
+import {CommentService} from '../comment.service';
 
 @Component({
   selector: 'app-comment-list',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment-list.component.css']
 })
 export class CommentListComponent implements OnInit {
-
-  constructor() { }
+  commentList: IComment[] = [];
+  contentAlert: string;
+  constructor(private commentService: CommentService) { }
 
   ngOnInit() {
+    this.commentService.getCommentList().subscribe(next => (this.commentList = next),
+        error => (this.contentAlert = this.contentAlert = JSON.parse(error.error).message));
   }
 
 }
