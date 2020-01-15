@@ -1,11 +1,15 @@
 <div class="col-6 offset-3">
+  <h3 class="text-center">Edit category</h3>
   <div *ngIf="message">
     <div class="alert alert-success">
       <strong>Success!</strong> You have edit a category
     </div>
     <div>
       <div class="form-group">
-        <input class="btn btn-primary btn-block" value="Back ti category list" routerLink="/category-list">
+        <input class="btn btn-primary btn-block" value="Edit new book" (click)="message = !message">
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary btn-block" value="Back to category list" routerLink="/category-list">
       </div>
     </div>
   </div>
@@ -18,16 +22,10 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Book</label>
-      <input type="text" class="form-control" formControlName="book"/>
-      <div class="alert-danger" *ngIf="categoryForm.get('book').invalid && categoryForm.get('book').touched" style="color: aqua">
-        Book name must be at least 1 characters
-      </div>
-    </div>
-    <div class="form-control">
       <button class="btn btn-primary btn-block">Save</button>
-    </div><div class="form-control">
-      <button class="btn btn-primary btn-block">Cancel</button>
+    </div>
+    <div class="form-group">
+      <input type="button" class="btn btn-primary btn-block" value="Cancel" routerLink="/category-list">
     </div>
   </form>
 </div>

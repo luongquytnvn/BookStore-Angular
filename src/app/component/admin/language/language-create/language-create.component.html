@@ -10,13 +10,7 @@
       <input class="btn btn-primary btn-block" value="back to language list" routerLink="/language-list">
     </div>
   </div>
-  <form
-    *ngIf="!message"
-    name="form"
-    [formGroup]="languageForm"
-    (ngSubmit)="languageForm.valid && onSubmit()">
-
-
+  <form *ngIf="!message" name="form" [formGroup]="languageForm" (ngSubmit)="languageForm.valid && onSubmit()">
     <div class="form-group">
       <label>Language name</label>
       <input type="text" class="form-control" formControlName="name">

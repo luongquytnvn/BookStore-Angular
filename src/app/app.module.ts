@@ -48,6 +48,9 @@ import {BookListComponent} from './component/admin/book/book-list/book-list.comp
 import { BookPublicComponent } from './component/public/book-public/book-public.component';
 import { BookHotComponent } from './component/public/book-hot/book-hot.component';
 import { BookNewComponent } from './component/public/book-new/book-new.component';
+import { BookCategoryComponent } from './component/public/book-category/book-category.component';
+import { HeaderComponent } from './component/public/header/header.component';
+import { FooterComponent } from './component/public/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +96,9 @@ import { BookNewComponent } from './component/public/book-new/book-new.component
     BookPublicComponent,
     BookHotComponent,
     BookNewComponent,
+    BookCategoryComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

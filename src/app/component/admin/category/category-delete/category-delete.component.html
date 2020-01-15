@@ -5,10 +5,6 @@
       <td>Name:</td>
       <td>{{category.name}}</td>
     </tr>
-    <tr>
-      <td>Book:</td>
-      <td>{{category.book}}</td>
-    </tr>
   </table>
   <input class="btn btn-primary btn-block" value="Delete book" data-toggle="modal" data-target="#exampleModal">
   <input class="btn btn-primary btn-block" value="Back to book list" routerLink="/category-list">
@@ -27,7 +23,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn-primary" (click)="deleteCategory(category.id)" data-dismiss="modal">Save changes</button>
+          <button type="button" class="btn btn-primary" (click)="deleteCategory(category.id)" data-dismiss="modal">Save changes</button>
         </div>
       </div>
     </div>

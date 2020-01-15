@@ -23,6 +23,7 @@ export class LanguageEditComponent implements OnInit {
 
   ngOnInit() {
     this.languageForm = this.fb.group({
+      id: '',
       name: ['', [ Validators.required, Validators.minLength(1) ]]
     });
     const  id = +this.route.snapshot.paramMap.get('id');

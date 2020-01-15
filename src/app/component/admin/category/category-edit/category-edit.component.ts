@@ -23,9 +23,23 @@ export class CategoryEditComponent implements OnInit {
 
   ngOnInit() {
     this.categoryForm = this.fb.group({
+      id: '',
       name: ['', [Validators.required, Validators.minLength(1)]],
-      book: ['', [Validators.required, Validators.minLength(1)]],
     });
+    const  id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    this.categoryService.getCategory(id).subscribe(
+      next => {
+        this.category = next;
+        console.log(this.category);
+        this.categoryForm.patchValue(this.category);
+        console.log(this.categoryForm);
+      },
+      error => {
+        console.log(error);
+        this.category = null;
+      }
+    );
   }
 
   onSubmit() {
@@ -35,7 +49,9 @@ export class CategoryEditComponent implements OnInit {
         ...this.category,
         ...value
       };
+      console.log(data)
       this.categoryService.editCategory(data).subscribe( next => {
+        console.log(next);
         this.message = true;
         this.ngOnInit();
       },

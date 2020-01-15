@@ -1,4 +1,5 @@
 <div class="col-6 offset-3">
+  <h3>Create a new book</h3>
   <div *ngIf="message">
     <div class="alert alert-success">
       <strong>Success!</strong> You have created a new author
@@ -15,7 +16,6 @@
   name="form"
   [formGroup]="authorForm"
   (ngSubmit)="authorForm.valid && onSubmit()"
-
   >
     <div class="form-group">
       <label>Author name</label>

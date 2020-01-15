@@ -1,12 +1,10 @@
 <h2>Category detail</h2>
 <div class="col-6 offset-3" *ngIf="category">
+
   <table class="table">
     <tr>
       <td>Name:</td>
       <td>{{category.name}}</td>
-    </tr><tr>
-      <td>Book</td>
-      <td>{{category.book}}</td>
     </tr>
   </table>
   <input class="btn btn-primary btn-block" value="Back to category list" routerLink="/category-list">

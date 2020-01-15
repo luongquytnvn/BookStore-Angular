@@ -25,7 +25,6 @@ export class CategoryCreateComponent implements OnInit {
     this.categoryForm = this.fb.group({
       id: '',
       name: ['', [Validators.required, Validators.minLength(1)]],
-      book: ['', [Validators.required, Validators.minLength(1)]],
     });
     this.useFile = null;
     this.previewUrl = null;

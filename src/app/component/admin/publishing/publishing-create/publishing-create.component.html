@@ -1,13 +1,14 @@
 <div class="col-6 offset-3">
+  <h3 class="text-center">Create a new publishing</h3>
   <div *ngIf="message">
     <div class="alert alert-success">
       <strong>Success!</strong> You have created a new publishing
     </div>
     <div class="form-group">
-      <input class="btn btn-primary btn-block" value="create new publishing" (click)="message = !message">
+      <input class="btn btn-primary btn-block" value="Create new publishing" (click)="message = !message">
     </div>
     <div class="form-group">
-      <input class="btn btn-primary btn-block" value="back to publishing list" routerLink="/publishing-list">
+      <input class="btn btn-primary btn-block" value="Back to publishing list" routerLink="/publishing-list">
     </div>
   </div>
   <form
