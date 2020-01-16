@@ -3,7 +3,7 @@ import {IBookPicture} from './IBookPicture';
 export interface IBook {
   id: number;
   name: string;
-  bookPictures: any[];
+  bookPictures: IBookPicture[];
   price: number;
   description: string;
   amount: number;
