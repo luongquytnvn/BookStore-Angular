@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IBook} from '../../admin/book/IBook';
 import {BookService} from '../../admin/book/book.service';
-import {timeInterval} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-page',
@@ -20,6 +19,5 @@ export class HomePageComponent implements OnInit {
   }
 
   addCart(id: number) {
-    
   }
 }

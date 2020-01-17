@@ -51,9 +51,11 @@ import { BookNewComponent } from './component/public/book-new/book-new.component
 import { BookCategoryComponent } from './component/public/book-category/book-category.component';
 import { HeaderComponent } from './component/public/header/header.component';
 import { FooterComponent } from './component/public/footer/footer.component';
+import {CoverComponent} from './component/public/cover/cover.component';
 
 @NgModule({
   declarations: [
+    CoverComponent,
     AppComponent,
     LoginComponent,
     RegisterComponent,

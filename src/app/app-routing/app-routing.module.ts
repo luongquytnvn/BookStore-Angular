@@ -44,7 +44,7 @@ import {BookNewComponent} from '../component/public/book-new/book-new.component'
 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
@@ -83,7 +83,7 @@ const routes: Routes = [
   { path: 'publishing-detail/:id', component: PublishingDetailComponent },
   { path: 'book-public', component: BookPublicComponent },
   { path: 'book-new', component: BookNewComponent },
-  { path: '', redirectTo: '/book-public', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
