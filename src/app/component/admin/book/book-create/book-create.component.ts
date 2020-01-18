@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../book.service';
 import {IBook} from '../IBook';
 import {Router} from '@angular/router';
-import {IBookPicture} from '../IBookPicture';
 import {BookPictureService} from '../book-picture.service';
 import {AuthorService} from '../../author/author.service';
 import {CategoryService} from '../../category/category.service';
@@ -48,10 +47,6 @@ export class BookCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.token.getToken()) {
-      this.router.navigate(['/login']);
-    }
-    this.app.setIsShow(true);
     this.bookForm = this.fb.group({
       id: '',
       name: ['', [Validators.required, Validators.minLength(1)]],
@@ -77,20 +72,15 @@ export class BookCreateComponent implements OnInit {
       const {value} = this.bookForm;
       this.book = value;
       for (const preview of this.previewUrl) {
-        this.bookPictureService.createBookPicture(preview).subscribe(
-          next => {
-            this.bookPictures.push({
-              id: next
-            });
-          }
-        );
+        this.bookPictures.push({
+          id: '',
+          src: preview
+        });
       }
+      this.createBook();
     } else {
       console.log('error');
     }
-    setTimeout(() => {
-      this.createBook();
-    }, 1000);
   }
 
   onSelectFile(event) {
@@ -133,18 +123,18 @@ export class BookCreateComponent implements OnInit {
   }
 
   addAuthor(id) {
-    if (id != null && this.checkAuthor(id)) {
+    if (id != null && this.checkAuthor(id) === -1) {
+      console.log('aaaaa');
       this.authorService.getAuthor(id).subscribe(next => this.authors.push(next));
     }
   }
 
   checkAuthor(id) {
+    const checkId = [];
     for (const a of this.authors) {
-      if (a.id === id) {
-        return false;
-      }
+      checkId.push(a.id);
     }
-    return true;
+    return checkId.indexOf(+id);
   }
 
   addCategory(id) {
@@ -156,17 +146,16 @@ export class BookCreateComponent implements OnInit {
   }
 
   addLanguage(id) {
-    if (id != null && this.checkLanguage(id)) {
+    if (id != null && this.checkLanguage(id) === -1) {
       this.languageService.getLanguage(id).subscribe(next => this.languages.push(next));
     }
   }
 
   checkLanguage(id) {
-    for (const lang of this.languages) {
-      if (lang.id === id) {
-        return false;
-      }
+    const checkId = [];
+    for (const a of this.languages) {
+      checkId.push(a.id);
     }
-    return true;
+    return checkId.indexOf(+id);
   }
 }

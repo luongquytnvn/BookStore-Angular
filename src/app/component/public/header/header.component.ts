@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../../../user/_services/token-storage.service';
+import {CartComponent} from '../cart/cart.component';
 
 @Component({
   selector: 'app-header',

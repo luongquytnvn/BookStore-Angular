@@ -17,7 +17,6 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.app.setIsShow(true);
     this.bookService.getBookList().subscribe(next =>
       (this.bookList = next), err =>
       (this.content = this.content = JSON.parse(err.error).message));

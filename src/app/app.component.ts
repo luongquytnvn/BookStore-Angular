@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TokenStorageService} from './user/_services/token-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,10 @@ export class AppComponent {
   showModeratorBoard = false;
   username: string;
   isShow = false;
-  constructor(private tokenStorageService: TokenStorageService) { }
+
+  constructor(private tokenStorageService: TokenStorageService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -27,9 +31,6 @@ export class AppComponent {
 
       this.username = user.username;
     }
-  }
-  setIsShow(isShow: boolean) {
-    this.isShow = isShow;
   }
 
   logout() {

@@ -1,0 +1,14 @@
+.dropdown{
+  position: relative;
+  display: inline-block;
+}
+/*sub-menu*/
+.dropdown-content{
+  display: none;
+  background-color: white;
+}
+
+.dropdown-2:hover .dropdown-content{
+  display: block;
+}
+

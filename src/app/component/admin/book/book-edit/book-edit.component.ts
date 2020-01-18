@@ -9,6 +9,7 @@ import {LanguageService} from '../../language/language.service';
 import {PublishingService} from '../../publishing/publishing.service';
 import {BookPictureService} from '../book-picture.service';
 import {AppComponent} from '../../../../app.component';
+import {ICategory} from '../../category/ICategory';
 
 @Component({
   selector: 'app-book-edit',
@@ -22,7 +23,7 @@ export class BookEditComponent implements OnInit {
   authorList: any;
   authors: any;
   categoryList: any;
-  category: any;
+  category: ICategory;
   languageList: any;
   languages: any;
   publishingList: any;
@@ -46,13 +47,12 @@ export class BookEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.app.setIsShow(true);
     this.bookForm = this.fb.group({
       id: '',
-      price: ['', [Validators.required, Validators.min(0)]],
       name: ['', [Validators.required, Validators.minLength(1)]],
-      amount: ['', [Validators.required, Validators.min(0)]],
+      price: ['', [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required]],
+      amount: ['', [Validators.required, Validators.min(0)]],
       authors: [''],
     });
     this.useFile = [];
@@ -64,13 +64,10 @@ export class BookEditComponent implements OnInit {
     this.publishingService.getPublishingList().subscribe(next => this.publishingList = next);
     this.categoryService.getCategoryList().subscribe(next => this.categoryList = next);
     this.languageService.getLanguageList().subscribe(next => this.languageList = next);
-    this.languageService.getLanguageList().subscribe(next => this.languageList = next);
     const id = +this.route.snapshot.paramMap.get('id');
     this.bookService.getBook(id).subscribe(
       next => {
-        const book = next;
-        console.log(next);
-        this.bookForm.patchValue(book);
+        this.bookForm.patchValue(next);
         this.authors = next.authors;
         this.languages = next.languages;
         this.category = next.category;
@@ -90,39 +87,33 @@ export class BookEditComponent implements OnInit {
       const {value} = this.bookForm;
       this.book = value;
       for (const preview of this.previewUrl) {
-        this.bookPictureService.createBookPicture(preview).subscribe(
-          next => {
-            this.bookPictures.push({
-              id: next
-            });
-          }
-        );
+        this.bookPictures.push({
+          id: '',
+          src: preview
+        });
       }
+      console.log(this.bookPictures);
+      this.book.bookPictures = this.bookPictures;
+      console.log(this.bookPictures);
+      console.log(this.book.bookPictures);
+      this.book.authors = this.authors;
+      this.book.languages = this.languages;
+      this.book.category = this.category;
+      this.book.publishing = this.publishing;
+      this.bookService.editBook(this.book).subscribe(next => {
+        console.log(next);
+        this.ngOnInit();
+        this.message = true;
+      });
     } else {
       console.log('error');
     }
-    setTimeout(() => {
-      this.saveBook();
-    }, 1000);
   }
 
   onSelectFile(event) {
     this.useFile = [];
     this.useFile = event.srcElement.files;
     this.preview();
-  }
-
-  saveBook() {
-    this.book.bookPictures = this.bookPictures;
-    this.book.authors = this.authors;
-    this.book.languages = this.languages;
-    this.book.category = this.category;
-    this.book.publishing = this.publishing;
-    this.bookService.editBook(this.book).subscribe(next => {
-      console.log(next);
-      this.ngOnInit();
-      this.message = true;
-    });
   }
 
   preview() {
@@ -146,42 +137,40 @@ export class BookEditComponent implements OnInit {
   }
 
   addAuthor(id) {
-    if (id != null && this.checkAuthor(id)) {
+    if (id != null && this.checkAuthor(id) === -1) {
       this.authorService.getAuthor(id).subscribe(next => this.authors.push(next));
     }
   }
 
   checkAuthor(id) {
+    const checkId = [];
     for (const a of this.authors) {
-      if (a.id === id) {
-        return false;
-      }
+      checkId.push(a.id);
     }
-    return true;
+    return checkId.indexOf(+id);
   }
 
   addCategory(id) {
-    this.category = '';
+    this.category = null;
     this.categoryService.getCategory(id).subscribe(next => this.category = next);
   }
 
   addPublishing(id) {
-    this.publishing = '';
+    this.publishing = null;
     this.publishingService.getPublishing(id).subscribe(next => this.publishing = next);
   }
 
   addLanguage(id) {
-    if (id != null && this.checkLanguage(id)) {
+    if (id != null && this.checkLanguage(id) === -1) {
       this.languageService.getLanguage(id).subscribe(next => this.languages.push(next));
     }
   }
 
   checkLanguage(id) {
-    for (const lang of this.languages) {
-      if (lang.id === id) {
-        return false;
-      }
+    const checkId = [];
+    for (const a of this.languages) {
+      checkId.push(a.id);
     }
-    return true;
+    return checkId.indexOf(+id);
   }
 }
