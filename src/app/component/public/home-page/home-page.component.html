@@ -1,7 +1,5 @@
 <app-cover></app-cover>
-
 <div id="container">
-  <app-header></app-header>
   <div class="container-fluid padding">
     <div class="row welcome text-center">
       <div class="col-12">
@@ -13,47 +11,14 @@
       <div class="col-12">
         <div class="container-fluid padding" align="center">
           <div class="row">
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/30 MÓN MỨT NGON CỦA NGƯỜI VIỆT.jpg" ></a>
+            <div class="col-md-3" *ngFor="let bookNew of bookNewList, index as i">
+              <div class="card" *ngIf="i<4">
+                <a routerLink="#"><img [src]="bookNew.bookPictures[0].src" ></a>
                 <div class="card-body">
-                  <h5 class="card-title">30 Món Ngon Của Người Việt</h5>
-                  <p class="card-text">Giang Vũ</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/winter.jpg"></a>
-                <div class="card-body">
-                  <h5 class="card-title">WINTER Công Chúa Mặt Trăng </h5>
-                  <p class="card-text">Marissa Meyer</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/vì thương.jpg" height="1170" width="800"/></a>
-                <div class="card-body">
-                  <h5 class="card-title">Vì Thương</h5>
-                  <p class="card-text">Nhiều tác giả</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/Sai-gon-phong-vi-bao-xuan-xua.jpg" height="1122" width="1000"/></a>
-                <div class="card-body">
-                  <h5 class="card-title">Sài Gòn phong vị báo xuân xưa</h5>
-                  <p class="card-text">Phạm Công Luận</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
+                  <h5 class="card-title">{{bookNew.name}}</h5>
+                  <p class="card-text">{{bookNew.authors[0].name}}</p>
+                  <h6 class="card-text">{{bookNew.amount}}</h6>
+                  <a (click)="addCart(bookNew.id)" class="btn btn-outline-secondary">Add cart</a>
                 </div>
               </div>
             </div>

@@ -5,67 +5,80 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-      <a href="/home" routerLink="home" class="navbar-brand">Vũ Đại Village</a>
+
+      <div class="nav-item dropdown">
+        <div class="nav-link dropdown-toggle dropbtn" id="navbarDropdown1" role="button" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+          <a href="/home" routerLink="home">Vũ Đại Village</a>
+        </div>
+        <div class="dropdown-content">
+          <div class="dropdown-2">
+            <a>Category</a>
+            <div class="dropdown-content-2" *ngFor="let c of categoryList">
+              <a [routerLink]="['/author'+c.id]">{{c.name}}</a>
+            </div>
+          </div>
+
+          <div class="dropdown-2">
+            <a>Language</a>
+            <div class="dropdown-content-2" *ngFor="let l of languageList">
+              <a [routerLink]="['/language'+l.id]">{{l.name}}</a>
+            </div>
+          </div>
+
+          <div class="dropdown-2">
+            <a>Publishing</a>
+            <div class="dropdown-content-2" *ngFor="let p of publishingList">
+              <a [routerLink]="['/language'+p.id]">{{p.name}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item">
           <a href="/home" class="nav-link" routerLink="home">Home </a>
         </li>
         <li class="nav-item" *ngIf="showAdminBoard">
           <div class="nav-item dropdown">
-            <div class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+            <div class="nav-link dropdown-toggle dropbtn" id="navbarDropdown" role="button" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
               Admin board
             </div>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="dropdown-2 dropright">
-                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">Book</div>
-                <div class="dropdown-content dropdown-menu">
-                  <a class="dropdown-item" routerLink="/book-list">List</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" routerLink="/book-create">Create</a>
+            <div class="dropdown-content">
+              <div class="dropdown-2">
+                <a>Author</a>
+                <div class="dropdown-content-2">
+                  <a routerLink="/author-list">List</a>
+                  <a routerLink="/author-create">Create</a>
                 </div>
               </div>
-              <div class="dropdown-divider"></div>
-                <div class="dropdown-2 dropright">
-                  <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">Author</div>
-                  <div class="dropdown-content dropdown-menu">
-                    <a class="dropdown-item" routerLink="/author-list">List</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" routerLink="/author-create">Create</a>
-                  </div>
-                </div>
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-2 dropright">
-                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">Category</div>
-                <div class="dropdown-content dropdown-menu">
-                  <a class="dropdown-item" routerLink="/category-list">List</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" routerLink="/category-create">Create</a>
+
+              <div class="dropdown-2">
+                <a>Category</a>
+                <div class="dropdown-content-2">
+                  <a routerLink="/category-list">List</a>
+                  <a routerLink="/category-create">Create</a>
                 </div>
               </div>
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-2 dropright">
-                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">Language</div>
-                <div class="dropdown-content dropdown-menu">
-                  <a class="dropdown-item" routerLink="/language-list">List</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" routerLink="/language-create">Create</a>
+
+              <div class="dropdown-2">
+                <a>Language</a>
+                <div class="dropdown-content-2">
+                  <a routerLink="/language-list">List</a>
+                  <a routerLink="/language-create">Create</a>
                 </div>
               </div>
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-2 dropright">
-                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">Publishing</div>
-                <div class="dropdown-content dropdown-menu">
-                  <a class="dropdown-item" routerLink="/publishing-list">List</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" routerLink="/publishing-create">Create</a>
+
+              <div class="dropdown-2">
+                <a>Publishing</a>
+                <div class="dropdown-content-2">
+                  <a routerLink="/publishing-list">List</a>
+                  <a routerLink="/publishing-create">Create</a>
                 </div>
               </div>
+
             </div>
           </div>
         </li>
