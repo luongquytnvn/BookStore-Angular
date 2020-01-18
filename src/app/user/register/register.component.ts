@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.app.setIsShow(true);
   }
 
   onSubmit() {

@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from '../user/home/home.component';
 import {RegisterComponent} from '../user/register/register.component';
 import {BoardUserComponent} from '../user/board-user/board-user.component';
 import {BoardModeratorComponent} from '../user/board-moderator/board-moderator.component';
@@ -42,47 +40,46 @@ import {PublishingDetailComponent} from '../component/admin/publishing/publishin
 import {BookPublicComponent} from '../component/public/book-public/book-public.component';
 import {BookNewComponent} from '../component/public/book-new/book-new.component';
 import {CartListComponent} from '../component/public/cart-list/cart-list.component';
-import {HeaderComponent} from '../component/public/header/header.component';
+import {AdminGuardService} from '../user/_services/admin-guard.service';
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: '', component: HeaderComponent, outlet: 'header'},
   {path: 'profile', component: ProfileComponent},
   {path: 'user', component: BoardUserComponent},
   {path: 'mod', component: BoardModeratorComponent},
   {path: 'admin', component: BoardAdminComponent},
-  {path: 'book-list', component: BookListComponent},
-  {path: 'book-create', component: BookCreateComponent},
-  {path: 'book-edit/:id', component: BookEditComponent},
-  {path: 'book-delete/:id', component: BookDeleteComponent},
-  {path: 'book-detail/:id', component: BookDetailComponent},
-  {path: 'author-list', component: AuthorListComponent},
-  {path: 'author-create', component: AuthorCreateComponent},
-  {path: 'author-edit/:id', component: AuthorEditComponent},
-  {path: 'author-delete/:id', component: AuthorDeleteComponent},
-  {path: 'author-detail/:id', component: AuthorDetailComponent},
-  {path: 'category-list', component: CategoryListComponent},
-  {path: 'category-create', component: CategoryCreateComponent},
-  {path: 'category-edit/:id', component: CategoryEditComponent},
-  {path: 'category-delete/:id', component: CategoryDeleteComponent},
-  {path: 'category-detail/:id', component: CategoryDetailComponent},
+  {path: 'book-list', component: BookListComponent, canActivate: [AdminGuardService]},
+  {path: 'book-create', component: BookCreateComponent, canActivate: [AdminGuardService]},
+  {path: 'book-edit/:id', component: BookEditComponent, canActivate: [AdminGuardService]},
+  {path: 'book-delete/:id', component: BookDeleteComponent, canActivate: [AdminGuardService]},
+  {path: 'book-detail/:id', component: BookDetailComponent, canActivate: [AdminGuardService]},
+  {path: 'author-list', component: AuthorListComponent, canActivate: [AdminGuardService]},
+  {path: 'author-create', component: AuthorCreateComponent, canActivate: [AdminGuardService]},
+  {path: 'author-edit/:id', component: AuthorEditComponent, canActivate: [AdminGuardService]},
+  {path: 'author-delete/:id', component: AuthorDeleteComponent, canActivate: [AdminGuardService]},
+  {path: 'author-detail/:id', component: AuthorDetailComponent, canActivate: [AdminGuardService]},
+  {path: 'category-list', component: CategoryListComponent, canActivate: [AdminGuardService]},
+  {path: 'category-create', component: CategoryCreateComponent, canActivate: [AdminGuardService]},
+  {path: 'category-edit/:id', component: CategoryEditComponent, canActivate: [AdminGuardService]},
+  {path: 'category-delete/:id', component: CategoryDeleteComponent, canActivate: [AdminGuardService]},
+  {path: 'category-detail/:id', component: CategoryDetailComponent, canActivate: [AdminGuardService]},
   {path: 'comment-list', component: CommentListComponent},
   {path: 'comment-create', component: CommentCreateComponent},
   {path: 'comment-edit/:id', component: CommentEditComponent},
   {path: 'comment-delete/:id', component: CommentDeleteComponent},
   {path: 'comment-detail/:id', component: CommentDetailComponent},
-  {path: 'language-list', component: LanguageListComponent},
-  {path: 'language-create', component: LanguageCreateComponent},
-  {path: 'language-edit/:id', component: LanguageEditComponent},
-  {path: 'language-delete/:id', component: LanguageDeleteComponent},
-  {path: 'language-detail/:id', component: LanguageDetailComponent},
-  {path: 'publishing-list', component: PublishingListComponent},
-  {path: 'publishing-create', component: PublishingCreateComponent},
-  {path: 'publishing-edit/:id', component: PublishingEditComponent},
-  {path: 'publishing-delete/:id', component: PublishingDeleteComponent},
-  {path: 'publishing-detail/:id', component: PublishingDetailComponent},
+  {path: 'language-list', component: LanguageListComponent, canActivate: [AdminGuardService]},
+  {path: 'language-create', component: LanguageCreateComponent, canActivate: [AdminGuardService]},
+  {path: 'language-edit/:id', component: LanguageEditComponent, canActivate: [AdminGuardService]},
+  {path: 'language-delete/:id', component: LanguageDeleteComponent, canActivate: [AdminGuardService]},
+  {path: 'language-detail/:id', component: LanguageDetailComponent, canActivate: [AdminGuardService]},
+  {path: 'publishing-list', component: PublishingListComponent, canActivate: [AdminGuardService]},
+  {path: 'publishing-create', component: PublishingCreateComponent, canActivate: [AdminGuardService]},
+  {path: 'publishing-edit/:id', component: PublishingEditComponent, canActivate: [AdminGuardService]},
+  {path: 'publishing-delete/:id', component: PublishingDeleteComponent, canActivate: [AdminGuardService]},
+  {path: 'publishing-detail/:id', component: PublishingDetailComponent, canActivate: [AdminGuardService]},
   {path: 'book-public', component: BookPublicComponent},
   {path: 'book-new', component: BookNewComponent},
   {path: 'home', component: HomePageComponent},

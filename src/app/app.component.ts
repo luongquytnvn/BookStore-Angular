@@ -33,10 +33,6 @@ export class AppComponent {
     }
   }
 
-  setIsShow(isShow: boolean) {
-    this.isShow = isShow;
-  }
-
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();

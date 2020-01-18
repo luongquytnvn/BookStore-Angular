@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.app.setIsShow(true);
     this.currentUser = this.token.getUser();
     console.log(this.token);
   }
