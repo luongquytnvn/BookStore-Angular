@@ -38,6 +38,11 @@ export class OrderService {
     return this.http.put(this.url + '/' + order.id, order);
   }
 
+  toOrder(order): Observable<any> {
+    console.log(order);
+    return this.http.put(this.url + '/toOrder', order);
+  }
+
   addOrderItemToCart(idOrder: number, orderItem): Observable<any> {
     return this.http.put(this.url + '/add/' + idOrder, orderItem);
   }

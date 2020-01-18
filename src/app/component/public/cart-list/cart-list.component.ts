@@ -29,6 +29,8 @@ export class CartListComponent implements OnInit {
         this.orderItemService.findByOrderId(this.order.id).subscribe(next2 => {
           this.cartList = next2;
           console.log(next2);
+          this.order.phone = this.order.user.phone;
+          this.order.shippingAddress = this.order.user.address;
           for (const cart of this.cartList) {
             this.totalPrice += cart.quantity * cart.book.price;
           }
@@ -58,5 +60,21 @@ export class CartListComponent implements OnInit {
         this.ngOnInit();
       });
     }
+  }
+
+  createOrder() {
+    this.order.total = this.totalPrice;
+    this.orderService.toOrder(this.order).subscribe(next => {
+      console.log(next);
+      window.location.reload();
+    });
+  }
+
+  onChangePhone(event) {
+    this.order.phone = event.target.value;
+  }
+
+  onChangeAddress(event) {
+    this.order.shippingAddress = event.target.value;
   }
 }
