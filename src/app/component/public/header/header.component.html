@@ -5,13 +5,69 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-      <a href="#" class="navbar-brand">Vũ Đại Village</a>
+      <a href="/home" routerLink="home" class="navbar-brand">Vũ Đại Village</a>
       <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item">
           <a href="/home" class="nav-link" routerLink="home">Home </a>
         </li>
         <li class="nav-item" *ngIf="showAdminBoard">
-          <a href="/admin" class="nav-link" (click)="isShow=!isShow">Admin Board</a>
+          <div class="nav-item dropdown">
+            <div class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+              Admin board
+            </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-2 dropright">
+                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="false">Book</div>
+                <div class="dropdown-content dropdown-menu">
+                  <a class="dropdown-item" routerLink="/book-list">List</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="/book-create">Create</a>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+                <div class="dropdown-2 dropright">
+                  <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Author</div>
+                  <div class="dropdown-content dropdown-menu">
+                    <a class="dropdown-item" routerLink="/author-list">List</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" routerLink="/author-create">Create</a>
+                  </div>
+                </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-2 dropright">
+                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="false">Category</div>
+                <div class="dropdown-content dropdown-menu">
+                  <a class="dropdown-item" routerLink="/category-list">List</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="/category-create">Create</a>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-2 dropright">
+                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="false">Language</div>
+                <div class="dropdown-content dropdown-menu">
+                  <a class="dropdown-item" routerLink="/language-list">List</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="/language-create">Create</a>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-2 dropright">
+                <div class="dropdown-item dropdown-toggle" role="button" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="false">Publishing</div>
+                <div class="dropdown-content dropdown-menu">
+                  <a class="dropdown-item" routerLink="/publishing-list">List</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="/publishing-create">Create</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
         <li class="nav-item" *ngIf="showModeratorBoard">
           <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
@@ -21,22 +77,27 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-        <li class="nav-item">
-          <a href="/register" class="nav-link">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a href="/login" class="nav-link">Login</a>
-        </li>
-      </ul>
 
-      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-        <li class="nav-item">
-          <a href="/profile" class="nav-link">{{ username }}</a>
-        </li>
-        <li class="nav-item">
-          <a href class="nav-link" (click)="logout()">LogOut</a>
-        </li>
+      <ul class="navbar-nav ml-auto">
+        <app-cart></app-cart>
+
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a href="/register" class="nav-link">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link">Login</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a href="/profile" class="nav-link">{{ username }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()">LogOut</a>
+          </li>
+        </ul>
       </ul>
     </div>
   </nav>

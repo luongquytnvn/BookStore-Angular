@@ -1,14 +1,16 @@
 <app-cover></app-cover>
 <div>
   <h3>Book new</h3>
-  <div class="card-group">
-    <div class="card col-2" *ngFor="let bookNew of bookNewList">
+
+  <div *ngFor="let bookNew of bookNewList" class="col-3">
+    <div class="card">
       <img class="card-img-top" src="{{bookNew.bookPictures[0].src}}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{bookNew.name}}</h5>
         <div class="card-text">
           <p>{{bookNew.price}}</p>
-        <button class="btn btn-primary" (click)="addCart(bookNew.id)">Go somewhere</button>
+          <button class="btn btn-primary" (click)="addCart(bookNew.id)">Add OrderItem</button>
+        </div>
       </div>
     </div>
   </div>

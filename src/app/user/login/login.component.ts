@@ -20,12 +20,10 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private router: Router,
-    private app: AppComponent
   ) {
   }
 
   ngOnInit() {
-    this.app.setIsShow(true);
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
@@ -42,10 +40,6 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.reloadPage();
-        setTimeout(() => {
-        this.router.navigate(['book-public']);
-        this.app.setIsShow(false);
-        }, 500);
       },
       err => {
         this.errorMessage = err.error.message;
@@ -55,8 +49,6 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
-    setTimeout(() => {
       window.location.reload();
-    }, 1000);
   }
 }
