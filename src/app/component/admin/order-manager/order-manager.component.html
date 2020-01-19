@@ -1,0 +1,32 @@
+<h2>Order list</h2>
+<p><a routerLink="/author-create">Create new a Author</a></p>
+<table class="table table-hover border">
+  <thead>
+  <tr class="table-bordered">
+    <th>Order code</th>
+    <th>User ID</th>
+    <th>User Name</th>
+    <th>Total price</th>
+    <th>Date order</th>
+    <th>Status</th>
+    <th>Change status</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let order of orderList" class="table-bordered">
+    <td *ngIf="order.status != 'normal'"><a [routerLink]="['/author-detail', order.id]">{{ order.id }}</a></td>
+    <td *ngIf="order.status != 'normal'">{{order.user.id}}</td>
+    <td *ngIf="order.status != 'normal'">{{order.user.username}}</td>
+    <td *ngIf="order.status != 'normal'">{{order.total}}</td>
+    <td *ngIf="order.status != 'normal'">{{order.date}}</td>
+    <td *ngIf="order.status != 'normal'">{{order.status}}</td>
+    <td *ngIf="order.status != 'normal'">
+      <div *ngIf="order.status=='order'">
+        <input class="btn btn-info btn-block" value="Accept">
+      </div>
+      <div *ngIf="order.status=='processing'">
+        <input class="btn btn-info btn-block" value="Done">
+      </div>
+    </td>
+
+  </tr>
+</table>

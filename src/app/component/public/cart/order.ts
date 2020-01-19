@@ -8,4 +8,6 @@ export interface Order {
   phone: string;
   shippingAddress: string;
   total: number;
+  date: Date;
+  status: string;
 }

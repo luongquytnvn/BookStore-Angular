@@ -44,7 +44,9 @@ export class HeaderComponent implements OnInit {
 
       this.username = user.username;
     }
-    this.category.getCategoryList().subscribe(next => (this.categoryList = next), error => (console.log(error)));
+    this.category.getCategoryList().subscribe(next => {
+      this.categoryList = next;
+    }, error => (console.log(error)));
     this.language.getLanguageList().subscribe(next => (this.languageList = next), error => (console.log(error)));
     this.publishing.getPublishingList().subscribe(next => (this.publishingList = next), error => (console.log(error)));
   }

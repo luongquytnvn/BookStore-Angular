@@ -41,6 +41,8 @@ import {BookPublicComponent} from '../component/public/book-public/book-public.c
 import {BookNewComponent} from '../component/public/book-new/book-new.component';
 import {CartListComponent} from '../component/public/cart-list/cart-list.component';
 import {AdminGuardService} from '../user/_services/admin-guard.service';
+import {BookCategoryComponent} from '../component/public/book-category/book-category.component';
+import {OrderManagerComponent} from '../component/admin/order-manager/order-manager.component';
 
 
 const routes: Routes = [
@@ -84,12 +86,14 @@ const routes: Routes = [
   {path: 'book-new', component: BookNewComponent},
   {path: 'home', component: HomePageComponent},
   {path: 'cart-list', component: CartListComponent},
+  {path: 'book-category/:id', component: BookCategoryComponent, runGuardsAndResolvers: 'always'},
+  {path: 'order-manager', component: OrderManagerComponent, canActivate: [AdminGuardService]},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

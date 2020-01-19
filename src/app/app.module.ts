@@ -54,6 +54,7 @@ import { FooterComponent } from './component/public/footer/footer.component';
 import { CoverComponent } from './component/public/cover/cover.component';
 import { CartComponent } from './component/public/cart/cart.component';
 import { CartListComponent } from './component/public/cart-list/cart-list.component';
+import { OrderManagerComponent } from './component/admin/order-manager/order-manager.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { CartListComponent } from './component/public/cart-list/cart-list.compon
     CoverComponent,
     CartComponent,
     CartListComponent,
+    OrderManagerComponent,
   ],
   imports: [
     BrowserModule,
