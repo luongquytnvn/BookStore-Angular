@@ -4,6 +4,7 @@ import {BookService} from '../../admin/book/book.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../admin/category/category.service';
 import {ICategory} from '../../admin/category/ICategory';
+import {CartComponent} from '../cart/cart.component';
 
 @Component({
   selector: 'app-book-category',
@@ -17,7 +18,8 @@ export class BookCategoryComponent implements OnInit {
   constructor(private bookService: BookService,
               private router: Router,
               private route: ActivatedRoute,
-              private categoryService: CategoryService
+              private categoryService: CategoryService,
+              private cart: CartComponent
   ) {
   }
 
@@ -36,7 +38,7 @@ export class BookCategoryComponent implements OnInit {
 
   }
 
-  addCart(id: number) {
-
+  addCart(idBook) {
+    this.cart.addCart(idBook);
   }
 }

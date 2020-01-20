@@ -55,6 +55,10 @@ import { CoverComponent } from './component/public/cover/cover.component';
 import { CartComponent } from './component/public/cart/cart.component';
 import { CartListComponent } from './component/public/cart-list/cart-list.component';
 import { OrderManagerComponent } from './component/admin/order-manager/order-manager.component';
+import { BookFavoriteComponent } from './component/public/book-favorite/book-favorite.component';
+import { BookLanguageComponent } from './component/public/book-language/book-language.component';
+import { BookAuthorComponent } from './component/public/book-author/book-author.component';
+import { BookPublishingComponent } from './component/public/book-publishing/book-publishing.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +111,10 @@ import { OrderManagerComponent } from './component/admin/order-manager/order-man
     CartComponent,
     CartListComponent,
     OrderManagerComponent,
+    BookFavoriteComponent,
+    BookLanguageComponent,
+    BookAuthorComponent,
+    BookPublishingComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@
   <div class="container-fluid padding">
     <div class="row welcome text-center">
       <div class="col-12">
-        <h3 class="display-5">All books</h3>
+        <h3 class="display-5">Favorite books</h3>
       </div>
       <hr style="margin-right: 5px">
       <span><i class="fa fa-coffee fa-3x"></i></span>
@@ -11,14 +11,14 @@
       <div class="col-12">
         <div class="container-fluid padding" align="center">
           <div class="row">
-            <div class="col-md-3" *ngFor="let book of bookList, index as i">
+            <div class="col-md-3" *ngFor="let bookFavorite of bookList, index as i">
               <div class="card">
-                <a routerLink="#"><img [src]="book.bookPictures[0].src" ></a>
+                <a routerLink="#"><img [src]="bookFavorite.bookPictures[0].src" ></a>
                 <div class="card-body">
-                  <h5 class="card-title">{{book.name}}</h5>
-                  <p class="card-text">{{book.authors[0].name}}</p>
-                  <h6 class="card-text">{{book.amount}}</h6>
-                  <a (click)="addCart(book.id)" class="btn btn-outline-secondary">Add cart</a>
+                  <h5 class="card-title">{{bookFavorite.name}}</h5>
+                  <p class="card-text">{{bookFavorite.authors[0].name}}</p>
+                  <h6 class="card-text">{{bookFavorite.amount}}</h6>
+                  <a (click)="addCart(bookFavorite.id)" class="btn btn-outline-secondary">Add cart</a>
                 </div>
               </div>
             </div>

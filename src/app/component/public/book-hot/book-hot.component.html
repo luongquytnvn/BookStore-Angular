@@ -1,13 +1,30 @@
-<h3 class="border-bottom">Book hot</h3>
-<div class="row">
-  <div *ngFor="let book of bookList">
-    <div style="width: 200px; float: left;margin-left: 25px">
-      <img [src]="book.bookPictures[0].src" class="m-auto mt-10" width="185px">
-      <b>{{book.name}}</b>
-      <div>
-        <span>{{book.price}}</span>
+<app-cover></app-cover>
+<div id="container">
+  <div class="container-fluid padding">
+    <div class="row welcome text-center">
+      <div class="col-12">
+        <h3 class="display-5">Hot books</h3>
       </div>
-      <div><img src="/assets/images/tim.png" width="30px" (click)="addVoteBook(book.id)"></div>
+      <hr style="margin-right: 5px">
+      <span><i class="fa fa-coffee fa-3x"></i></span>
+      <hr style="margin-left: 5px">
+      <div class="col-12">
+        <div class="container-fluid padding" align="center">
+          <div class="row">
+            <div class="col-md-3" *ngFor="let bookHot of bookList, index as i">
+              <div class="card">
+                <a routerLink="#"><img [src]="bookHot.bookPictures[0].src" ></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{bookHot.name}}</h5>
+                  <p class="card-text">{{bookHot.authors[0].name}}</p>
+                  <h6 class="card-text">{{bookHot.amount}}</h6>
+                  <a (click)="addCart(bookHot.id)" class="btn btn-outline-secondary">Add cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

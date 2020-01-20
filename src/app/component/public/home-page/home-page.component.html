@@ -31,55 +31,22 @@
   <div class="container-fluid padding">
     <div class="row welcome text-center">
       <div class="col-12">
-        <h3 class="display-5">Sách bán chạy</h3>
+        <h3 class="display-5">Hot books</h3>
       </div>
       <hr style="margin-right: 5px">
-      <span><i class="fa fa-coffee"></i></span>
+      <span><i class="fa fa-coffee fa-3x"></i></span>
       <hr style="margin-left: 5px">
       <div class="col-12">
         <div class="container-fluid padding" align="center">
-          <div class="row padding">
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/quân hậu trên bàn cờ vua.jpg" height="550" width="550"/></a>
+          <div class="row">
+            <div class="col-md-3" *ngFor="let bookHot of bookHotList, index as i">
+              <div class="card" *ngIf="i<4">
+                <a routerLink="#"><img [src]="bookHot.bookPictures[0].src" ></a>
                 <div class="card-body">
-                  <h5 class="card-title">Quân Hậu Trên Bàn Cờ Vua</h5>
-                  <p class="card-text">Khúc Cẩm Huyền</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/những bức tranh phù thế.jpg" height="550" width="550"/></a>
-                <div class="card-body">
-                  <h5 class="card-title">Những Bức Tranh Phù Thế</h5>
-                  <p class="card-text">Phạm Công Luận</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/món cuốn xanh.jpg" height="550" width="550"/></a>
-                <div class="card-body">
-                  <h5 class="card-title">Món Cuốn Xanh</h5>
-                  <p class="card-text">Hồ Đắc Thiếu Anh , Nguyễn Hồ Tiếu Anh</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/heart less.jpg" height="400" width="251"/></a>
-                <div class="card-body">
-                  <h5 class="card-title">Heart Less - Hoàng Hậu Cơ</h5>
-                  <p class="card-text">Marissa Meyer</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
+                  <h5 class="card-title">{{bookHot.name}}</h5>
+                  <p class="card-text">{{bookHot.authors[0].name}}</p>
+                  <h6 class="card-text">{{bookHot.amount}}</h6>
+                  <a (click)="addCart(bookHot.id)" class="btn btn-outline-secondary">Add cart</a>
                 </div>
               </div>
             </div>
@@ -92,55 +59,22 @@
   <div class="container-fluid padding">
     <div class="row welcome text-center">
       <div class="col-12">
-        <h3 class="display-5">Những cuốn sách hay nên đọc</h3>
+        <h3 class="display-5">Favorite books</h3>
       </div>
       <hr style="margin-right: 5px">
-      <span><i class="fa fa-coffee"></i></span>
+      <span><i class="fa fa-coffee fa-3x"></i></span>
       <hr style="margin-left: 5px">
       <div class="col-12">
         <div class="container-fluid padding" align="center">
-          <div class="row padding">
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/go_cua_tuong_lai_tap_4_du_hoc_australia_noi_tuong_lai_bat_dau.jpg" height="355" width="250"/></a>
+          <div class="row">
+            <div class="col-md-3" *ngFor="let bookFavorite of bookFavoriteList, index as i">
+              <div class="card" *ngIf="i<4">
+                <a routerLink="#"><img [src]="bookFavorite.bookPictures[0].src" ></a>
                 <div class="card-body">
-                  <h6 class="card-title">Gõ Cửa Tương Lai</h6>
-                  <p class="card-text">Nhiều tác giả</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/có 1 ngày a sẽ hiểu tình yêu.jpg" height="550" width="550"/></a>
-                <div class="card-body">
-                  <h6 class="card-title">Có Một Ngày Anh Sẽ Hiểu Tình Yêu</h6>
-                  <p class="card-text">An Nhiên</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/bếp của anh.jpg" height="550" width="550"/></a>
-                <div class="card-body">
-                  <h6 class="card-title">Bếp Của Anh          </h6>
-                  <p class="card-text">Alain Nghĩa</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <a routerLink="#"><img src="../../../../assets/images/biết ơn mình.png" height="297" width="300"/></a>
-                <div class="card-body">
-                  <h6 class="card-title">Biết Ơn Mình</h6>
-                  <p class="card-text">Đỗ Hồng Ngọc</p>
-                  <h6 class="card-text">Số lượng</h6>
-                  <a href="#" class="btn btn-outline-secondary">Đặt mua</a>
+                  <h5 class="card-title">{{bookFavorite.name}}</h5>
+                  <p class="card-text">{{bookFavorite.authors[0].name}}</p>
+                  <h6 class="card-text">{{bookFavorite.amount}}</h6>
+                  <a (click)="addCart(bookFavorite.id)" class="btn btn-outline-secondary">Add cart</a>
                 </div>
               </div>
             </div>

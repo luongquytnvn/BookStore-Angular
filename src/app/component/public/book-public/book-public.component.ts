@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IBook} from '../../admin/book/IBook';
 import {BookService} from '../../admin/book/book.service';
+import {CartComponent} from '../cart/cart.component';
 
 @Component({
   selector: 'app-book-public',
@@ -11,7 +12,8 @@ export class BookPublicComponent implements OnInit {
   bookList: IBook[] = [];
   content: string;
 
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService,
+              private cart: CartComponent) {
   }
 
   ngOnInit() {
@@ -25,5 +27,9 @@ export class BookPublicComponent implements OnInit {
       console.log(next);
       this.ngOnInit();
     }, error => console.log(error));
+  }
+
+  addCart(idBook) {
+    this.cart.addCart(idBook);
   }
 }

@@ -12,12 +12,17 @@
           <a href="/home" routerLink="home">Vũ Đại Village</a>
         </div>
         <div class="dropdown-content">
+          <a routerLink="/book-public">All books</a>
+          <a routerLink="/book-new">Book new</a>
+          <a routerLink="/book-hot">Book hot</a>
+          <a routerLink="/book-favorite">Book favorite</a>
 
+          <div class="dropdown-divider"></div>
           <div class="dropdown-2">
             <a>Category</a>
             <div class="dropdown-content-2">
               <div *ngFor="let c of categoryList">
-                <a href="/book-category/+{{c.id}}" [routerLink]="['/book-category', c.id]">{{c.name}}</a>
+                <a [routerLink]="['/book-category', c.id]">{{c.name}}</a>
               </div>
             </div>
           </div>
@@ -26,7 +31,7 @@
             <a>Language</a>
             <div class="dropdown-content-2">
               <div *ngFor="let l of languageList">
-                <a [routerLink]="['/language', l.id]">{{l.name}}</a>
+                <a [routerLink]="['/book-language', l.id]">{{l.name}}</a>
               </div>
             </div>
           </div>
@@ -35,7 +40,7 @@
             <a>Publishing</a>
             <div class="dropdown-content-2">
               <div *ngFor="let p of publishingList">
-                <a [routerLink]="['/language', p.id]">{{p.name}}</a>
+                <a [routerLink]="['/book-publishing', p.id]">{{p.name}}</a>
               </div>
             </div>
           </div>
@@ -58,6 +63,8 @@
               <div class="dropdown-2">
                 <a routerLink="/order-manager">Order manager</a>
               </div>
+
+              <div class="dropdown-divider"></div>
 
               <div class="dropdown-2">
                 <a>Book</a>

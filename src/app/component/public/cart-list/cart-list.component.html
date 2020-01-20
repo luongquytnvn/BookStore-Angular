@@ -26,10 +26,11 @@
       <td id="totalPrice"></td>
     </tr>
   </table>
-  <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModal" value="Order">
+  <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModal" value="Order" *ngIf="token.getToken()">
+  <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModalNoLogin" value="Order" *ngIf="!token.getToken()">
 </div>
 <div class="modal fade" id="OrderModal" tabindex="-1" role="dialog" aria-labelledby="OrderModalLabel"
-     aria-hidden="true">
+     aria-hidden="true" *ngIf="token.getToken()">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -49,6 +50,38 @@
           <div>
             <label>Shipping address</label>
             <input type="text" value="{{order.user.address}}" class="form-control" (change)="onChangeAddress($event)">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createOrder()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="OrderModalNoLogin" tabindex="-1" role="dialog" aria-labelledby="OrderModalLabel"
+     aria-hidden="true" *ngIf="!token.getToken()">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabelNoLogin">Vũ Đại Village </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Please enter delivery information</h3>
+        <form class="card" *ngIf="order">
+          <div class="form-group">
+            <label>Your phone number</label>
+            <input  type="text" class="form-control" (change)="onChangePhone($event)"
+                    pattern="^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$">
+          </div>
+          <div>
+            <label>Shipping address</label>
+            <input type="text" class="form-control" (change)="onChangeAddress($event)">
           </div>
         </form>
       </div>

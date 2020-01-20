@@ -51,4 +51,7 @@ export class OrderService {
     return this.http.delete(this.url + '/' + id);
   }
 
+  changeOrderStatus(id, status): Observable<any> {
+    return this.http.put(this.url + '/change-status/' + id, status);
+  }
 }

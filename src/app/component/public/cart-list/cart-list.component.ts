@@ -4,6 +4,7 @@ import {TokenStorageService} from '../../../user/_services/token-storage.service
 import {OrderService} from '../cart/order.service';
 import {OrderItem} from '../cart/OrderItem';
 import {Order} from '../cart/order';
+import {StorageService} from '../../../user/_services/storage.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -18,6 +19,7 @@ export class CartListComponent implements OnInit {
   constructor(private orderItemService: OrderItemService,
               private token: TokenStorageService,
               private orderService: OrderService,
+              private storage: StorageService
   ) {
   }
 
@@ -38,17 +40,31 @@ export class CartListComponent implements OnInit {
           document.getElementById('totalPrice').innerHTML = total.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
         });
       }, error => {
-        this.orderService.createItem({
-          user: {id: this.token.getUser().id}
-        }).subscribe(newOrder => {
-          console.log(newOrder);
-        }, errorOder => console.log(errorOder));
+        console.log(error);
+      });
+    } else {
+      console.log(this.storage.getCart());
+      this.totalPrice = 0;
+      this.orderService.getItem(this.storage.getCart()).subscribe(nextCart => {
+        this.order = nextCart;
+        this.orderItemService.findByOrderId(this.storage.getCart()).subscribe(next6 => {
+          this.cartList = next6;
+          this.order.phone = '';
+          this.order.shippingAddress = '';
+          for (const cart of this.cartList) {
+            this.totalPrice += cart.quantity * cart.book.price;
+          }
+          const total = this.totalPrice;
+          document.getElementById('totalPrice').innerHTML = total.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
+        });
+      }, error => {
+        console.log(error);
       });
     }
   }
 
   onChangeQuantity(event, cart) {
-    if (this.token.getToken()) {
+    // if (this.token.getToken()) {
       cart.quantity = event.target.value;
       this.orderItemService.editOrderItem({
         id: cart.id,
@@ -59,13 +75,14 @@ export class CartListComponent implements OnInit {
         console.log(next);
         this.ngOnInit();
       });
-    }
+    // }
   }
 
   createOrder() {
     this.order.total = this.totalPrice;
     this.orderService.toOrder(this.order).subscribe(next => {
       console.log(next);
+      this.storage.remove();
       window.location.reload();
     });
   }

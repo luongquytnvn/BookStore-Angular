@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {IBook} from '../../admin/book/IBook';
 import {BookService} from '../../admin/book/book.service';
 import {CartComponent} from '../cart/cart.component';
 
 @Component({
-  selector: 'app-book-new',
-  templateUrl: './book-new.component.html',
-  styleUrls: ['./book-new.component.css']
+  selector: 'app-book-favorite',
+  templateUrl: './book-favorite.component.html',
+  styleUrls: ['./book-favorite.component.css']
 })
-export class BookNewComponent implements OnInit {
+export class BookFavoriteComponent implements OnInit {
 
-  bookList: IBook[];
+  bookList: IBook[] = [];
   content: string;
 
   constructor(private bookService: BookService,
@@ -18,9 +18,8 @@ export class BookNewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bookService.getBookListByDate().subscribe(next => {
+    this.bookService.getBookList().subscribe(next => {
       this.bookList = next;
-      console.log(next);
     }, err =>
       (this.content = this.content = JSON.parse(err.error).message));
   }
@@ -31,6 +30,7 @@ export class BookNewComponent implements OnInit {
       this.ngOnInit();
     }, error => console.log(error));
   }
+
 
   addCart(idBook) {
     this.cart.addCart(idBook);

@@ -14,17 +14,31 @@
   </thead>
   <tr *ngFor="let order of orderList" class="table-bordered">
     <td *ngIf="order.status != 'normal'"><a [routerLink]="['/author-detail', order.id]">{{ order.id }}</a></td>
-    <td *ngIf="order.status != 'normal'">{{order.user.id}}</td>
-    <td *ngIf="order.status != 'normal'">{{order.user.username}}</td>
+    <td *ngIf="order.status != 'normal'">
+      <div *ngIf="order.user">
+        {{order.user.id}}
+      </div>
+      <div *ngIf="!order.user">
+        Guest
+      </div>
+    </td>
+    <td *ngIf="order.status != 'normal'">
+      <div *ngIf="order.user">
+        {{order.user.username}}
+      </div>
+      <div *ngIf="!order.user">
+        Guest
+      </div>
+    </td>
     <td *ngIf="order.status != 'normal'">{{order.total}}</td>
     <td *ngIf="order.status != 'normal'">{{order.date}}</td>
     <td *ngIf="order.status != 'normal'">{{order.status}}</td>
     <td *ngIf="order.status != 'normal'">
       <div *ngIf="order.status=='order'">
-        <input class="btn btn-info btn-block" value="Accept">
+        <input class="btn btn-info btn-block" value="Accept" (click)="changeToProcessing(order.id)">
       </div>
       <div *ngIf="order.status=='processing'">
-        <input class="btn btn-info btn-block" value="Done">
+        <input class="btn btn-info btn-block" value="Done" (click)="changeToDone(order.id)">
       </div>
     </td>
 

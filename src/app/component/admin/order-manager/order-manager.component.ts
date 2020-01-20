@@ -23,4 +23,15 @@ export class OrderManagerComponent implements OnInit {
     });
   }
 
+  changeToProcessing(idOrder) {
+    this.orderService.changeOrderStatus(idOrder, 'processing').subscribe(next => {
+      this.ngOnInit();
+    });
+  }
+
+  changeToDone(idOrder) {
+    this.orderService.changeOrderStatus(idOrder, 'Done').subscribe(next => {
+      this.ngOnInit();
+    });
+  }
 }

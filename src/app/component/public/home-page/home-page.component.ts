@@ -10,6 +10,8 @@ import {CartComponent} from '../cart/cart.component';
 })
 export class HomePageComponent implements OnInit {
   bookNewList: IBook[];
+  bookHotList: IBook[];
+  bookFavoriteList: IBook[];
   constructor(private bookService: BookService,
               private cart: CartComponent) {
   }
@@ -17,11 +19,16 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.bookService.getBookListByDate().subscribe(next => {
       this.bookNewList = next;
-    });
+    }, error => this.bookNewList = []);
+    this.bookService.getBookListHot().subscribe(next => {
+      this.bookHotList = next;
+    }, error => this.bookHotList = []);
+    this.bookService.getBookList().subscribe(next => {
+      this.bookFavoriteList = next;
+    }, error => this.bookFavoriteList = []);
   }
 
   addCart(idBook) {
-    console.log(idBook);
     this.cart.addCart(idBook);
   }
 }

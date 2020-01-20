@@ -43,6 +43,9 @@ import {CartListComponent} from '../component/public/cart-list/cart-list.compone
 import {AdminGuardService} from '../user/_services/admin-guard.service';
 import {BookCategoryComponent} from '../component/public/book-category/book-category.component';
 import {OrderManagerComponent} from '../component/admin/order-manager/order-manager.component';
+import {BookHotComponent} from '../component/public/book-hot/book-hot.component';
+import {BookLanguageComponent} from '../component/public/book-language/book-language.component';
+import {BookPublishingComponent} from '../component/public/book-publishing/book-publishing.component';
 
 
 const routes: Routes = [
@@ -84,9 +87,12 @@ const routes: Routes = [
   {path: 'publishing-detail/:id', component: PublishingDetailComponent, canActivate: [AdminGuardService]},
   {path: 'book-public', component: BookPublicComponent},
   {path: 'book-new', component: BookNewComponent},
+  {path: 'book-hot', component: BookHotComponent},
   {path: 'home', component: HomePageComponent},
   {path: 'cart-list', component: CartListComponent},
   {path: 'book-category/:id', component: BookCategoryComponent, runGuardsAndResolvers: 'always'},
+  {path: 'book-language/:id', component: BookLanguageComponent, runGuardsAndResolvers: 'always'},
+  {path: 'book-publishing/:id', component: BookPublishingComponent, runGuardsAndResolvers: 'always'},
   {path: 'order-manager', component: OrderManagerComponent, canActivate: [AdminGuardService]},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
