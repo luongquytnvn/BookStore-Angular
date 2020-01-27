@@ -5,6 +5,7 @@ import {OrderService} from '../cart/order.service';
 import {OrderItem} from '../cart/OrderItem';
 import {Order} from '../cart/order';
 import {StorageService} from '../../../user/_services/storage.service';
+import {AuthService} from '../../../user/_services/auth.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -19,7 +20,8 @@ export class CartListComponent implements OnInit {
   constructor(private orderItemService: OrderItemService,
               private token: TokenStorageService,
               private orderService: OrderService,
-              private storage: StorageService
+              private storage: StorageService,
+              private auth: AuthService
   ) {
   }
 
@@ -64,25 +66,39 @@ export class CartListComponent implements OnInit {
   }
 
   onChangeQuantity(event, cart) {
-    // if (this.token.getToken()) {
-      cart.quantity = event.target.value;
-      this.orderItemService.editOrderItem({
-        id: cart.id,
-        quantity: cart.quantity,
-        book: {id: cart.book.id},
-        order: {id: cart.order.id},
-      }).subscribe(next => {
-        console.log(next);
-        this.ngOnInit();
-      });
-    // }
+    cart.quantity = event.target.value;
+    this.orderItemService.editOrderItem({
+      id: cart.id,
+      quantity: cart.quantity,
+      book: {id: cart.book.id},
+      order: {id: cart.order.id},
+    }).subscribe(next => {
+      console.log(next);
+      this.ngOnInit();
+    });
+  }
+
+  createUser() {
+    this.auth.register({
+      username: this.order.phone,
+      password: '123456',
+      phone: this.order.phone,
+      address: this.order.shippingAddress
+    }).subscribe(next => {
+      console.log(next);
+    }, error => {
+      console.log(error);
+    });
+    // this.createOrder();
   }
 
   createOrder() {
     this.order.total = this.totalPrice;
     this.orderService.toOrder(this.order).subscribe(next => {
       console.log(next);
-      this.storage.remove();
+      if (!this.token.getToken()) {
+        this.storage.remove();
+      }
       window.location.reload();
     });
   }
