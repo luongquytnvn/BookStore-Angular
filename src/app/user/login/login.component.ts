@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../_services/auth.service';
 import {TokenStorageService} from '../_services/token-storage.service';
 import {Router} from '@angular/router';
@@ -9,7 +9,7 @@ import {AppComponent} from '../../app.component';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        this.router.navigate(['home']);
       },
       err => {
         this.errorMessage = err.error.message;
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  reloadPage() {
-      window.location.reload();
+  ngOnDestroy(): void {
+    window.location.reload();
   }
 }
