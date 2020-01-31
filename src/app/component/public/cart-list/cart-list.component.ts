@@ -6,6 +6,7 @@ import {OrderItem} from '../cart/OrderItem';
 import {Order} from '../cart/order';
 import {StorageService} from '../../../user/_services/storage.service';
 import {AuthService} from '../../../user/_services/auth.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-cart-list',
@@ -16,16 +17,27 @@ export class CartListComponent implements OnInit {
   order: Order;
   cartList: OrderItem[];
   totalPrice = 0;
+  cartForm: FormGroup;
 
   constructor(private orderItemService: OrderItemService,
               private token: TokenStorageService,
               private orderService: OrderService,
               private storage: StorageService,
-              private auth: AuthService
+              private auth: AuthService,
+              private fb: FormBuilder
   ) {
   }
 
   ngOnInit() {
+    this.cartForm = this.fb.group({
+      id: '',
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      // tslint:disable-next-line:max-line-length
+      phone: ['', [Validators.required, Validators.pattern('^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$')]],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', [Validators.required, Validators.minLength(3)]],
+    });
     if (this.token.getToken()) {
       this.totalPrice = 0;
       this.orderService.getCart(this.token.getUser().id).subscribe(next => {
@@ -35,6 +47,14 @@ export class CartListComponent implements OnInit {
           console.log(next2);
           this.order.phone = this.order.user.phone;
           this.order.shippingAddress = this.order.user.address;
+          this.cartForm.patchValue({
+            id: this.order.user.id,
+            username: this.order.user.username,
+            password: this.order.user.password,
+            email: this.order.user.email,
+            phone: this.order.user.phone,
+            address: this.order.user.address,
+          });
           for (const cart of this.cartList) {
             this.totalPrice += cart.quantity * cart.book.price;
           }

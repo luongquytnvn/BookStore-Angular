@@ -26,8 +26,10 @@
       <td id="totalPrice"></td>
     </tr>
   </table>
-  <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModal" value="Order" *ngIf="token.getToken()">
-  <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModalNoLogin" value="Order" *ngIf="!token.getToken()">
+  <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModal" value="Order"
+         *ngIf="token.getToken()">
+  <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModalNoLogin" value="Order"
+         *ngIf="!token.getToken()">
 </div>
 <div class="modal fade" id="OrderModal" tabindex="-1" role="dialog" aria-labelledby="OrderModalLabel"
      aria-hidden="true" *ngIf="token.getToken()">
@@ -41,21 +43,30 @@
       </div>
       <div class="modal-body">
         <h3>Please enter delivery information</h3>
-        <form class="card" *ngIf="order">
+        <form class="card" *ngIf="order" [formGroup]="cartForm">
           <div class="form-group">
             <label>Your phone number</label>
-            <input  type="text" [value]="order.user.phone" class="form-control" (change)="onChangePhone($event)"
-                   pattern="^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$">
+            <input type="text" class="form-control" formControlName="phone" (change)="onChangePhone($event)">
+            <div class="alert-danger" *ngIf="cartForm.get('phone').invalid && cartForm.get('phone').touched"
+                 style="color: red">
+              Is not a Vietnamese phone number
+            </div>
           </div>
           <div>
             <label>Shipping address</label>
-            <input type="text" value="{{order.user.address}}" class="form-control" (change)="onChangeAddress($event)">
+            <input type="text" class="form-control" formControlName="address" (change)="onChangeAddress($event)">
+            <div class="alert-danger" *ngIf="cartForm.get('address').invalid && cartForm.get('address').touched"
+                 style="color: red">
+              Address must be at least 3 characters
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
+            <button [disabled]="cartForm.invalid" data-dismiss="modal" type="button" class="btn btn-primary"
+                    (click)="createOrder()">Save
+            </button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createOrder()">Save</button>
       </div>
     </div>
   </div>
@@ -66,50 +77,131 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelNoLogin">Vũ Đại Village </h5>
+        <h5 class="modal-title">Vũ Đại Village </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Would you like to create the account for later purchase?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
+                data-target="#OrderModalNoSignUp">No
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                data-target="#OrderModalSignUp">Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="OrderModalNoSignUp" tabindex="-1" role="dialog" aria-labelledby="OrderModalLabel"
+     aria-hidden="true" *ngIf="!token.getToken()">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vũ Đại Village </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <h3>Please enter delivery information</h3>
-        <form class="card" *ngIf="order">
+        <form class="card" *ngIf="order" [formGroup]="cartForm">
           <div class="form-group">
             <label>Your phone number</label>
-            <input  type="text" class="form-control" (change)="onChangePhone($event)">
+            <input type="text" class="form-control" formControlName="phone" (change)="onChangePhone($event)">
+            <div class="alert-danger" *ngIf="cartForm.get('phone').invalid && cartForm.get('phone').touched"
+                 style="color: red">
+              Is not a Vietnamese phone number
+            </div>
           </div>
           <div>
             <label>Shipping address</label>
-            <input type="text" class="form-control" (change)="onChangeAddress($event)">
+            <input type="text" class="form-control" formControlName="address" (change)="onChangeAddress($event)">
+            <div class="alert-danger" *ngIf="cartForm.get('address').invalid && cartForm.get('address').touched"
+                 style="color: red">
+              Address must be at least 3 characters
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
+            <button [disabled]="cartForm.get('address').invalid || cartForm.get('phone').invalid" data-dismiss="modal"
+                    type="button" class="btn btn-primary" (click)="createOrder()">Save
+            </button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SaveOrderModalNoLogin" data-dismiss="modal">Save</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="SaveOrderModalNoLogin" tabindex="-1" role="dialog" aria-labelledby="OrderModalLabel"
+<div class="modal fade" id="OrderModalSignUp" tabindex="-1" role="dialog" aria-labelledby="OrderModalLabel"
      aria-hidden="true" *ngIf="!token.getToken()">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleSaveModalLabelNoLogin">Vũ Đại Village </h5>
+        <h5 class="modal-title">Vũ Đại Village </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h3>Would you like to save the account for later purchase?</h3>
+        <h3>Please enter delivery information</h3>
+        <form class="card" *ngIf="order" [formGroup]="cartForm">
+          <div class="form-group">
+            <label>User name</label>
+            <input type="text" class="form-control" formControlName="username">
+            <div class="alert-danger" *ngIf="cartForm.get('username').invalid && cartForm.get('username').touched"
+                 style="color: red">
+              Username must be 3 to 5 characters long
+            </div>
+          </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createOrder()">No</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="createUser()">Yes</button>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="text" class="form-control" formControlName="password">
+            <div class="alert-danger" *ngIf="cartForm.get('password').invalid && cartForm.get('password').touched"
+                 style="color: red">
+              Password must be at least 6 characters
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" formControlName="email">
+            <div class="alert-danger" *ngIf="cartForm.get('email').invalid && cartForm.get('email').touched"
+                 style="color: red">
+              Email must be a valid email address
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Your phone number</label>
+            <input type="text" class="form-control" formControlName="phone" (change)="onChangePhone($event)">
+            <div class="alert-danger" *ngIf="cartForm.get('phone').invalid && cartForm.get('phone').touched"
+                 style="color: red">
+              Is not a Vietnamese phone number
+            </div>
+          </div>
+          <div>
+            <label>Shipping address</label>
+            <input type="text" class="form-control" formControlName="address" (change)="onChangeAddress($event)">
+            <div class="alert-danger" *ngIf="cartForm.get('address').invalid && cartForm.get('address').touched"
+                 style="color: red">
+              Address must be at least 3 characters
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
+            <button [disabled]="cartForm.invalid" data-dismiss="modal" type="button" class="btn btn-primary">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+
+
