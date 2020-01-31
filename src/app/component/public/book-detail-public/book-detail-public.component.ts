@@ -44,7 +44,8 @@ export class BookDetailPublicComponent implements OnInit {
     }, error => console.log(error));
     this.books = this.bookService.getBookList();
   }
-  addCart(idBook) {
+
+  addCart(idBook, number: number) {
     this.cart.addCart(idBook);
   }
 
