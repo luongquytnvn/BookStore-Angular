@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title">{{book.name}}</h5>
     <p class="card-text"><a [routerLink]="['/book-author', book.authors[0].id]">{{book.authors[0].name}}</a></p>
-    <h6 class="card-text">{{book.amount}}</h6>
+    <h6 class="card-text">{{book.price | currency: "VND" : "đ "}}</h6>
     <a  (click)="addCart(book.id)" class="btn btn-outline-secondary" data-toggle="modal" [attr.data-target]="'#deleteProduct' + book.id">Add cart</a>
   </div>
 </div>

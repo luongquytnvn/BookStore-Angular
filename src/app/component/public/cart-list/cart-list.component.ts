@@ -52,7 +52,6 @@ export class CartListComponent implements OnInit {
         this.order = next;
         this.orderItemService.findByOrderId(this.order.id).subscribe(next2 => {
           this.cartList = next2;
-          console.log(next2);
           this.order.phone = this.order.user.phone;
           this.order.shippingAddress = this.order.user.address;
           this.cartForm.patchValue({
