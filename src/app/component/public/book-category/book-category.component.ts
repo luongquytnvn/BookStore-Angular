@@ -37,8 +37,4 @@ export class BookCategoryComponent implements OnInit {
     });
 
   }
-
-  addCart(idBook) {
-    this.cart.addCart(idBook);
-  }
 }

@@ -1,0 +1,29 @@
+<div class="card">
+  <a routerLink="#"><img class="card-img-top" height="400px" [src]="book.bookPictures[0].src" ></a>
+  <div class="card-body">
+    <h5 class="card-title">{{book.name}}</h5>
+    <p class="card-text">{{book.authors[0].name}}</p>
+    <h6 class="card-text">{{book.amount}}</h6>
+    <a  (click)="addCart(book.id)" class="btn btn-outline-secondary" data-toggle="modal" [attr.data-target]="'#deleteProduct' + book.id">Add cart</a>
+  </div>
+</div>
+
+<div [id]="'deleteProduct'+ book.id" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vũ Đại Village </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>The book {{book.name}} has been added to the cart</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</div>

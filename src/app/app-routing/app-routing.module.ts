@@ -89,7 +89,7 @@ const routes: Routes = [
   {path: 'book-new', component: BookNewComponent},
   {path: 'book-hot', component: BookHotComponent},
   {path: 'home', component: HomePageComponent},
-  {path: 'cart-list', component: CartListComponent},
+  {path: 'cart-list', component: CartListComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-category/:id', component: BookCategoryComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-language/:id', component: BookLanguageComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-publishing/:id', component: BookPublishingComponent, runGuardsAndResolvers: 'always'},

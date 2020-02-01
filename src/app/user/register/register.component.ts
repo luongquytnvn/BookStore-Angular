@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthService} from '../_services/auth.service';
 import {AppComponent} from '../../app.component';
 import {Router} from '@angular/router';
+import {LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   form: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
@@ -17,8 +18,10 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private app: AppComponent,
-    private router: Router
-  ) { }
+    private router: Router,
+    private login: LoginComponent
+  ) {
+  }
 
   ngOnInit() {
   }
@@ -30,9 +33,12 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        setTimeout(() => {
-          this.router.navigate(['login']);
-        }, 1000);
+        if (data) {
+          this.login.autoLogin({
+            username: this.form.username,
+            password: this.form.password
+          });
+        }
       },
       err => {
         console.log(this.form);
@@ -40,5 +46,8 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+  }
+  ngOnDestroy(): void {
+    window.location.reload();
   }
 }

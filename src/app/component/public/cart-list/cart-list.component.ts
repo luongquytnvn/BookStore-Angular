@@ -7,6 +7,7 @@ import {Order} from '../cart/order';
 import {StorageService} from '../../../user/_services/storage.service';
 import {AuthService} from '../../../user/_services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CartComponent} from '../cart/cart.component';
 
 @Component({
   selector: 'app-cart-list',
@@ -24,11 +25,16 @@ export class CartListComponent implements OnInit {
               private orderService: OrderService,
               private storage: StorageService,
               private auth: AuthService,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private cart: CartComponent
   ) {
   }
 
   ngOnInit() {
+    this.updateList();
+  }
+
+  updateList() {
     this.cartForm = this.fb.group({
       id: '',
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -58,8 +64,6 @@ export class CartListComponent implements OnInit {
           for (const cart of this.cartList) {
             this.totalPrice += cart.quantity * cart.book.price;
           }
-          const total = this.totalPrice;
-          document.getElementById('totalPrice').innerHTML = total.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
         });
       }, error => {
         console.log(error);
@@ -76,8 +80,6 @@ export class CartListComponent implements OnInit {
           for (const cart of this.cartList) {
             this.totalPrice += cart.quantity * cart.book.price;
           }
-          const total = this.totalPrice;
-          document.getElementById('totalPrice').innerHTML = total.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
         });
       }, error => {
         console.log(error);
@@ -93,8 +95,7 @@ export class CartListComponent implements OnInit {
       book: {id: cart.book.id},
       order: {id: cart.order.id},
     }).subscribe(next => {
-      console.log(next);
-      this.ngOnInit();
+      this.changeTotal();
     });
   }
 
@@ -129,5 +130,22 @@ export class CartListComponent implements OnInit {
 
   onChangeAddress(event) {
     this.order.shippingAddress = event.target.value;
+  }
+
+  changeTotal() {
+    this.totalPrice = 0;
+    this.orderItemService.findByOrderId(this.order.id).subscribe(next2 => {
+      this.cartList = next2;
+      for (const cart of this.cartList) {
+        this.totalPrice += cart.quantity * cart.book.price;
+      }
+    });
+  }
+
+  deleteCartItem(id: number) {
+    this.orderItemService.deleteOrderItem(id).subscribe(next => {
+      this.updateList();
+      this.cart.ngOnInit();
+    });
   }
 }

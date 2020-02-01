@@ -36,11 +36,5 @@ export class BookLanguageComponent implements OnInit {
         console.log(errorLanguage);
       });
     });
-
   }
-
-  addCart(idBook) {
-    this.cart.addCart(idBook);
-  }
-
 }

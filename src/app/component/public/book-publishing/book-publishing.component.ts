@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IBook} from '../../admin/book/IBook';
-import {ILanguage} from '../../admin/language/ILanguage';
 import {BookService} from '../../admin/book/book.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {LanguageService} from '../../admin/language/language.service';
 import {CartComponent} from '../cart/cart.component';
 import {IPublishing} from '../../admin/publishing/IPublishing';
 import {PublishingService} from '../../admin/publishing/publishing.service';
@@ -38,11 +36,5 @@ export class BookPublishingComponent implements OnInit {
         console.log(errorPublishing);
       });
     });
-
   }
-
-  addCart(idBook) {
-    this.cart.addCart(idBook);
-  }
-
 }

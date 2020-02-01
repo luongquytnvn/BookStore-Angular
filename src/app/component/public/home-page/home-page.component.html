@@ -12,14 +12,8 @@
         <div class="container-fluid padding" align="center">
           <div class="row">
             <div class="col-md-3" *ngFor="let bookNew of bookNewList, index as i">
-              <div class="card" *ngIf="i<4">
-                <a routerLink="#"><img [src]="bookNew.bookPictures[0].src" ></a>
-                <div class="card-body">
-                  <h5 class="card-title">{{bookNew.name}}</h5>
-                  <p class="card-text">{{bookNew.authors[0].name}}</p>
-                  <h6 class="card-text">{{bookNew.amount}}</h6>
-                  <a (click)="addCart(bookNew.id)" class="btn btn-outline-secondary">Add cart</a>
-                </div>
+              <div *ngIf="i<4">
+                <app-book-card [book]="bookNew"></app-book-card>
               </div>
             </div>
           </div>
@@ -40,14 +34,8 @@
         <div class="container-fluid padding" align="center">
           <div class="row">
             <div class="col-md-3" *ngFor="let bookHot of bookHotList, index as i">
-              <div class="card" *ngIf="i<4">
-                <a routerLink="#"><img [src]="bookHot.bookPictures[0].src" ></a>
-                <div class="card-body">
-                  <h5 class="card-title">{{bookHot.name}}</h5>
-                  <p class="card-text">{{bookHot.authors[0].name}}</p>
-                  <h6 class="card-text">{{bookHot.amount}}</h6>
-                  <a (click)="addCart(bookHot.id)" class="btn btn-outline-secondary">Add cart</a>
-                </div>
+              <div *ngIf="i<4">
+                <app-book-card [book]="bookHot"></app-book-card>
               </div>
             </div>
           </div>
@@ -68,14 +56,8 @@
         <div class="container-fluid padding" align="center">
           <div class="row">
             <div class="col-md-3" *ngFor="let bookFavorite of bookFavoriteList, index as i">
-              <div class="card" *ngIf="i<4">
-                <a routerLink="#"><img [src]="bookFavorite.bookPictures[0].src" ></a>
-                <div class="card-body">
-                  <h5 class="card-title">{{bookFavorite.name}}</h5>
-                  <p class="card-text">{{bookFavorite.authors[0].name}}</p>
-                  <h6 class="card-text">{{bookFavorite.amount}}</h6>
-                  <a (click)="addCart(bookFavorite.id)" class="btn btn-outline-secondary">Add cart</a>
-                </div>
+              <div *ngIf="i<4">
+                <app-book-card [book]="bookFavorite"></app-book-card>
               </div>
             </div>
           </div>

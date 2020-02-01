@@ -27,8 +27,4 @@ export class HomePageComponent implements OnInit {
       this.bookFavoriteList = next;
     }, error => this.bookFavoriteList = []);
   }
-
-  addCart(idBook) {
-    this.cart.addCart(idBook);
-  }
 }

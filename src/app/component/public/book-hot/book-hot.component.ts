@@ -31,8 +31,4 @@ export class BookHotComponent implements OnInit {
       this.ngOnInit();
     }, error => console.log(error));
   }
-
-  addCart(idBook) {
-    this.cart.addCart(idBook);
-  }
 }

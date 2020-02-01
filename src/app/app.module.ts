@@ -59,6 +59,7 @@ import { BookFavoriteComponent } from './component/public/book-favorite/book-fav
 import { BookLanguageComponent } from './component/public/book-language/book-language.component';
 import { BookAuthorComponent } from './component/public/book-author/book-author.component';
 import { BookPublishingComponent } from './component/public/book-publishing/book-publishing.component';
+import { BookCardComponent } from './component/public/book-card/book-card.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { BookPublishingComponent } from './component/public/book-publishing/book
     BookLanguageComponent,
     BookAuthorComponent,
     BookPublishingComponent,
+    BookCardComponent,
   ],
   imports: [
     BrowserModule,

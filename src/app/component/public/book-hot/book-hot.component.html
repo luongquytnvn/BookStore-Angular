@@ -12,15 +12,7 @@
         <div class="container-fluid padding" align="center">
           <div class="row">
             <div class="col-md-3" *ngFor="let bookHot of bookList, index as i">
-              <div class="card">
-                <a routerLink="#"><img [src]="bookHot.bookPictures[0].src" ></a>
-                <div class="card-body">
-                  <h5 class="card-title">{{bookHot.name}}</h5>
-                  <p class="card-text">{{bookHot.authors[0].name}}</p>
-                  <h6 class="card-text">{{bookHot.amount}}</h6>
-                  <a (click)="addCart(bookHot.id)" class="btn btn-outline-secondary">Add cart</a>
-                </div>
-              </div>
+              <app-book-card [book]="bookHot"></app-book-card>
             </div>
           </div>
         </div>

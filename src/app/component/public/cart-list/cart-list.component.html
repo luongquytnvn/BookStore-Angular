@@ -6,6 +6,7 @@
       <th>Price</th>
       <th>Quantity</th>
       <th>Total</th>
+      <th>Delete</th>
     </tr>
     <tr *ngFor="let cart of cartList">
       <td>
@@ -18,12 +19,14 @@
       <td><input type="number" style="width: 50px" [value]="cart.quantity" name="quantity"
                  (change)="onChangeQuantity($event, cart)"></td>
       <td>{{cart.book.price * cart.quantity | currency: "VND"}}</td>
+      <td><button class="btn btn-block badge-danger" (click)="deleteCartItem(cart.id)">Delete</button></td>
     </tr>
     <tr>
       <td>Total price</td>
       <td></td>
       <td></td>
-      <td id="totalPrice"></td>
+      <td>{{totalPrice | currency: "VND"}}</td>
+      <td></td>
     </tr>
   </table>
   <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModal" value="Order"

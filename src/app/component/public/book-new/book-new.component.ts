@@ -31,8 +31,4 @@ export class BookNewComponent implements OnInit {
       this.ngOnInit();
     }, error => console.log(error));
   }
-
-  addCart(idBook) {
-    this.cart.addCart(idBook);
-  }
 }
