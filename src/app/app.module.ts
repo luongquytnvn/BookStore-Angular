@@ -60,6 +60,11 @@ import { BookLanguageComponent } from './component/public/book-language/book-lan
 import { BookAuthorComponent } from './component/public/book-author/book-author.component';
 import { BookPublishingComponent } from './component/public/book-publishing/book-publishing.component';
 import { BookCardComponent } from './component/public/book-card/book-card.component';
+import { OrderListComponent } from './user/order-list/order-list.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { EditInforComponent } from './user/edit-infor/edit-infor.component';
+import { UserOrderListComponent } from './user/user-order-list/user-order-list.component';
+import { CardComponent } from './component/public/card/card.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +122,11 @@ import { BookCardComponent } from './component/public/book-card/book-card.compon
     BookAuthorComponent,
     BookPublishingComponent,
     BookCardComponent,
+    OrderListComponent,
+    ChangePasswordComponent,
+    EditInforComponent,
+    UserOrderListComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

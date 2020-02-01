@@ -34,4 +34,10 @@ export class OrderManagerComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  deleteOrder(id: number) {
+    this.orderService.deleteItem(id).subscribe(next => {
+      this.ngOnInit();
+    });
+  }
 }

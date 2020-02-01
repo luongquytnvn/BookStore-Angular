@@ -1,0 +1,28 @@
+<div class="card">
+  <a routerLink="#"><img class="card-img-top" height="400px" [src]="book.bookPictures[0].src" ></a>
+  <div class="card-body">
+    <h5 class="card-title">{{book.name}}</h5>
+    <p class="card-text"><a [routerLink]="['/book-author', book.authors[0].id]">{{book.authors[0].name}}</a></p>
+    <h6 class="card-text">{{book.price | currency: "VND" : "đ "}}</h6>
+    <a  (click)="addCart(book.id)" class="btn btn-outline-secondary" data-toggle="modal" [attr.data-target]="'#addBookToCart' + book.id">Add cart</a>
+  </div>
+</div>
+
+<div [id]="'addBookToCart'+ book.id" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vũ Đại Village </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>The book {{book.name}} has been added to the cart</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

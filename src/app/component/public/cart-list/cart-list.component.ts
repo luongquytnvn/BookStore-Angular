@@ -146,7 +146,7 @@ export class CartListComponent implements OnInit {
   deleteCartItem(id: number) {
     this.orderItemService.deleteOrderItem(id).subscribe(next => {
       this.updateList();
-      this.bookCard.ngOnInit();
+      this.bookCard.showList();
     });
   }
 }

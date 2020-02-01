@@ -1,24 +1,52 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
+<div class="col-8 offset-2" *ngIf="currentUser; else loggedOut">
   <header class="jumbotron">
     <h3>
       <strong>{{ currentUser.username }}</strong> Profile
     </h3>
   </header>
-  <p>
-    <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ...
-    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
-    </li>
-  </ul>
+  <img id="profile-img"
+       src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+       class="profile-img-card"/>
+  <table class="table">
+    <tr>
+      <td><strong>Name:</strong></td>
+      <td>{{currentUser.username}}</td>
+    </tr>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td>{{currentUser.email}}</td>
+    </tr>
+    <tr>
+      <td><strong>Address:</strong></td>
+      <td>{{currentUser.address}}</td>
+    </tr>
+    <tr>
+      <td><strong>Phone:</strong></td>
+      <td>{{currentUser.phone}}</td>
+    </tr>
+
+    <tr>
+      <td><strong>Token:</strong></td>
+      <td>
+        {{ currentUser.accessToken.substring(0, 20) }} ...
+        {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Roles:</strong>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let role of currentUser.roles">
+            {{ role }}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <button class="btn btn-primary btn-block">Edit information</button>
 </div>
 
 <ng-template #loggedOut>

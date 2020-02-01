@@ -1,5 +1,16 @@
 <h2>Order list</h2>
-<p><a routerLink="/author-create">Create new a Author</a></p>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Status</a>
+    <a class="dropdown-item" href="#">Latest</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+
 <table class="table table-hover border">
   <thead>
   <tr class="table-bordered">
@@ -10,6 +21,7 @@
     <th>Date order</th>
     <th>Status</th>
     <th>Change status</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tr *ngFor="let order of orderList" class="table-bordered">
@@ -41,6 +53,30 @@
         <input class="btn btn-info btn-block" value="Done" (click)="changeToDone(order.id)">
       </div>
     </td>
+    <td *ngIf="order.status!='normal'">
+      <div *ngIf="order.status!='Done'">
+        <input class="btn btn-info btn-block" data-toggle="modal" [attr.data-target]="'#deleteOrder' + order.id" value="Delete">
 
+        <div [id]="'deleteOrder'+ order.id" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Vũ Đại Village </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure delete this order?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteOrder(order.id)">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
   </tr>
 </table>

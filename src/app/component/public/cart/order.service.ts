@@ -13,6 +13,10 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
+  findAllOrderByUser_Id(idUser): Observable<any[]> {
+    return this.http.get<any[]>(this.url + '/user/' + idUser);
+  }
+
   getOrderList(): Observable<any[]> {
     return this.http.get<any[]>(this.url);
   }
