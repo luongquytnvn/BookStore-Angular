@@ -8,6 +8,7 @@ import {StorageService} from '../../../user/_services/storage.service';
 import {AuthService} from '../../../user/_services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CartComponent} from '../cart/cart.component';
+import {BookCardComponent} from '../book-card/book-card.component';
 
 @Component({
   selector: 'app-cart-list',
@@ -26,7 +27,8 @@ export class CartListComponent implements OnInit {
               private storage: StorageService,
               private auth: AuthService,
               private fb: FormBuilder,
-              private cart: CartComponent
+              private cart: CartComponent,
+              private bookCard: BookCardComponent
   ) {
   }
 
@@ -145,7 +147,7 @@ export class CartListComponent implements OnInit {
   deleteCartItem(id: number) {
     this.orderItemService.deleteOrderItem(id).subscribe(next => {
       this.updateList();
-      this.cart.ngOnInit();
+      this.bookCard.ngOnInit();
     });
   }
 }

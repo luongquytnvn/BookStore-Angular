@@ -21,12 +21,7 @@ export class CartComponent implements OnInit {
   message: string;
   count = 0;
 
-  constructor(private orderService: OrderService,
-              private orderItemService: OrderItemService,
-              private bookService: BookService,
-              private token: TokenStorageService,
-              private router: Router,
-              private storage: StorageService) {
+  constructor() {
   }
 
   ngOnInit() {

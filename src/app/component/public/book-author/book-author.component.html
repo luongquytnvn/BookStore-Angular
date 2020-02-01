@@ -1,1 +1,24 @@
-<p>book-author works!</p>
+<app-cover></app-cover>
+<div id="container">
+  <h3>Book list by author</h3>
+  <div class="container-fluid padding">
+    <div class="row welcome text-center">
+      <div class="col-12">
+        <h3 class="display-5" *ngIf="author">{{author.name}}</h3>
+      </div>
+      <hr style="margin-right: 5px">
+      <span><i class="fa fa-coffee fa-3x"></i></span>
+      <hr style="margin-left: 5px">
+      <div class="col-12">
+        <div class="container-fluid padding" align="center">
+          <div class="row">
+            <div class="col-md-3" *ngFor="let bookAuthor of bookListByAuthor, index as i">
+              <app-book-card [book]="bookAuthor"></app-book-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="light-100">
+</div>

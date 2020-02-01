@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {CartComponent} from '../cart/cart.component';
 import {IBook} from '../../admin/book/IBook';
 import {Order} from '../cart/order';
@@ -9,7 +9,9 @@ import {BookService} from '../../admin/book/book.service';
 import {TokenStorageService} from '../../../user/_services/token-storage.service';
 import {Router} from '@angular/router';
 import {StorageService} from '../../../user/_services/storage.service';
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
@@ -54,7 +56,7 @@ export class BookCardComponent implements OnInit {
         this.cart = next;
         console.log((next));
         this.count = this.cart.length;
-        document.getElementById('countCart').innerHTML = next.length;
+        this.cartComponent.showCount(next.length);
       }, error => {
         console.log(error);
       });

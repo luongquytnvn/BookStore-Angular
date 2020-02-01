@@ -2,7 +2,7 @@
   <a routerLink="#"><img class="card-img-top" height="400px" [src]="book.bookPictures[0].src" ></a>
   <div class="card-body">
     <h5 class="card-title">{{book.name}}</h5>
-    <p class="card-text">{{book.authors[0].name}}</p>
+    <p class="card-text"><a [routerLink]="['/book-author', book.authors[0].id]">{{book.authors[0].name}}</a></p>
     <h6 class="card-text">{{book.amount}}</h6>
     <a  (click)="addCart(book.id)" class="btn btn-outline-secondary" data-toggle="modal" [attr.data-target]="'#deleteProduct' + book.id">Add cart</a>
   </div>
@@ -21,8 +21,7 @@
         <p>The book {{book.name}} has been added to the cart</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
       </div>
     </div>
   </div>

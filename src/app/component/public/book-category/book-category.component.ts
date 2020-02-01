@@ -25,16 +25,15 @@ export class BookCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(param => {
-    const id = param.id;
-    this.categoryService.getCategory(id).subscribe(nextCategory => {
-      this.category = nextCategory;
-      this.bookService.getBookListByCategory(id).subscribe(next => {
-        this.bookListByCategory = next;
-      }, error => (console.log(error)));
-    }, errorCategory => {
-      console.log(errorCategory);
+      const id = param.id;
+      this.categoryService.getCategory(id).subscribe(nextCategory => {
+        this.category = nextCategory;
+        this.bookService.getBookListByCategory(id).subscribe(next => {
+          this.bookListByCategory = next;
+        }, error => (console.log(error)));
+      }, errorCategory => {
+        console.log(errorCategory);
+      });
     });
-    });
-
   }
 }

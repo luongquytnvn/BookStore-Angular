@@ -46,6 +46,7 @@ import {OrderManagerComponent} from '../component/admin/order-manager/order-mana
 import {BookHotComponent} from '../component/public/book-hot/book-hot.component';
 import {BookLanguageComponent} from '../component/public/book-language/book-language.component';
 import {BookPublishingComponent} from '../component/public/book-publishing/book-publishing.component';
+import {BookAuthorComponent} from '../component/public/book-author/book-author.component';
 
 
 const routes: Routes = [
@@ -91,6 +92,7 @@ const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'cart-list', component: CartListComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-category/:id', component: BookCategoryComponent, runGuardsAndResolvers: 'always'},
+  {path: 'book-author/:id', component: BookAuthorComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-language/:id', component: BookLanguageComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-publishing/:id', component: BookPublishingComponent, runGuardsAndResolvers: 'always'},
   {path: 'order-manager', component: OrderManagerComponent, canActivate: [AdminGuardService]},
