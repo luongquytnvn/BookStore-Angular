@@ -33,9 +33,8 @@ export class CardComponent implements OnInit {
       this.orderService.getCart(this.token.getUser().id).subscribe(next => {
         this.order = next;
         this.orderItemService.findByBook_IdAndOrder_Id(idBook, this.order.id).subscribe(next1 => {
-          console.log(next1);
+          this.increaseQuantity(next1);
         }, error => {
-          console.log(error);
           this.orderItemService.createOrderItem({
             book: {id: idBook},
             order: {id: this.order.id}
@@ -50,7 +49,7 @@ export class CardComponent implements OnInit {
       });
     } else {
       this.orderItemService.findByBook_IdAndOrder_Id(idBook, this.storage.getCart()).subscribe(next => {
-        console.log(next);
+        this.increaseQuantity(next);
       }, error => {
         console.log(error);
         this.orderItemService.createOrderItem({
@@ -63,5 +62,17 @@ export class CardComponent implements OnInit {
         });
       });
     }
+  }
+  increaseQuantity(cart) {
+    const quantity: number = +cart.quantity + 1;
+    console.log(quantity);
+    this.orderItemService.editOrderItem({
+      id: cart.id,
+      quantity: +quantity,
+      book: {id: cart.book.id},
+      order: {id: cart.order.id},
+    }).subscribe(next => {
+      console.log(next);
+    });
   }
 }

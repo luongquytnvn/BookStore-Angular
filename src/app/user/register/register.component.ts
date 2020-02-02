@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Injectable, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../_services/auth.service';
 import {AppComponent} from '../../app.component';
 import {Router} from '@angular/router';
@@ -25,12 +25,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   }
-
   onSubmit() {
     this.authService.register(this.form).subscribe(
       data => {
-        console.log(this.form);
-        console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         if (data) {
@@ -47,6 +44,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   ngOnDestroy(): void {
     window.location.reload();
   }

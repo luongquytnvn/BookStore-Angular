@@ -9,6 +9,7 @@ import {AuthService} from '../../../user/_services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CartComponent} from '../cart/cart.component';
 import {BookCardComponent} from '../book-card/book-card.component';
+import {LoginComponent} from '../../../user/login/login.component';
 
 @Component({
   selector: 'app-cart-list',
@@ -28,7 +29,8 @@ export class CartListComponent implements OnInit {
               private auth: AuthService,
               private fb: FormBuilder,
               private cart: CartComponent,
-              private bookCard: BookCardComponent
+              private bookCard: BookCardComponent,
+              private login: LoginComponent
   ) {
   }
 
@@ -100,19 +102,27 @@ export class CartListComponent implements OnInit {
     });
   }
 
-  createUser() {
-    this.auth.register({
-      username: this.order.phone,
-      password: '123456',
-      phone: this.order.phone,
-      address: this.order.shippingAddress
-    }).subscribe(next => {
-      console.log(next);
-    }, error => {
-      console.log(error);
-    });
-    // this.createOrder();
-  }
+  // createUser() {
+  //   const {value} = this.cartForm;
+  //   console.log(this.order.user);
+  //   this.auth.register(value).subscribe(data => {
+  //     console.log(data);
+  //     if (data) {
+  //       this.login.autoLogin({
+  //         username: value.username,
+  //         password: value.password
+  //       });
+  //       setTimeout(() => {
+  //         if (this.token.getToken()) {
+  //           this.order.user = this.token.getUser();
+  //           this.createOrder();
+  //         }
+  //       }, 1000);
+  //     }
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
 
   createOrder() {
     this.order.total = this.totalPrice;
