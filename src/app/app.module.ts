@@ -62,10 +62,10 @@ import { BookPublishingComponent } from './component/public/book-publishing/book
 import { BookCardComponent } from './component/public/book-card/book-card.component';
 import { OrderListComponent } from './user/order-list/order-list.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
-import { EditInforComponent } from './user/edit-infor/edit-infor.component';
 import { UserOrderListComponent } from './user/user-order-list/user-order-list.component';
 import { CardComponent } from './component/public/card/card.component';
 import { OrderAdminListComponent } from './component/admin/order-admin-list/order-admin-list.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -125,10 +125,10 @@ import { OrderAdminListComponent } from './component/admin/order-admin-list/orde
     BookCardComponent,
     OrderListComponent,
     ChangePasswordComponent,
-    EditInforComponent,
     UserOrderListComponent,
     CardComponent,
     OrderAdminListComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

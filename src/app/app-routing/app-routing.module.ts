@@ -48,10 +48,10 @@ import {BookLanguageComponent} from '../component/public/book-language/book-lang
 import {BookPublishingComponent} from '../component/public/book-publishing/book-publishing.component';
 import {BookAuthorComponent} from '../component/public/book-author/book-author.component';
 import {OrderListComponent} from '../user/order-list/order-list.component';
-import {EditInforComponent} from '../user/edit-infor/edit-infor.component';
 import {ChangePasswordComponent} from '../user/change-password/change-password.component';
 import {UserGuardService} from '../user/_services/user-guard.service';
 import {UserAdminGuardService} from '../user/_services/user-admin-guard.service';
+import {EditProfileComponent} from '../user/edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -101,7 +101,7 @@ const routes: Routes = [
   {path: 'book-language/:id', component: BookLanguageComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-publishing/:id', component: BookPublishingComponent, runGuardsAndResolvers: 'always'},
   {path: 'change-password', component: ChangePasswordComponent, canActivate: [UserAdminGuardService]},
-  {path: 'edit-infor', component: EditInforComponent, canActivate: [UserAdminGuardService]},
+  {path: 'edit-profile', component: EditProfileComponent, canActivate: [UserAdminGuardService]},
   {path: 'order-list', component: OrderListComponent, canActivate: [UserAdminGuardService]},
   {path: 'order-manager', component: OrderManagerComponent, canActivate: [AdminGuardService]},
   {path: '', redirectTo: '/home', pathMatch: 'full'},

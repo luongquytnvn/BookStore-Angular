@@ -2,19 +2,27 @@
 
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Done</a>
-    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Processing</a>
-    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Done</a>
+    <a class="nav-item nav-link active" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
+       aria-controls="nav-home" aria-selected="true">Order</a>
+    <a class="nav-item nav-link" id="nav-processing-tab" data-toggle="tab" href="#nav-processing" role="tab"
+       aria-controls="nav-profile" aria-selected="false">Processing</a>
+    <a class="nav-item nav-link" id="nav-done-tab" data-toggle="tab" href="#nav-done" role="tab"
+       aria-controls="nav-contact" aria-selected="false">Done</a>
+    <a class="nav-item nav-link" id="nav-cancel-tab" data-toggle="tab" href="#nav-cancel" role="tab"
+       aria-controls="nav-contact" aria-selected="false">Cancel</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  <div class="tab-pane fade show active" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
     <app-user-order-list [orderList]="orderListOrder" (updateList)="updateList()"></app-user-order-list>
   </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <div class="tab-pane fade" id="nav-processing" role="tabpanel" aria-labelledby="nav-processing-tab">
     <app-user-order-list [orderList]="orderListProcessing" (updateList)="updateList()"></app-user-order-list>
   </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+  <div class="tab-pane fade" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
     <app-user-order-list [orderList]="orderListDone" (updateList)="updateList()"></app-user-order-list>
+  </div>
+  <div class="tab-pane fade" id="nav-cancel" role="tabpanel" aria-labelledby="nav-cancel-tab">
+    <app-user-order-list [orderList]="orderListCancel" (updateList)="updateList()"></app-user-order-list>
   </div>
 </div>

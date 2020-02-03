@@ -13,6 +13,7 @@ export class OrderListComponent implements OnInit {
   orderListOrder: Order[];
   orderListDone: Order[];
   orderListProcessing: Order[];
+  orderListCancel: Order[];
 
   constructor(private orderService: OrderService,
               private token: TokenStorageService) {
@@ -46,6 +47,14 @@ export class OrderListComponent implements OnInit {
     )
       .subscribe(orderListDone => {
         this.orderListDone = orderListDone;
+      }, error => {
+        console.log(error);
+      });
+    this.orderService.findAllOrderByUser_Id(this.token.getUser().id).pipe(
+      map(res => res.filter((book, i) => book.status === 'Cancel'))
+    )
+      .subscribe(orderListCancel => {
+        this.orderListCancel = orderListCancel;
       }, error => {
         console.log(error);
       });

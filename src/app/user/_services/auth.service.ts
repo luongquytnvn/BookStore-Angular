@@ -48,4 +48,13 @@ export class AuthService {
       password: credentials.password
     }, httpOptions);
   }
+  changeProfile(user): Observable<any> {
+    return this.http.post(AUTH_API + 'change-profile', {
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      phone: user.phone,
+      address: user.address
+    }, httpOptions);
+  }
 }

@@ -14,6 +14,7 @@ export class OrderManagerComponent implements OnInit {
   orderListOrder: Order[];
   orderListProcessing: Order[];
   orderListDone: Order[];
+  orderListCancel: Order[];
 
   constructor(private orderService: OrderService,
               private orderItemService: OrderItemService,
@@ -39,6 +40,11 @@ export class OrderManagerComponent implements OnInit {
       map(res => res.filter((order, i) => order.status === 'Done'))
     ).subscribe(orderListDone => {
       this.orderListDone = orderListDone;
+    });
+    this.orderService.getOrderList().pipe(
+      map(res => res.filter((order, i) => order.status === 'Cancel'))
+    ).subscribe(orderListCancel => {
+      this.orderListCancel = orderListCancel;
     });
   }
 }
