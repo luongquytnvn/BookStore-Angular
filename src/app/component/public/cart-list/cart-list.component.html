@@ -140,20 +140,27 @@
         <h3>Please enter delivery information</h3>
         <form class="card" *ngIf="order" [formGroup]="cartForm">
           <div class="form-group">
-            <label>Your phone number</label>
+            <strong>Your phone number</strong>
             <input type="text" class="form-control" formControlName="phone" (change)="onChangePhone($event)">
             <div class="alert-danger" *ngIf="cartForm.get('phone').invalid && cartForm.get('phone').touched"
                  style="color: red">
               Is not a Vietnamese phone number
             </div>
           </div>
-          <div>
-            <label>Shipping address</label>
+          <div class="form-group">
+            <strong>Shipping address</strong>
             <input type="text" class="form-control" formControlName="address" (change)="onChangeAddress($event)">
             <div class="alert-danger" *ngIf="cartForm.get('address').invalid && cartForm.get('address').touched"
                  style="color: red">
               Address must be at least 3 characters
             </div>
+          </div>
+          <div class="form-group">
+            <strong>Payments</strong>
+            <select class="form-control">
+              <option value="pay">Pay on delivery</option>
+              <option value="transfer">Transfer payments</option>
+            </select>
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
@@ -225,8 +232,8 @@
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
-<!--            <button [disabled]="cartForm.invalid" data-dismiss="modal" type="button" class="btn btn-primary" (click)="createUser()">Save-->
-<!--            </button>-->
+            <!--            <button [disabled]="cartForm.invalid" data-dismiss="modal" type="button" class="btn btn-primary" (click)="createUser()">Save-->
+            <!--            </button>-->
           </div>
         </form>
       </div>
