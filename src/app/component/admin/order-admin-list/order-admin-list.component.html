@@ -2,21 +2,47 @@
   <thead>
   <tr class="table-bordered">
     <th>Order code</th>
+    <th>User ID</th>
+    <th>User Name</th>
     <th>Total price</th>
     <th>Date order</th>
     <th>Status</th>
+    <th>Change status</th>
     <th>Delete</th>
   </tr>
   </thead>
   <tr *ngFor="let order of orderList" class="table-bordered">
-    <td *ngIf="order.status != 'normal'">{{ order.id }}</td>
+    <td *ngIf="order.status != 'normal'"><a [routerLink]="['/author-detail', order.id]">{{ order.id }}</a></td>
+    <td *ngIf="order.status != 'normal'">
+      <div *ngIf="order.user">
+        {{order.user.id}}
+      </div>
+      <div *ngIf="!order.user">
+        Guest
+      </div>
+    </td>
+    <td *ngIf="order.status != 'normal'">
+      <div *ngIf="order.user">
+        {{order.user.username}}
+      </div>
+      <div *ngIf="!order.user">
+        Guest
+      </div>
+    </td>
     <td *ngIf="order.status != 'normal'">{{order.total}}</td>
     <td *ngIf="order.status != 'normal'">{{order.date}}</td>
     <td *ngIf="order.status != 'normal'">{{order.status}}</td>
-    <td *ngIf="order.status!='normal'">
+    <td *ngIf="order.status != 'normal'">
       <div *ngIf="order.status=='order'">
-        <input class="btn btn-info btn-block" data-toggle="modal" [attr.data-target]="'#deleteOrder' + order.id"
-               value="Delete">
+        <input class="btn btn-info btn-block" value="Accept" (click)="changeToProcessing(order.id)">
+      </div>
+      <div *ngIf="order.status=='processing'">
+        <input class="btn btn-info btn-block" value="Done" (click)="changeToDone(order.id)">
+      </div>
+    </td>
+    <td *ngIf="order.status!='normal'">
+      <div *ngIf="order.status!='Done'">
+        <input class="btn btn-info btn-block" data-toggle="modal" [attr.data-target]="'#deleteOrder' + order.id" value="Delete">
 
         <div [id]="'deleteOrder'+ order.id" class="modal" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
@@ -32,8 +58,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteOrder(order.id)">Ok
-                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteOrder(order.id)">Ok</button>
               </div>
             </div>
           </div>

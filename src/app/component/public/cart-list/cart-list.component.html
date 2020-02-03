@@ -191,7 +191,7 @@
 
           <div class="form-group">
             <label>Password</label>
-            <input type="text" class="form-control" formControlName="password">
+            <input type="password" class="form-control" formControlName="password">
             <div class="alert-danger" *ngIf="cartForm.get('password').invalid && cartForm.get('password').touched"
                  style="color: red">
               Password must be at least 6 characters
@@ -200,7 +200,7 @@
 
           <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" formControlName="email">
+            <input type="email" class="form-control" formControlName="email">
             <div class="alert-danger" *ngIf="cartForm.get('email').invalid && cartForm.get('email').touched"
                  style="color: red">
               Email must be a valid email address
@@ -225,8 +225,8 @@
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
-            <button [disabled]="cartForm.invalid" data-dismiss="modal" type="button" class="btn btn-primary" (click)="createUser()">Save
-            </button>
+<!--            <button [disabled]="cartForm.invalid" data-dismiss="modal" type="button" class="btn btn-primary" (click)="createUser()">Save-->
+<!--            </button>-->
           </div>
         </form>
       </div>

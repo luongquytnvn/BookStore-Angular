@@ -65,6 +65,7 @@ import { ChangePasswordComponent } from './user/change-password/change-password.
 import { EditInforComponent } from './user/edit-infor/edit-infor.component';
 import { UserOrderListComponent } from './user/user-order-list/user-order-list.component';
 import { CardComponent } from './component/public/card/card.component';
+import { OrderAdminListComponent } from './component/admin/order-admin-list/order-admin-list.component';
 
 @NgModule({
   declarations: [
@@ -127,6 +128,7 @@ import { CardComponent } from './component/public/card/card.component';
     EditInforComponent,
     UserOrderListComponent,
     CardComponent,
+    OrderAdminListComponent,
   ],
   imports: [
     BrowserModule,

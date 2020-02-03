@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Order} from '../../component/public/cart/order';
+import {OrderService} from '../../component/public/cart/order.service';
 
 @Component({
   selector: 'app-user-order-list',
@@ -8,9 +9,18 @@ import {Order} from '../../component/public/cart/order';
 })
 export class UserOrderListComponent implements OnInit {
   @Input() orderList: Order[];
-  constructor() { }
+  @Output() updateList = new EventEmitter();
+  constructor(private orderService: OrderService) {
+  }
 
   ngOnInit() {
   }
 
+  deleteOrder(id: number) {
+    this.orderService.deleteItem(id).subscribe(next => {
+      this.updateList.emit();
+    }, error => {
+      console.log(error);
+    });
+  }
 }

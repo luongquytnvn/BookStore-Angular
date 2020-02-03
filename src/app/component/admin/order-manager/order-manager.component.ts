@@ -3,6 +3,7 @@ import {OrderService} from '../../public/cart/order.service';
 import {OrderItemService} from '../../public/cart/order-item.service';
 import {Order} from '../../public/cart/order';
 import {TokenStorageService} from '../../../user/_services/token-storage.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-manager',
@@ -10,7 +11,9 @@ import {TokenStorageService} from '../../../user/_services/token-storage.service
   styleUrls: ['./order-manager.component.css']
 })
 export class OrderManagerComponent implements OnInit {
-  orderList: Order[];
+  orderListOrder: Order[];
+  orderListProcessing: Order[];
+  orderListDone: Order[];
 
   constructor(private orderService: OrderService,
               private orderItemService: OrderItemService,
@@ -18,26 +21,24 @@ export class OrderManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orderService.getOrderList().subscribe(next => {
-      this.orderList = next;
-    });
+    this.updateList();
   }
 
-  changeToProcessing(idOrder) {
-    this.orderService.changeOrderStatus(idOrder, 'processing').subscribe(next => {
-      this.ngOnInit();
+  updateList() {
+    this.orderService.getOrderList().pipe(
+      map(res => res.filter((order, i) => order.status === 'order'))
+    ).subscribe(orderListOrder => {
+      this.orderListOrder = orderListOrder;
     });
-  }
-
-  changeToDone(idOrder) {
-    this.orderService.changeOrderStatus(idOrder, 'Done').subscribe(next => {
-      this.ngOnInit();
+    this.orderService.getOrderList().pipe(
+      map(res => res.filter((order, i) => order.status === 'processing'))
+    ).subscribe(orderListProcessing => {
+      this.orderListProcessing = orderListProcessing;
     });
-  }
-
-  deleteOrder(id: number) {
-    this.orderService.deleteItem(id).subscribe(next => {
-      this.ngOnInit();
+    this.orderService.getOrderList().pipe(
+      map(res => res.filter((order, i) => order.status === 'Done'))
+    ).subscribe(orderListDone => {
+      this.orderListDone = orderListDone;
     });
   }
 }
