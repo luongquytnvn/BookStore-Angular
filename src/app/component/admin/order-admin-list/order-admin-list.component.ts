@@ -32,10 +32,4 @@ export class OrderAdminListComponent implements OnInit {
       this.updateList.emit();
     });
   }
-
-  deleteOrder(id: number) {
-    this.orderService.deleteItem(id).subscribe(next => {
-      this.updateList.emit();
-    });
-  }
 }

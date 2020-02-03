@@ -16,11 +16,9 @@ export class UserOrderListComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteOrder(id: number) {
-    this.orderService.deleteItem(id).subscribe(next => {
+  changeToCancel(idOrder) {
+    this.orderService.changeOrderStatus(idOrder, 'Cancel').subscribe(next => {
       this.updateList.emit();
-    }, error => {
-      console.log(error);
     });
   }
 }

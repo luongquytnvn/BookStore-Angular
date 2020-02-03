@@ -79,4 +79,8 @@ export class BookService {
   deleteBook(id: number): Observable<any> {
     return this.http.delete(this.url + '/' + id);
   }
+
+  findAllByNameContaining(name: string): Observable<IBook[]> {
+    return this.http.post<IBook[]>(this.url + '/findAllByName', name);
+  }
 }

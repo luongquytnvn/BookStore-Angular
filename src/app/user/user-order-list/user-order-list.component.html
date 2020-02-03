@@ -16,7 +16,7 @@
     <td *ngIf="order.status!='normal'">
       <div *ngIf="order.status=='order'">
         <input class="btn btn-info btn-block" data-toggle="modal" [attr.data-target]="'#deleteOrder' + order.id"
-               value="Delete">
+               value="Cancel">
 
         <div [id]="'deleteOrder'+ order.id" class="modal" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
@@ -28,11 +28,11 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p>Are you sure delete this order?</p>
+                <p>Are you sure cancel this order?</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteOrder(order.id)">Ok
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeToCancel(order.id)">Ok
                 </button>
               </div>
             </div>

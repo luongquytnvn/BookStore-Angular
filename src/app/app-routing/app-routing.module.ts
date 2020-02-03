@@ -52,6 +52,7 @@ import {ChangePasswordComponent} from '../user/change-password/change-password.c
 import {UserGuardService} from '../user/_services/user-guard.service';
 import {UserAdminGuardService} from '../user/_services/user-admin-guard.service';
 import {EditProfileComponent} from '../user/edit-profile/edit-profile.component';
+import {SearchAdvancedComponent} from '../component/public/search-advanced/search-advanced.component';
 
 
 const routes: Routes = [
@@ -100,6 +101,7 @@ const routes: Routes = [
   {path: 'book-author/:id', component: BookAuthorComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-language/:id', component: BookLanguageComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-publishing/:id', component: BookPublishingComponent, runGuardsAndResolvers: 'always'},
+  {path: 'search-advanced', component: SearchAdvancedComponent, runGuardsAndResolvers: 'always'},
   {path: 'change-password', component: ChangePasswordComponent, canActivate: [UserAdminGuardService]},
   {path: 'edit-profile', component: EditProfileComponent, canActivate: [UserAdminGuardService]},
   {path: 'order-list', component: OrderListComponent, canActivate: [UserAdminGuardService]},

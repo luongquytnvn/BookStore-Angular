@@ -1,5 +1,5 @@
 <div id="app" style="background-color: #efefef">
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top p-1">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
             aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -116,6 +116,7 @@
 
 
       <ul class="navbar-nav ml-auto">
+        <app-search></app-search>
         <app-cart></app-cart>
 
         <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
@@ -129,7 +130,8 @@
 
         <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ username }}</a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdownProfile" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">{{ username }}</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile" style="left: -50px">
               <a class="dropdown-item" style="color: #111111" routerLink="/profile">Profile</a>
               <div class="dropdown-divider"></div>
@@ -147,5 +149,5 @@
     </div>
   </nav>
 </div>
-<div style=" height: 56px"></div>
+<div style=" height: 48px"></div>
 

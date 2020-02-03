@@ -66,6 +66,8 @@ import { UserOrderListComponent } from './user/user-order-list/user-order-list.c
 import { CardComponent } from './component/public/card/card.component';
 import { OrderAdminListComponent } from './component/admin/order-admin-list/order-admin-list.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { SearchComponent } from './component/public/search/search.component';
+import { SearchAdvancedComponent } from './component/public/search-advanced/search-advanced.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +131,8 @@ import { EditProfileComponent } from './user/edit-profile/edit-profile.component
     CardComponent,
     OrderAdminListComponent,
     EditProfileComponent,
+    SearchComponent,
+    SearchAdvancedComponent,
   ],
   imports: [
     BrowserModule,
