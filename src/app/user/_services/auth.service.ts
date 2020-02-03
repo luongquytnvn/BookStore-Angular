@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -13,7 +13,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   login(credentials): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
@@ -23,13 +24,28 @@ export class AuthService {
   }
 
   register(user): Observable<any> {
-    console.log(user);
     return this.http.post(AUTH_API + 'signup', {
       username: user.username,
       email: user.email,
       password: user.password,
       phone: user.phone,
       address: user.address
+    }, httpOptions);
+  }
+
+  checkPassword(credentials): Observable<any> {
+    console.log(credentials);
+    return this.http.post(AUTH_API + 'check-password', {
+      username: credentials.username,
+      password: credentials.password
+    }, httpOptions);
+  }
+
+  changePassword(credentials): Observable<any> {
+    console.log(credentials);
+    return this.http.post(AUTH_API + 'change-password', {
+      username: credentials.username,
+      password: credentials.password
     }, httpOptions);
   }
 }
