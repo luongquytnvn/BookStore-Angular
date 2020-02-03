@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {ILanguage} from '../language/ILanguage';
+import {IPublishing} from './IPublishing';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +32,9 @@ export class PublishingService {
 
   deletePublishing(id: number): Observable<any> {
     return this.http.delete(this.url + '/' + id);
+  }
+
+  findAllByNameContaining(name: string): Observable<IPublishing[]> {
+    return this.http.post<IPublishing[]>(this.url + '/findAllByName', name);
   }
 }

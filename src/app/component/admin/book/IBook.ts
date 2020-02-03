@@ -5,6 +5,7 @@ export interface IBook {
   name: string;
   bookPictures: IBookPicture[];
   price: number;
+  dateCreate: Date;
   description: string;
   amount: number;
   authors: any[];

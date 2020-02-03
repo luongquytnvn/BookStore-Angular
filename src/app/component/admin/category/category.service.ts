@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {IAuthor} from '../author/IAuthor';
+import {ICategory} from './ICategory';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +31,9 @@ export class CategoryService {
 
   deleteCategory(id: number): Observable<any> {
     return this.http.delete(this.url + '/' + id);
+  }
+
+  findAllByNameContaining(name: string): Observable<ICategory[]> {
+    return this.http.post<ICategory[]>(this.url + '/findAllByName', name);
   }
 }

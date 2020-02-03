@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IBook} from '../book/IBook';
+import {IAuthor} from './IAuthor';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class AuthorService {
 
   deleteAuthor(id: number): Observable<any> {
     return this.http.delete(this.url + '/' + id);
+  }
+
+  findAllByNameContaining(name: string): Observable<IAuthor[]> {
+    return this.http.post<IAuthor[]>(this.url + '/findAllByName', name);
   }
 }

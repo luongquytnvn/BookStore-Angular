@@ -21,7 +21,7 @@
     novalidate
   >
     <div class="form-group">
-      <label>Book name</label>
+      <strong>Book name</strong>
       <input type="text" class="form-control" formControlName="name"/>
       <div class="alert-danger" *ngIf="bookForm.get('name').invalid && bookForm.get('name').touched"
            style="color: red">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Price</label>
+      <strong>Price</strong>
       <input type="number" class="form-control" formControlName="price"/>
       <div class="alert-danger" *ngIf="bookForm.get('price').invalid && bookForm.get('price').touched"
            style="color: red">
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Description</label>
+      <strong>Description</strong>
       <textarea class="form-control h-auto" formControlName="description"></textarea>
       <div class="alert-danger" *ngIf="bookForm.get('description').invalid && bookForm.get('description').touched"
            style="color: red">
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Amount</label>
+      <strong>Amount</strong>
       <input type="number" class="form-control" formControlName="amount"/>
       <div class="alert-danger" *ngIf="bookForm.get('amount').invalid && bookForm.get('amount').touched"
            style="color: red">
@@ -54,45 +54,89 @@
     </div>
 
     <div class="form-group">
-      <label>Author</label>
+      <strong>Author</strong>
       <div *ngFor="let author of authors">
           <p>{{author.name}}</p>
       </div>
-      <select class="form-control" (change)="addAuthor(addAu.value)" #addAu>
-        <option value="null">None</option>
-        <option *ngFor="let a of authorList" value="{{a.id}}">{{a.name}}</option>
-      </select>
+
+      <div class="form-inline">
+        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchAuthor" role="button"
+             data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+          <input class="form-control" type="search" placeholder="Search author..." aria-label="Search" #search
+                 (focusout)="search.value=''" (keyup)="searchAuthor($event.currentTarget)">
+        </div>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchAuthor">
+          <div *ngFor="let author of authorList">
+            <a class="dropdown-item" (click)="addAuthor(author.id)">{{author.name}}</a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="form-group">
-      <label>Language</label>
+      <strong>Language</strong>
       <div *ngFor="let language of languages">
         <p>{{language.name}}</p>
       </div>
-      <select class="form-control" (change)="addLanguage(addLang.value)" #addLang>
-        <option value="null">None</option>
-        <option *ngFor="let lang of languageList" value="{{lang.id}}">{{lang.name}}</option>
-      </select>
+      <div class="form-inline">
+        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchLanguages" role="button"
+             data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+          <input class="form-control" type="search" placeholder="Search languages..." aria-label="Search" #search
+                 (focusout)="search.value=''" (keyup)="searchLanguages($event.currentTarget)">
+        </div>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchLanguages">
+          <div *ngFor="let language of languageList">
+            <a class="dropdown-item" (click)="addLanguage(language.id)">{{language.name}}</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label>Category</label>
-      <select class="form-control" (change)="addCategory(addCa.value)" #addCa>
-        <option value="">None</option>
-        <option *ngFor="let c of categoryList" value="{{c.id}}">{{c.name}}</option>
-      </select>
+      <strong>Category</strong>
+      <div *ngIf="category">
+        <p>{{category.name}}</p>
+      </div>
+      <div class="form-inline">
+        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchCategory" role="button"
+             data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+          <input class="form-control" type="search" placeholder="Search category..." aria-label="Search" #search
+                 (focusout)="search.value=''" (keyup)="searchCategory($event.currentTarget)">
+        </div>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchCategory">
+          <div *ngFor="let c of categoryList">
+            <a class="dropdown-item" (click)="addCategory(c.id)">{{c.name}}</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label>Publishing</label>
-      <select class="form-control" (change)="addPublishing(addPub.value)" #addPub>
-        <option value="">None</option>
-        <option *ngFor="let p of publishingList" value="{{p.id}}">{{p.name}}</option>
-      </select>
+      <strong>Publishing</strong>
+      <div *ngIf="publishing">
+        <p>{{publishing.name}}</p>
+      </div>
+      <div class="form-inline">
+        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchPublishing" role="button"
+             data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+          <input class="form-control" type="search" placeholder="Search publishing..." aria-label="Search" #search
+                 (focusout)="search.value=''" (keyup)="searchPublishing($event.currentTarget)">
+        </div>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchPublishing">
+          <div *ngFor="let publish of publishingList">
+            <a class="dropdown-item" (click)="addPublishing(publish.id)">{{publish.name}}</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label>Picture</label>
+      <strong>Picture</strong>
       <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" multiple>
     </div>
     <div class="form-group" style="height: 100px">

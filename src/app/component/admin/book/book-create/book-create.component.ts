@@ -124,7 +124,6 @@ export class BookCreateComponent implements OnInit {
 
   addAuthor(id) {
     if (id != null && this.checkAuthor(id) === -1) {
-      console.log('aaaaa');
       this.authorService.getAuthor(id).subscribe(next => this.authors.push(next));
     }
   }
@@ -157,5 +156,37 @@ export class BookCreateComponent implements OnInit {
       checkId.push(a.id);
     }
     return checkId.indexOf(+id);
+  }
+
+  searchAuthor(name) {
+    this.authorService.findAllByNameContaining(name.value).subscribe(next => {
+      this.authorList = next;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  searchLanguages(name) {
+    this.languageService.findAllByNameContaining(name.value).subscribe(next => {
+      this.languageList = next;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  searchCategory(name) {
+    this.categoryService.findAllByNameContaining(name.value).subscribe(next => {
+      this.categoryList = next;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  searchPublishing(name) {
+    this.publishingService.findAllByNameContaining(name.value).subscribe(next => {
+      this.publishingList = next;
+    }, error => {
+      console.log(error);
+    });
   }
 }

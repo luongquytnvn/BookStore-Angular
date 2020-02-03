@@ -9,7 +9,7 @@
     </tr>
     <tr>
       <td>Price:</td>
-      <td>{{book.price}}</td>
+      <td>{{book.price | currency: "VND" : "đ "}}</td>
     </tr>
     <tr>
       <td>Description:</td>
@@ -21,7 +21,7 @@
     </tr>
     <tr>
       <td>Days on the shelves:</td>
-      <td>{{book.amount}}</td>
+      <td>{{book.dateCreate}}</td>
     </tr>
     <tr>
       <td>Author:</td>

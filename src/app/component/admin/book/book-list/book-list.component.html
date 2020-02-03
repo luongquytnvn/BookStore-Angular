@@ -14,7 +14,7 @@
   <tr *ngFor="let book of bookList">
     <td><a [routerLink]="['/book-detail',book.id]">{{book.id}}</a></td>
     <td><a [routerLink]="['/book-detail',book.id]">{{book.name}}</a></td>
-    <td>{{book.price}}</td>
+    <td>{{book.price | currency: "VND" : "đ "}}</td>
     <td>{{book.amount}}</td>
     <td><a [routerLink]="['/book-edit',book.id]">Edit</a></td>
     <td><a [routerLink]="['/book-delete',book.id]">Delete</a></td>

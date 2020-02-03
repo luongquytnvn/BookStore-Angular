@@ -14,10 +14,7 @@ export class BookDetailComponent implements OnInit {
   book: IBook;
   constructor(
     private bookService: BookService,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router,
-    private  app: AppComponent
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
