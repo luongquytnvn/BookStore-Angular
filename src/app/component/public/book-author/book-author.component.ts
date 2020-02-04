@@ -16,7 +16,8 @@ import {AuthorService} from '../../admin/author/author.service';
 export class BookAuthorComponent implements OnInit {
   bookListByAuthor: IBook[];
   author: IAuthor;
-
+  page = 1;
+  pageTotal: number;
   constructor(private bookService: BookService,
               private router: Router,
               private route: ActivatedRoute,
@@ -31,11 +32,25 @@ export class BookAuthorComponent implements OnInit {
         this.author = nextAuthor;
         this.bookService.getBookListByAuthor(id).subscribe(next => {
           this.bookListByAuthor = next;
+          this.pageTotal = Math.ceil(+this.bookListByAuthor.length / 12);
         }, error => (console.log(error)));
       }, errorAuthor => {
         console.log(errorAuthor);
       });
     });
-
+  }
+  changePage(page) {
+    switch (page) {
+      case 'previous':
+        if (this.page > 1) {
+          this.page = this.page - 1;
+        }
+        break;
+      case 'next':
+        if (this.page < this.pageTotal) {
+          this.page = this.page + 1;
+        }
+        break;
+    }
   }
 }

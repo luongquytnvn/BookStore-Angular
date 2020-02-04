@@ -9,7 +9,7 @@
     </div>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownSearch">
       <div *ngFor="let book of searchList">
-        <a class="dropdown-item" [routerLink]="['book-detail', book.id]">{{book.name}}</a>
+        <a class="dropdown-item" [routerLink]="['book-detail-public', book.id]">{{book.name}}</a>
       </div>
     </div>
   </form>
