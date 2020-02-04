@@ -1,0 +1,17 @@
+img.main1{
+  width: 250px;
+  height: 350px;
+}
+.cursor{
+  height: 50px;
+  width: 50px;
+}
+.container-fluid{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.container hr{
+  border-top: 2px solid black;
+  width: 10%;
+  margin-bottom: 2rem;
+}
