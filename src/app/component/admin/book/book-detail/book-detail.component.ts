@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {IBook} from '../IBook';
 import {BookService} from '../book.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder} from '@angular/forms';
-import {AppComponent} from '../../../../app.component';
 
 @Component({
   selector: 'app-book-detail',

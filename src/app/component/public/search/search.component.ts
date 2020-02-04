@@ -9,6 +9,7 @@ import {BookService} from '../../admin/book/book.service';
 })
 export class SearchComponent implements OnInit {
   searchList: IBook[];
+  nameSearch: '';
 
   constructor(private bookService: BookService) {
   }
@@ -17,9 +18,8 @@ export class SearchComponent implements OnInit {
   }
 
   searchBook(event) {
-    console.log(event.value);
+    this.nameSearch = event.value;
     this.bookService.findAllByNameContaining(event.value).subscribe(next => {
-      console.log(next);
       this.searchList = next;
     }, error => {
       this.searchList = [];
@@ -27,3 +27,4 @@ export class SearchComponent implements OnInit {
     });
   }
 }
+

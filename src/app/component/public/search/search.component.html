@@ -5,7 +5,7 @@
          aria-haspopup="true" aria-expanded="false">
       <input class="form-control mr-sm-2" type="search" placeholder="Search book..." aria-label="Search" #search
              (keyup)="searchBook($event.currentTarget)" (focusout)="search.value=''">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/search-advanced', this.nameSearch]">Search</button>
     </div>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownSearch">
       <div *ngFor="let book of searchList">

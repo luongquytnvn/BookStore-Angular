@@ -104,7 +104,7 @@ const routes: Routes = [
   {path: 'book-language/:id', component: BookLanguageComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-publishing/:id', component: BookPublishingComponent, runGuardsAndResolvers: 'always'},
   {path: 'book-detail-public/:id', component: BookDetailPublicComponent, runGuardsAndResolvers: 'always'},
-  {path: 'search-advanced', component: SearchAdvancedComponent, runGuardsAndResolvers: 'always'},
+  {path: 'search-advanced/:name', component: SearchAdvancedComponent, runGuardsAndResolvers: 'always'},
   {path: 'about-us', component: AboutUsComponent, runGuardsAndResolvers: 'always'},
   {path: 'change-password', component: ChangePasswordComponent, canActivate: [UserAdminGuardService]},
   {path: 'edit-profile', component: EditProfileComponent, canActivate: [UserAdminGuardService]},
