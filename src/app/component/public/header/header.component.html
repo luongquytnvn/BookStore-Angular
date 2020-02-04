@@ -19,6 +19,17 @@
 
           <div class="dropdown-divider"></div>
           <div class="dropdown-2">
+            <a>Book price</a>
+            <div class="dropdown-content-2">
+              <a routerLink="/book-price/1">0 - 100.000</a>
+              <a routerLink="/book-price/2">100.000 - 200.000</a>
+              <a routerLink="/book-price/3">200.000 - 300.000</a>
+              <a routerLink="/book-price/4"> > 300.000</a>
+            </div>
+          </div>
+
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-2">
             <a>Category</a>
             <div class="dropdown-content-2">
               <div *ngFor="let c of categoryList">

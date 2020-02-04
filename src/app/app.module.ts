@@ -70,6 +70,7 @@ import { SearchComponent } from './component/public/search/search.component';
 import { SearchAdvancedComponent } from './component/public/search-advanced/search-advanced.component';
 import {BookDetailPublicComponent} from './component/public/book-detail-public/book-detail-public.component';
 import {AboutUsComponent} from './component/public/about-us/about-us.component';
+import { BookPriceComponent } from './component/public/book-price/book-price.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +137,8 @@ import {AboutUsComponent} from './component/public/about-us/about-us.component';
     SearchComponent,
     SearchAdvancedComponent,
     BookDetailPublicComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    BookPriceComponent
   ],
   imports: [
     BrowserModule,
