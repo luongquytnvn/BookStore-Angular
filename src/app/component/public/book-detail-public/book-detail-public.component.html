@@ -1,65 +1,3 @@
-<!--<div class="container">-->
-<!--  <div class="col-md-6 offset-3 mb-3">-->
-<!--  </div>-->
-<!--</div>-->
-<!--<div class="container">-->
-<!--  <div class="row mb-5">-->
-<!--    <img [src]="[book.bookPictures[0].src]" class="profile-img-card offset-3" style="width: 25%" style = "height: 500px"/>-->
-<!--    <div class="col-12 col-sm-5 col-md-5 offset-3">-->
-<!--        <div class="row ">-->
-<!--        <div class=" " *ngFor="let image of book.bookPictures,  index as i">-->
-<!--          <img src="{{image.src}}" width="80px" height="150px">-->
-<!--          &nbsp;-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="col-md-6">-->
-<!--      <h2>Thông tin chi tiết</h2>-->
-
-<!--      <hr/>-->
-<!--      <div *ngIf="book">-->
-<!--        <div>-->
-<!--          <label><b>Name : </b></label> {{book.name}}-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <label><b>Price : </b></label> {{book.price}}-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <label><b>Description : </b></label> {{book.description}}-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <label><b>Amount : </b></label> {{book.amount}}-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <label><b>Authors : </b></label>-->
-<!--          <div *ngFor="let author of book.authors">{{author.name}}</div>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <label><b>Publishing : </b></label> {{book.publishing.name}}-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <label><b>Category: </b></label> {{book.category.name}}-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <label><b>Languages : </b></label>-->
-<!--          <div *ngFor="let language of book.languages">{{language.name}}</div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      </div>-->
-
-<!--      <br>-->
-<!--      <br>-->
-<!--      <div class="mb-0">-->
-<!--        <button type="button"-->
-<!--                class="btn btn-outline-primary mr-2"-->
-<!--                (click)="addCart(book, 1)">Thêm vào giỏ-->
-<!--        </button>-->
-<!--      </div>-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
 <div class="container" *ngIf="book.bookPictures">
   <div class="row">
     <div class="col-6">
@@ -70,7 +8,7 @@
       </div>
       <div class="row m-3">
         <div class="col-md-3" *ngFor="let image of book.bookPictures,  index as i">
-          <img  *ngIf="i<4" src="{{image.src}}" width="80px" height="100px">
+          <img *ngIf="i<4" src="{{image.src}}" width="80px" height="100px">
         </div>
       </div>
     </div>
@@ -82,7 +20,7 @@
           <label><b>Name : </b></label> {{book.name}}
         </div>
         <div>
-          <label><b>Price : </b></label> {{book.price}}
+          <label><b>Price : </b></label> {{book.price | currency: "VND" : "đ "}}
         </div>
         <div>
           <label><b>Description : </b></label> {{book.description}}
@@ -106,11 +44,29 @@
         </div>
       </div>
       <div class="mb-0">
-        <button type="button"
-                class="btn btn-outline-primary mr-2"
-                (click)="addCart(book, 1)">Thêm vào giỏ
+        <button class="btn btn-outline-secondary" (click)="addCart(book.id)" data-toggle="modal"
+                [attr.data-target]="'#addBookToCart' + book.id">Add cart
         </button>
-      </div>
       </div>
     </div>
   </div>
+</div>
+
+<div [id]="'addBookToCart'+ book.id" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vũ Đại Village </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>The book {{book.name}} has been added to the cart</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

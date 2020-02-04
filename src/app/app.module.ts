@@ -68,6 +68,8 @@ import { OrderAdminListComponent } from './component/admin/order-admin-list/orde
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { SearchComponent } from './component/public/search/search.component';
 import { SearchAdvancedComponent } from './component/public/search-advanced/search-advanced.component';
+import {BookDetailPublicComponent} from './component/public/book-detail-public/book-detail-public.component';
+import {AboutUsComponent} from './component/public/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +135,8 @@ import { SearchAdvancedComponent } from './component/public/search-advanced/sear
     EditProfileComponent,
     SearchComponent,
     SearchAdvancedComponent,
+    BookDetailPublicComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

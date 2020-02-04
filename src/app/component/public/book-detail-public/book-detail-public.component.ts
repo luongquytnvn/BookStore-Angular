@@ -5,6 +5,7 @@ import {BookService} from '../../admin/book/book.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CartComponent} from '../cart/cart.component';
 import {IBookPicture} from '../../admin/book/IBookPicture';
+import {CardComponent} from '../card/card.component';
 
 
 @Component({
@@ -20,8 +21,7 @@ export class BookDetailPublicComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    private router: Router,
-    private cart: CartComponent
+    private card: CardComponent
   ) { }
 
   ngOnInit() {
@@ -34,19 +34,18 @@ export class BookDetailPublicComponent implements OnInit {
       id: number;
       languages: any[];
       name: string;
+      dateCreate: Date;
       price: number;
       publishing: any;
     }();
     this.id = this.route.snapshot.params.id;
     this.bookService.getBook(this.id).subscribe(data => {
-      console.log(data);
       this.book = data;
     }, error => console.log(error));
     this.books = this.bookService.getBookList();
   }
 
-  addCart(idBook, number: number) {
-    this.cart.addCart(idBook);
+  addCart(id: number) {
+    this.card.addCart(id);
   }
-
 }

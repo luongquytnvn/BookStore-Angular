@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {IBook} from '../../admin/book/IBook';
 import {OrderService} from '../cart/order.service';
 import {OrderItemService} from '../cart/order-item.service';
@@ -9,7 +9,9 @@ import {StorageService} from '../../../user/_services/storage.service';
 import {CartComponent} from '../cart/cart.component';
 import {Order} from '../cart/order';
 import {BookCardComponent} from '../book-card/book-card.component';
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
