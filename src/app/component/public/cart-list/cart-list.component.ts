@@ -102,27 +102,42 @@ export class CartListComponent implements OnInit {
     });
   }
 
-  // createUser() {
-  //   const {value} = this.cartForm;
-  //   console.log(this.order.user);
-  //   this.auth.register(value).subscribe(data => {
-  //     console.log(data);
-  //     if (data) {
-  //       this.login.autoLogin({
-  //         username: value.username,
-  //         password: value.password
-  //       });
-  //       setTimeout(() => {
-  //         if (this.token.getToken()) {
-  //           this.order.user = this.token.getUser();
-  //           this.createOrder();
-  //         }
-  //       }, 1000);
-  //     }
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
+  createUser() {
+    const {value} = this.cartForm;
+    this.auth.register(value).subscribe(data => {
+      console.log(data);
+      if (data) {
+        this.auth.login({
+          username: value.username,
+          password: value.password
+        }).subscribe(
+          next => {
+            this.token.saveToken(next.accessToken);
+            this.token.saveUser(next);
+            this.order.user = {
+              id: next.id,
+              address: '',
+              email: '',
+              password: '',
+              phone: '',
+              username: ''
+            };
+            this.orderService.editItem(this.order).subscribe(next1 => {
+              console.log(next1);
+              this.createOrder();
+            }, error => {
+              console.log(error);
+            });
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
 
   createOrder() {
     this.order.total = this.totalPrice;
