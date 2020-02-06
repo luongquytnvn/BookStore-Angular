@@ -39,7 +39,7 @@ export class OrderService {
 
   editItem(order): Observable<any> {
     console.log(order);
-    return this.http.put(this.url + '/' + order.id, order);
+    return this.http.put(this.url, order);
   }
 
   toOrder(order): Observable<any> {

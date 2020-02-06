@@ -91,38 +91,53 @@ export class CartListComponent implements OnInit {
   }
 
   onChangeQuantity(event, cart) {
-    cart.quantity = event.target.value;
-    this.orderItemService.editOrderItem({
-      id: cart.id,
-      quantity: cart.quantity,
-      book: {id: cart.book.id},
-      order: {id: cart.order.id},
-    }).subscribe(next => {
-      this.changeTotal();
-    });
+    // cart.quantity = event.target.value;
+    // this.orderItemService.editOrderItem({
+    //   id: cart.id,
+    //   quantity: cart.quantity,
+    //   book: {id: cart.book.id},
+    //   order: {id: cart.order.id},
+    // }).subscribe(next => {
+    //   this.changeTotal();
+    // });
   }
 
-  // createUser() {
-  //   const {value} = this.cartForm;
-  //   console.log(this.order.user);
-  //   this.auth.register(value).subscribe(data => {
-  //     console.log(data);
-  //     if (data) {
-  //       this.login.autoLogin({
-  //         username: value.username,
-  //         password: value.password
-  //       });
-  //       setTimeout(() => {
-  //         if (this.token.getToken()) {
-  //           this.order.user = this.token.getUser();
-  //           this.createOrder();
-  //         }
-  //       }, 1000);
-  //     }
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
+  createUser() {
+    const {value} = this.cartForm;
+    this.auth.register(value).subscribe(data => {
+      console.log(data);
+      if (data) {
+        this.auth.login({
+          username: value.username,
+          password: value.password
+        }).subscribe(
+          next => {
+            this.token.saveToken(next.accessToken);
+            this.token.saveUser(next);
+            this.order.user = {
+              id: next.id,
+              address: '',
+              email: '',
+              password: '',
+              phone: '',
+              username: ''
+            };
+            this.orderService.editItem(this.order).subscribe(next1 => {
+              console.log(next1);
+              this.createOrder();
+            }, error => {
+              console.log(error);
+            });
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
 
   createOrder() {
     this.order.total = this.totalPrice;
@@ -158,5 +173,13 @@ export class CartListComponent implements OnInit {
       this.updateList();
       this.bookCard.showList();
     });
+  }
+
+  checkNumber(event) {
+    // console.log(event.key);
+    // const str = event.key;
+    // const reg = new RegExp('/[^0-9]/');
+    // if (reg.test(str)) {
+    // }
   }
 }

@@ -1,0 +1,29 @@
+<app-cover></app-cover>
+<div id="container">
+  <div class="container-fluid padding">
+    <div class="row welcome text-center">
+      <div class="col-12">
+        <h3 class="display-5">Book price</h3>
+      </div>
+      <hr style="margin-right: 5px">
+      <hr style="margin-left: 5px">
+      <div class="col-12">
+        <div class="container-fluid padding" align="center">
+          <div class="row">
+            <div class="col-md-3" *ngFor="let bookPrice of bookList, index as i">
+              <div *ngIf="i < page * 12 && i >= page * 12 - 12">
+                <app-card [book]="bookPrice"></app-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" (click)="changePage('previous')">Previous</a></li>
+        <li class="page-item"><a class="page-link" (click)="changePage('next')">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
