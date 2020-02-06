@@ -22,11 +22,6 @@ import {CategoryCreateComponent} from '../component/admin/category/category-crea
 import {CategoryEditComponent} from '../component/admin/category/category-edit/category-edit.component';
 import {CategoryDeleteComponent} from '../component/admin/category/category-delete/category-delete.component';
 import {CategoryDetailComponent} from '../component/admin/category/category-detail/category-detail.component';
-import {CommentListComponent} from '../component/admin/comment/comment-list/comment-list.component';
-import {CommentCreateComponent} from '../component/admin/comment/comment-create/comment-create.component';
-import {CommentEditComponent} from '../component/admin/comment/comment-edit/comment-edit.component';
-import {CommentDeleteComponent} from '../component/admin/comment/comment-delete/comment-delete.component';
-import {CommentDetailComponent} from '../component/admin/comment/comment-detail/comment-detail.component';
 import {LanguageListComponent} from '../component/admin/language/language-list/language-list.component';
 import {LanguageCreateComponent} from '../component/admin/language/language-create/language-create.component';
 import {LanguageEditComponent} from '../component/admin/language/language-edit/language-edit.component';
@@ -49,7 +44,6 @@ import {BookPublishingComponent} from '../component/public/book-publishing/book-
 import {BookAuthorComponent} from '../component/public/book-author/book-author.component';
 import {OrderListComponent} from '../user/order-list/order-list.component';
 import {ChangePasswordComponent} from '../user/change-password/change-password.component';
-import {UserGuardService} from '../user/_services/user-guard.service';
 import {UserAdminGuardService} from '../user/_services/user-admin-guard.service';
 import {EditProfileComponent} from '../user/edit-profile/edit-profile.component';
 import {SearchAdvancedComponent} from '../component/public/search-advanced/search-advanced.component';
@@ -80,11 +74,6 @@ const routes: Routes = [
   {path: 'category-edit/:id', component: CategoryEditComponent, canActivate: [AdminGuardService]},
   {path: 'category-delete/:id', component: CategoryDeleteComponent, canActivate: [AdminGuardService]},
   {path: 'category-detail/:id', component: CategoryDetailComponent, canActivate: [AdminGuardService]},
-  {path: 'comment-list', component: CommentListComponent},
-  {path: 'comment-create', component: CommentCreateComponent},
-  {path: 'comment-edit/:id', component: CommentEditComponent},
-  {path: 'comment-delete/:id', component: CommentDeleteComponent},
-  {path: 'comment-detail/:id', component: CommentDetailComponent},
   {path: 'language-list', component: LanguageListComponent, canActivate: [AdminGuardService]},
   {path: 'language-create', component: LanguageCreateComponent, canActivate: [AdminGuardService]},
   {path: 'language-edit/:id', component: LanguageEditComponent, canActivate: [AdminGuardService]},

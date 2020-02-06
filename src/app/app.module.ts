@@ -26,11 +26,6 @@ import { CategoryCreateComponent } from './component/admin/category/category-cre
 import { CategoryEditComponent } from './component/admin/category/category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './component/admin/category/category-delete/category-delete.component';
 import { CategoryDetailComponent } from './component/admin/category/category-detail/category-detail.component';
-import { CommentListComponent } from './component/admin/comment/comment-list/comment-list.component';
-import { CommentCreateComponent } from './component/admin/comment/comment-create/comment-create.component';
-import { CommentEditComponent } from './component/admin/comment/comment-edit/comment-edit.component';
-import { CommentDeleteComponent } from './component/admin/comment/comment-delete/comment-delete.component';
-import { CommentDetailComponent } from './component/admin/comment/comment-detail/comment-detail.component';
 import { LanguageListComponent } from './component/admin/language/language-list/language-list.component';
 import { LanguageCreateComponent } from './component/admin/language/language-create/language-create.component';
 import { LanguageEditComponent } from './component/admin/language/language-edit/language-edit.component';
@@ -100,11 +95,6 @@ import { CommentComponent } from './component/public/comment/comment.component';
     CategoryEditComponent,
     CategoryDeleteComponent,
     CategoryDetailComponent,
-    CommentListComponent,
-    CommentCreateComponent,
-    CommentEditComponent,
-    CommentDeleteComponent,
-    CommentDetailComponent,
     LanguageListComponent,
     LanguageCreateComponent,
     LanguageEditComponent,
