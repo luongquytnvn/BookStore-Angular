@@ -50,6 +50,9 @@
       </div>
     </div>
   </div>
+  <div *ngIf="book">
+    <app-book-comment [book]="book"></app-book-comment>
+  </div>
 </div>
 
 <div [id]="'addBookToCart'+ book.id" class="modal" tabindex="-1" role="dialog">

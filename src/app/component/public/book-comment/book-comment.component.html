@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="post-comments">
+    <form *ngIf="token.getToken()" [formGroup]="formComment" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Your Comment</label>
+        <textarea class="form-control" formControlName="content" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-info">Send</button>
+    </form>
+    <div *ngIf="!token.getToken()">
+      <div class="text-center text-secondary">
+        <h6>You need login before can be comment. <a  [routerLink]="'/login'">Login!</a></h6>
+      </div>
+    </div>
+    <div class="comments-nav">
+      <ul class="nav nav-pills">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+             aria-expanded="false" *ngIf="commentList">
+            {{commentList.length}} Comments <span class="caret"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="row" *ngFor="let comment of commentList">
+      <app-comment [comment]="comment" (updateList)="updateCommentList()"></app-comment>
+    </div>
+  </div>
+</div>

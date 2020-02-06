@@ -16,8 +16,8 @@
         </div>
       </td>
       <td>{{cart.book.price | currency: "VND" : "đ "}}</td>
-      <td><input type="number" style="width: 50px" [value]="cart.quantity" name="quantity"
-                 (change)="onChangeQuantity($event, cart)"></td>
+      <td><input type="number" style="width: 60px" [value]="cart.quantity" name="quantity" (keypress)="checkNumber($event)"
+                 (change)="onChangeQuantity($event, cart)" step="1"></td>
       <td>{{cart.book.price * cart.quantity | currency: "VND": "đ "}}</td>
       <td>
         <button class="btn btn-block badge-danger" data-toggle="modal" [attr.data-target]="'#deleteCartItem' + cart.id">
@@ -38,7 +38,7 @@
               <p>Are you sure you want to delete {{cart.book.name}} from cart?</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger">Cancel</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteCartItem(cart.id)">Ok
               </button>
             </div>

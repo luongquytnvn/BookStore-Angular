@@ -1,0 +1,72 @@
+<div class="media">
+  <div>
+    <img class="d-flex mr-3 rounded-circle" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+         style="width: 60px;height: 60px" alt="">
+  </div>
+  <div class="media-body">
+    <div>
+      Bởi <label class="text-success text font-weight-bold"><span>{{comment.user.username}}</span><span
+      class="text-secondary">   {{comment.date | date: 'dd/MM/yyyy H:mm' }} <span
+      *ngIf="comment.isEdit">  (edited)</span> </span>
+      <button type="button" class="btn btn-light"> ...</button>
+    </label>
+    </div>
+    <p>
+      <b>{{comment.content}}</b>
+    </p>
+    <div *ngIf="token.getToken() && comment.user.id == token.getUser().id">
+      <a class="btn btn-info a-btn-slide-text mr-2" data-toggle="collapse" [href]="'#editComment'+comment.id"
+         role="button" aria-expanded="false">
+        <strong>Edit</strong>
+      </a>
+      <a class="btn btn-danger a-btn-slide-text"  data-toggle="modal" [attr.data-target]="'#deleteComment' + comment.id">
+        <strong>Delete</strong>
+      </a>
+      <div class="collapse" [id]="'editComment' + comment.id">
+        <form [formGroup]="formEdit" (ngSubmit)="saveComment(comment.id)">
+          <div class="card card-body">
+            <textarea contenteditable="true" formControlName="editComment"></textarea>
+            <br/>
+            <div class="text-right">
+              <input class="btn btn-outline-secondary" style="width: 80px" value="Close" (click)="updateList.emit()">&nbsp;&nbsp;
+              <button class="btn btn-outline-primary">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [id]="'deleteComment'+ comment.id" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vũ Đại Village </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this comment</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"  (click)="deleteComment(comment.id)">Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nav nav-tabs" id="nav-tab" role="tablist">
+  <a class="nav-item nav-link active" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
+     aria-controls="nav-home" aria-selected="false">Order</a>
+</div>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
+    qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+    qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+  </div>
+</div>

@@ -71,6 +71,8 @@ import { SearchAdvancedComponent } from './component/public/search-advanced/sear
 import {BookDetailPublicComponent} from './component/public/book-detail-public/book-detail-public.component';
 import {AboutUsComponent} from './component/public/about-us/about-us.component';
 import { BookPriceComponent } from './component/public/book-price/book-price.component';
+import { BookCommentComponent } from './component/public/book-comment/book-comment.component';
+import { CommentComponent } from './component/public/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -138,7 +140,9 @@ import { BookPriceComponent } from './component/public/book-price/book-price.com
     SearchAdvancedComponent,
     BookDetailPublicComponent,
     AboutUsComponent,
-    BookPriceComponent
+    BookPriceComponent,
+    BookCommentComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

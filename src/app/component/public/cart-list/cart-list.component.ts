@@ -91,15 +91,15 @@ export class CartListComponent implements OnInit {
   }
 
   onChangeQuantity(event, cart) {
-    cart.quantity = event.target.value;
-    this.orderItemService.editOrderItem({
-      id: cart.id,
-      quantity: cart.quantity,
-      book: {id: cart.book.id},
-      order: {id: cart.order.id},
-    }).subscribe(next => {
-      this.changeTotal();
-    });
+    // cart.quantity = event.target.value;
+    // this.orderItemService.editOrderItem({
+    //   id: cart.id,
+    //   quantity: cart.quantity,
+    //   book: {id: cart.book.id},
+    //   order: {id: cart.order.id},
+    // }).subscribe(next => {
+    //   this.changeTotal();
+    // });
   }
 
   createUser() {
@@ -173,5 +173,13 @@ export class CartListComponent implements OnInit {
       this.updateList();
       this.bookCard.showList();
     });
+  }
+
+  checkNumber(event) {
+    // console.log(event.key);
+    // const str = event.key;
+    // const reg = new RegExp('/[^0-9]/');
+    // if (reg.test(str)) {
+    // }
   }
 }
