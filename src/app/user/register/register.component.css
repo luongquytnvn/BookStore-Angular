@@ -1,34 +1,107 @@
-label {
-  display: block;
-  margin-top: 10px;
-}
 
-.card-container.card {
-  max-width: 400px !important;
-  padding: 40px 40px;
-  color: white;
+.modal-backdrop{
+  font-family: sans-serif;
+  background: url("https://photo2.tinhte.vn/data/attachment-files/2018/11/4499454_73_-_2Lconyw.jpg") no-repeat center center;
+  background-size: cover;
+  height: 100%;
 }
-
-.card {
-  background-color: #f7f7f7;
-  background: url("https://2.bp.blogspot.com/-4NH5sIhZAnU/WcEPaUec6ZI/AAAAAAAArDk/i2Ynn3lWFPgiKUgXo7Q6EfNHkVa1BUxEQCLcBGAs/s1600/img_6145_copyagoes.jpg");
-  padding: 20px 25px 30px;
-  margin: 0 auto 25px;
+.main-section{
+  margin: 0 auto;
   margin-top: 50px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+.modal-content{
+  background-color: #434e5a;
+  opacity: .8;
+  padding: 0 18px;
+  border-radius: 10px;
 }
 
-.profile-img-card {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+.user-img img{
+  height: 90px;
+  width: 90px;
+}
+.user-img{
+  margin-top: -60px;
+  margin-bottom: 10px;
+}
+.form-group{
+  margin-bottom: 25px;
+
+}
+.form-group input{
+  height: 40px;
+  border-radius: 5px;
+  border: 0;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding-left: 54px;
+}
+.form-group::before{
+  position: absolute;
+  font-size: 18px;
+  left: 28px;
+  padding-top: 4px;
+  color: #555e60;
+}
+.form-input button{
+  width: 40%;
+  margin: 5px 0 25px;
+}
+.btn-success{
+  background-color: #1c6288;
+  font-size: 18px;
+  border-radius: 5px;
+  /*  padding: 7px 14px;*/
+  border: 1px solid #daf1ff;
+}
+.btn-success:hover{
+  background-color: #13445e;
+  border: 1px solid #daf1ff;
+}
+.forgot{
+  padding: 3px 0;
+  margin-bottom: 0px;
+}
+.forgot a{
+  color: #daf1ff;
+}
+.searchIcon1{
+  position: absolute;
+  top: 12px;
+  left: 23px;
+  font-size: 20px;
+}
+.searchIcon2{
+  position: absolute;
+  top: 75px;
+  left: 23px;
+  font-size: 20px;
+}
+.form-control1{
+  position: relative;
+}
+.searchIcon3{
+  position: absolute;
+  top: 141px;
+  left: 23px;
+  font-size: 20px;
+}
+.searchIcon4{
+  position: absolute;
+  top: 206px;
+  left: 23px;
+  font-size: 20px;
+}
+.searchIcon5{
+  position: absolute;
+  top: 272px;
+  left: 23px;
+  font-size: 20px;
+}
+.searchIcon6{
+  position: absolute;
+  top: 334px;
+  left: 23px;
+  font-size: 20px;
 }

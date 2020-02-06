@@ -1,85 +1,82 @@
-  label {
 
-    display: block;
-    margin-top: 10px;
+  .modal-backdrop{
+    font-family: sans-serif;
+    background: url("https://www.techrum.vn/chevereto/images/2019/01/30/rdENB.jpg") no-repeat center center;
+    background-size: cover;
+    height: 100%;
   }
-
-  .card-container.card {
-    max-width: 400px !important;
-    padding: 0px 20px 0px 20px;
-    color: white;
+  .main-section{
+    margin: 0 auto;
+    margin-top: 130px;
+    padding: 0;
   }
+  .modal-content{
+    background-color: slategrey;
+    opacity: .8;
+    padding: 0 18px;
+    border-radius: 10px;
 
-  .card {
-    background-color: #f7f7f7;
-    background: url("https://st.quantrimang.com/photos/image/2018/01/10/hinh-nen-4k-4.jpg") no-repeat center center;
-    /*padding: 20px 25px 30px;*/
-    margin: 0 auto 50px;
-    margin-top: 50px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   }
-
-  .profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
+  .user-img img{
+    height: 120px;
+    width: 120px;
   }
+  .user-img{
+    margin-top: -60px;
+    margin-bottom: 45px;
 
-/*.intro-header {*/
-/*  height: unset !important;*/
-/*}*/
-/*.intro-2 {*/
-/*  background: url("https://mdbootstrap.com/img/Photos/Others/img%20(42).jpg")no-repeat center center;*/
-/*  background-size: cover;*/
-/*}*/
-/*.view {*/
-/*  height: 100vh !important;*/
-/*}*/
-/*.top-nav-collapse {*/
-/*  background-color: #3f51b5 !important;*/
-/*}*/
-/*.navbar:not(.top-nav-collapse) {*/
-/*  background: transparent !important;*/
-/*}*/
-/*@media (max-width: 768px) {*/
-/*  .navbar:not(.top-nav-collapse) {*/
-/*    background: #3f51b5 !important;*/
-/*  }*/
-/*}*/
-/*.rgba-gradient .full-bg-img {*/
-/*  background: linear-gradient(45deg, rgba(83, 125, 210, 0.4), rgba(178, 30, 123, 0.4) 100%);*/
-/*}*/
-/*.full-bg-img {*/
-/*  height: 100%;*/
-/*}*/
-/*.card {*/
-/*  background-color: rgba(229, 228, 255, 0.2);*/
-/*}*/
-
-/*.md-form .prefix {*/
-/*  font-size: 1.5rem;*/
-/*  margin-top: 1rem;*/
-/*}*/
-/*.md-form label {*/
-/*  color: #ffffff;*/
-/*}*/
-/*h6 {*/
-/*  line-height: 1.7;*/
-/*}*/
-/*@media (max-width: 740px) {*/
-/*  .full-height,*/
-/*  .full-height body,*/
-/*  .full-height header,*/
-/*  .full-height header .view {*/
-/*    height: 1040px;*/
-/*  }*/
-/*}*/
+  }
+  .form-group{
+    margin-bottom: 25px;
+  }
+  .form-group input{
+    height: 42px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding-left: 54px;
+  }
+  .form-group::before{
+    position: absolute;
+    font-size: 22px;
+    left: 28px;
+    padding-top: 4px;
+    color: #555e60;
+  }
+  .form-input button{
+    width: 40%;
+    margin: 5px 0 25px;
+  }
+  .btn-success{
+    background-color: #1c6288;
+    font-size: 19px;
+    border-radius: 5px;
+    padding: 7px 14px;
+    border: 1px solid #daf1ff;
+  }
+  .btn-success:hover{
+    background-color: #13445e;
+    border: 1px solid #daf1ff;
+  }
+  .forgot{
+    padding: 5px 0 25px;
+  }
+  .forgot a{
+    color: #daf1ff;
+  }
+  .searchIcon1{
+    position: absolute;
+    top: 12px;
+    left: 23px;
+    font-size: 20px;
+  }
+  .searchIcon2{
+    position: absolute;
+    top: 78px;
+    left: 23px;
+    font-size: 20px;
+  }
+  .form-control1{
+    position: relative;
+  }
