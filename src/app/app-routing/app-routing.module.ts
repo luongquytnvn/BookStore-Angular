@@ -52,6 +52,8 @@ import {BookDetailPublicComponent} from '../component/public/book-detail-public/
 import {BookPriceComponent} from '../component/public/book-price/book-price.component';
 import {PaymentCreateComponent} from '../component/admin/payment/payment-create/payment-create.component';
 import {PaymentListComponent} from '../component/admin/payment/payment-list/payment-list.component';
+import {OrderDetailComponent} from '../component/admin/order-detail/order-detail.component';
+import {UserManagerComponent} from '../component/admin/user-manager/user-manager.component';
 
 
 const routes: Routes = [
@@ -103,9 +105,11 @@ const routes: Routes = [
   {path: 'about-us', component: AboutUsComponent, runGuardsAndResolvers: 'always'},
   {path: 'change-password', component: ChangePasswordComponent, canActivate: [UserAdminGuardService]},
   {path: 'edit-profile', component: EditProfileComponent, canActivate: [UserAdminGuardService]},
+  {path: 'user-manager', component: UserManagerComponent, canActivate: [UserAdminGuardService]},
   {path: 'order-list', component: OrderListComponent, canActivate: [UserAdminGuardService]},
   {path: 'order-manager', component: OrderManagerComponent, canActivate: [AdminGuardService]},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'order-detail/:id', component: OrderDetailComponent, canActivate: [AdminGuardService]},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({

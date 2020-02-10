@@ -12,22 +12,22 @@
   </tr>
   </thead>
   <tr *ngFor="let order of orderList" class="table-bordered">
-    <td *ngIf="order.status != 'normal'"><a [routerLink]="['/author-detail', order.id]">{{ order.id }}</a></td>
-    <td *ngIf="order.status != 'normal'">
+    <td *ngIf="order.status != 'normal'"><a [routerLink]="['/order-detail', order.id]">{{ order.id }}</a></td>
+    <td *ngIf="order.status != 'normal'"><a [routerLink]="['/order-detail', order.id]">
       <div *ngIf="order.user">
         {{order.user.id}}
       </div>
       <div *ngIf="!order.user">
         Guest
-      </div>
+      </div></a>
     </td>
-    <td *ngIf="order.status != 'normal'">
+    <td *ngIf="order.status != 'normal'"><a [routerLink]="['/order-detail', order.id]">
       <div *ngIf="order.user">
         {{order.user.username}}
       </div>
       <div *ngIf="!order.user">
         Guest
-      </div>
+      </div></a>
     </td>
     <td *ngIf="order.status != 'normal'">{{order.total}}</td>
     <td *ngIf="order.status != 'normal'">{{order.date}}</td>

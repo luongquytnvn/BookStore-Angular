@@ -1,0 +1,23 @@
+<h2>User list</h2>
+<table class="table table-hover border">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Roles</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let user of userList">
+    <td>{{ user.id }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.phone }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.address }}</td>
+    <td *ngFor="let role of user.roles">{{ role.name }}</td>
+    <td *ngIf="token.getUser().id != user.id"><button (click)="deleteUser(user.id)" class="btn btn-block btn-info">Delete</button></td>
+  </tr>
+</table>

@@ -5,7 +5,7 @@ import {IPayment} from '../../admin/payment/IPayment';
 export interface Order {
   id?: number;
   user?: User;
-  orderItem?: OrderItem[];
+  orderItems?: OrderItem[];
   phone?: string;
   shippingAddress?: string;
   total?: number;

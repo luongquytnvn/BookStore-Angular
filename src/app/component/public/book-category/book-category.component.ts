@@ -4,7 +4,6 @@ import {BookService} from '../../admin/book/book.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../admin/category/category.service';
 import {ICategory} from '../../admin/category/ICategory';
-import {CartComponent} from '../cart/cart.component';
 
 @Component({
   selector: 'app-book-category',
@@ -19,7 +18,6 @@ export class BookCategoryComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private categoryService: CategoryService,
-              private cart: CartComponent
   ) {
   }
 

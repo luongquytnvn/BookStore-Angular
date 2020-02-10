@@ -16,6 +16,10 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  getUserList(): Observable<any> {
+    return this.http.get(AUTH_API);
+  }
+
   login(credentials): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
       username: credentials.username,
@@ -48,6 +52,7 @@ export class AuthService {
       password: credentials.password
     }, httpOptions);
   }
+
   changeProfile(user): Observable<any> {
     return this.http.post(AUTH_API + 'change-profile', {
       username: user.username,
@@ -56,5 +61,9 @@ export class AuthService {
       phone: user.phone,
       address: user.address
     }, httpOptions);
+  }
+
+  deleteUser(idUser) {
+    return this.http.delete(AUTH_API + idUser, httpOptions);
   }
 }

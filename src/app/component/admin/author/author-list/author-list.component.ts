@@ -22,5 +22,4 @@ export class AuthorListComponent implements OnInit {
         (this.content = this.content = JSON.parse(err.error).message)
     );
   }
-
 }

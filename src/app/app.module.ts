@@ -71,6 +71,8 @@ import { CommentComponent } from './component/public/comment/comment.component';
 import { PaymentCreateComponent } from './component/admin/payment/payment-create/payment-create.component';
 import { PaymentDeleteComponent } from './component/admin/payment/payment-delete/payment-delete.component';
 import { PaymentListComponent } from './component/admin/payment/payment-list/payment-list.component';
+import { OrderDetailComponent } from './component/admin/order-detail/order-detail.component';
+import { UserManagerComponent } from './component/admin/user-manager/user-manager.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +141,8 @@ import { PaymentListComponent } from './component/admin/payment/payment-list/pay
     PaymentCreateComponent,
     PaymentDeleteComponent,
     PaymentListComponent,
+    OrderDetailComponent,
+    UserManagerComponent,
   ],
   imports: [
     BrowserModule,

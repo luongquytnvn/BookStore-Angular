@@ -5,4 +5,5 @@ export interface User {
   password?: string;
   address?: string;
   phone?: string;
+  roles?: any[];
 }

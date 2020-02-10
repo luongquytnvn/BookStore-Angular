@@ -1,0 +1,55 @@
+<h2 class="text-center">Order detail</h2>
+<div *ngIf="order">
+  <div class="col-6 offset-3">
+    <table class="table">
+      <tr>
+        <td>User name:</td>
+        <td><div *ngIf="order.user">
+          {{order.user.username}}
+        </div>
+          <div *ngIf="!order.user">
+            Guest
+          </div></td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td>{{order.phone}}</td>
+      </tr>
+      <tr>
+        <td>Shipping Address:</td>
+        <td>{{order.shippingAddress}}</td>
+      </tr>
+    </table>
+  </div>
+  <table class="table table-hover border">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Book name</th>
+      <th>Price</th>
+      <th>Order date</th>
+      <th>Inventory</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tr *ngFor="let orderItem of order.orderItems">
+      <td><img [src]="orderItem.book.bookPictures[0].src" style="width: 60px;height: 90px" alt=""></td>
+      <td>{{orderItem.book.name}}</td>
+      <td>{{orderItem.book.price | currency: "VND" : "đ "}}</td>
+      <td>{{order.date}}</td>
+      <td>{{orderItem.book.amount}}</td>
+      <td>{{orderItem.quantity}}</td>
+      <td>{{orderItem.book.price * orderItem.quantity | currency: "VND": "đ "}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Total price</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{{order.total | currency: "VND" : "đ "}}</td>
+    </tr>
+  </table>
+</div>
