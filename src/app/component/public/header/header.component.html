@@ -9,7 +9,7 @@
       <div class="nav-item dropdown">
         <div class="nav-link dropdown-toggle dropbtn" id="navbarDropdown1" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
-          <a routerLink="home">Vũ Đại Village</a>
+          <a href="/home" routerLink="home">Menu</a>
         </div>
         <div class="dropdown-content">
           <a routerLink="/book-public">All books</a>
@@ -61,11 +61,11 @@
 
       <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item">
-          <a class="nav-link" routerLink="home">Home </a>
+          <a href="/home" class="nav-link" routerLink="home">Home </a>
         </li>
 
         <li>
-          <a class="nav-link" routerLink="about-us">About Us</a>
+          <a href="/about-us" class="nav-link" routerLink="about-us">About Us</a>
         </li>
 
         <li class="nav-item" *ngIf="showAdminBoard">
@@ -126,14 +126,14 @@
           </div>
         </li>
         <li class="nav-item" *ngIf="showModeratorBoard">
-          <a class="nav-link" routerLink="mod">Moderator Board</a>
+          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
         </li>
       </ul>
 
 
       <ul class="navbar-nav ml-auto">
         <app-search></app-search>
-        <div>
+        <div *ngIf="!showAdminBoard">
         <app-cart></app-cart>
         </div>
         <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
