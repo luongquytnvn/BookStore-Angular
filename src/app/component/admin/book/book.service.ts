@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEvent} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IBook} from './IBook';
 
@@ -23,6 +23,7 @@ export class BookService {
   getBookListByCategory(id: number): Observable<any[]> {
     return this.http.get<any[]>(this.url + '/category/' + id);
   }
+
   getBookListByPublishing(id: number): Observable<any[]> {
     return this.http.get<any[]>(this.url + '/publishing/' + id);
   }
@@ -58,7 +59,7 @@ export class BookService {
       authors: book.authors,
       publishing: book.publishing,
       category: book.category,
-      languages: book.languages
+      languages: book.languages,
     });
   }
 

@@ -1,0 +1,18 @@
+<h2>Payment List</h2>
+<p><a routerLink="/payment-create">Create new payment</a></p>
+<table class="table table-hover border">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let payment of paymentList">
+    <td><a [routerLink]="['/payment-detail',payment.id]">{{payment.id}}</a> </td>
+    <td><a [routerLink]="['/payment-detail',payment.id]">{{payment.name}}</a> </td>
+    <td><a [routerLink]="['/payment-edit',payment.id]">Edit</a> </td>
+    <td><a [routerLink]="['/payment-delete',payment.id]">Delete</a> </td>
+  </tr>
+</table>

@@ -1,0 +1,36 @@
+<div class="col-6 offset-3">
+  <h3 class="text-center">Create a new payment</h3>
+  <div *ngIf="message">
+    <div class="alert alert-success">
+      <strong>Success!</strong> You have created a new payment
+    </div>
+    <div>
+      <div class="form-group">
+        <input class="btn btn-primary btn-block" value="Create new payment" (click)="message = !message">
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary btn-block" value="Back to payment list" routerLink="/payment-list">
+      </div>
+    </div>
+  </div>
+  <form
+    *ngIf="!message"
+    name="form"
+    [formGroup]="paymentForm"
+    (ngSubmit)="paymentForm.valid && onSubmit()"
+    novalidate>
+    <div class="form-group">
+      <label>Payment name</label>
+      <input type="text" class="form-control" formControlName="name"/>
+      <div class="alert-danger" *ngIf="paymentForm.get('name').invalid && paymentForm.get('name').touched" style="color: aqua">
+        Payment name must be ay least 1 characters
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Create</button>
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="Cancel" routerLink="/payment-list">
+    </div>
+  </form>
+</div>

@@ -50,6 +50,8 @@ import {SearchAdvancedComponent} from '../component/public/search-advanced/searc
 import {AboutUsComponent} from '../component/public/about-us/about-us.component';
 import {BookDetailPublicComponent} from '../component/public/book-detail-public/book-detail-public.component';
 import {BookPriceComponent} from '../component/public/book-price/book-price.component';
+import {PaymentCreateComponent} from '../component/admin/payment/payment-create/payment-create.component';
+import {PaymentListComponent} from '../component/admin/payment/payment-list/payment-list.component';
 
 
 const routes: Routes = [
@@ -74,6 +76,8 @@ const routes: Routes = [
   {path: 'category-edit/:id', component: CategoryEditComponent, canActivate: [AdminGuardService]},
   {path: 'category-delete/:id', component: CategoryDeleteComponent, canActivate: [AdminGuardService]},
   {path: 'category-detail/:id', component: CategoryDetailComponent, canActivate: [AdminGuardService]},
+  {path: 'payment-create', component: PaymentCreateComponent, canActivate: [AdminGuardService]},
+  {path: 'payment-list', component: PaymentListComponent, canActivate: [AdminGuardService]},
   {path: 'language-list', component: LanguageListComponent, canActivate: [AdminGuardService]},
   {path: 'language-create', component: LanguageCreateComponent, canActivate: [AdminGuardService]},
   {path: 'language-edit/:id', component: LanguageEditComponent, canActivate: [AdminGuardService]},

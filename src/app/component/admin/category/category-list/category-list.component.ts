@@ -16,5 +16,4 @@ export class CategoryListComponent implements OnInit {
     this.categoryService.getCategoryList().subscribe(next => (this.categoryList = next),
       error => (this.content = this.content = JSON.parse(error.error).message));
   }
-
 }

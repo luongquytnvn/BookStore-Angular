@@ -68,6 +68,9 @@ import {AboutUsComponent} from './component/public/about-us/about-us.component';
 import { BookPriceComponent } from './component/public/book-price/book-price.component';
 import { BookCommentComponent } from './component/public/book-comment/book-comment.component';
 import { CommentComponent } from './component/public/comment/comment.component';
+import { PaymentCreateComponent } from './component/admin/payment/payment-create/payment-create.component';
+import { PaymentDeleteComponent } from './component/admin/payment/payment-delete/payment-delete.component';
+import { PaymentListComponent } from './component/admin/payment/payment-list/payment-list.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +136,9 @@ import { CommentComponent } from './component/public/comment/comment.component';
     BookPriceComponent,
     BookCommentComponent,
     CommentComponent,
+    PaymentCreateComponent,
+    PaymentDeleteComponent,
+    PaymentListComponent,
   ],
   imports: [
     BrowserModule,

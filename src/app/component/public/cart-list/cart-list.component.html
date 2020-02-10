@@ -4,6 +4,7 @@
     <tr>
       <th>Book</th>
       <th>Price</th>
+      <th>inventory</th>
       <th>Quantity</th>
       <th>Total</th>
       <th>Delete</th>
@@ -16,8 +17,10 @@
         </div>
       </td>
       <td>{{cart.book.price | currency: "VND" : "đ "}}</td>
-      <td><input type="number" style="width: 60px" [value]="cart.quantity" name="quantity" (keypress)="checkNumber($event)"
-                 (change)="onChangeQuantity($event, cart)" step="1"></td>
+      <td>{{cart.book.amount}}</td>
+      <td><input type="number" style="width: 60px" [value]="cart.quantity" name="quantity"
+                 (change)="checkNumber($event, cart)" step="1" min="1">
+      </td>
       <td>{{cart.book.price * cart.quantity | currency: "VND": "đ "}}</td>
       <td>
         <button class="btn btn-block badge-danger" data-toggle="modal" [attr.data-target]="'#deleteCartItem' + cart.id">
@@ -60,6 +63,7 @@
   <input type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#OrderModalNoLogin" value="Order"
          *ngIf="!token.getToken()">
 </div>
+
 <div class="modal fade" id="OrderModal" tabindex="-1" role="dialog" aria-labelledby="OrderModalLabel"
      aria-hidden="true" *ngIf="token.getToken()">
   <div class="modal-dialog" role="document">
@@ -88,6 +92,12 @@
                  style="color: red">
               Address must be at least 3 characters
             </div>
+          </div>
+          <div class="form-group">
+            <strong>Payments</strong>
+            <select class="form-control" formControlName="payment">
+              <option *ngFor="let payment of paymentList" value="{{payment.id}}">{{payment.name}}</option>
+            </select>
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
@@ -157,9 +167,8 @@
           </div>
           <div class="form-group">
             <strong>Payments</strong>
-            <select class="form-control">
-              <option value="pay">Pay on delivery</option>
-              <option value="transfer">Transfer payments</option>
+            <select class="form-control" formControlName="payment">
+              <option *ngFor="let payment of paymentList" value="{{payment.id}}">{{payment.name}}</option>
             </select>
           </div>
           <div class="modal-footer">
@@ -230,6 +239,12 @@
               Address must be at least 3 characters
             </div>
           </div>
+          <div class="form-group">
+            <strong>Payments</strong>
+            <select class="form-control" formControlName="payment">
+              <option *ngFor="let payment of paymentList" value="{{payment.id}}">{{payment.name}}</option>
+            </select>
+          </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
             <button [disabled]="cartForm.invalid" data-dismiss="modal" type="button" class="btn btn-primary"
@@ -241,6 +256,7 @@
     </div>
   </div>
 </div>
+
 
 
 

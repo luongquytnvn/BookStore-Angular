@@ -9,7 +9,8 @@ import {AuthService} from '../../../user/_services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CartComponent} from '../cart/cart.component';
 import {BookCardComponent} from '../book-card/book-card.component';
-import {LoginComponent} from '../../../user/login/login.component';
+import {PaymentService} from '../../admin/payment/payment.service';
+import {IPayment} from '../../admin/payment/IPayment';
 
 @Component({
   selector: 'app-cart-list',
@@ -21,6 +22,7 @@ export class CartListComponent implements OnInit {
   cartList: OrderItem[];
   totalPrice = 0;
   cartForm: FormGroup;
+  paymentList: IPayment[];
 
   constructor(private orderItemService: OrderItemService,
               private token: TokenStorageService,
@@ -30,7 +32,7 @@ export class CartListComponent implements OnInit {
               private fb: FormBuilder,
               private cart: CartComponent,
               private bookCard: BookCardComponent,
-              private login: LoginComponent
+              private paymentService: PaymentService
   ) {
   }
 
@@ -47,6 +49,7 @@ export class CartListComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern('^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$')]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.minLength(3)]],
+      payment: ['', [Validators.required, Validators.minLength(1)]]
     });
     if (this.token.getToken()) {
       this.totalPrice = 0;
@@ -88,18 +91,29 @@ export class CartListComponent implements OnInit {
         console.log(error);
       });
     }
+    this.paymentService.getPaymentList().subscribe(next => {
+      this.paymentList = next;
+      this.cartForm.patchValue({
+        payment: this.paymentList[0].id
+      });
+    }, error => {
+      console.log(error);
+      this.paymentList = [];
+    });
   }
 
   onChangeQuantity(event, cart) {
-    // cart.quantity = event.target.value;
-    // this.orderItemService.editOrderItem({
-    //   id: cart.id,
-    //   quantity: cart.quantity,
-    //   book: {id: cart.book.id},
-    //   order: {id: cart.order.id},
-    // }).subscribe(next => {
-    //   this.changeTotal();
-    // });
+    cart.quantity = event.target.value;
+    this.orderItemService.editOrderItem({
+      id: cart.id,
+      quantity: cart.quantity,
+      book: {id: cart.book.id},
+      order: {id: cart.order.id},
+    }).subscribe(next => {
+      this.changeTotal();
+    }, error => {
+      console.log(error);
+    });
   }
 
   createUser() {
@@ -140,13 +154,19 @@ export class CartListComponent implements OnInit {
   }
 
   createOrder() {
+    const {value} = this.cartForm;
+    this.order.payment = {id: value.payment};
     this.order.total = this.totalPrice;
     this.orderService.toOrder(this.order).subscribe(next => {
-      console.log(next);
       if (!this.token.getToken()) {
         this.storage.remove();
       }
+      alert(
+        'Đã tạo đơn hàng thành công đơn hàng: ' + this.order.id
+      );
       window.location.reload();
+    }, error => {
+      console.log(error);
     });
   }
 
@@ -172,14 +192,23 @@ export class CartListComponent implements OnInit {
     this.orderItemService.deleteOrderItem(id).subscribe(next => {
       this.updateList();
       this.bookCard.showList();
+    }, error => {
+      console.log(error);
     });
   }
 
-  checkNumber(event) {
-    // console.log(event.key);
-    // const str = event.key;
-    // const reg = new RegExp('/[^0-9]/');
-    // if (reg.test(str)) {
-    // }
+  checkNumber(event, cart: OrderItem) {
+    const quantity = +event.target.value;
+    if (quantity <= cart.book.amount) {
+      if (Number.isInteger(quantity) && quantity >= 1) {
+        this.onChangeQuantity(quantity, cart);
+      } else {
+        alert('Bạn cần nhập số lượng là một số nguyên dương');
+        this.ngOnInit();
+      }
+    } else {
+      alert('Số lượng không đủ');
+      this.ngOnInit();
+    }
   }
 }

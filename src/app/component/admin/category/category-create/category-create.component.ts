@@ -17,9 +17,7 @@ export class CategoryCreateComponent implements OnInit {
   message = false;
   constructor(
     private categoryService: CategoryService,
-    private fb: FormBuilder,
-    private router: Router
-  ) { }
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.categoryForm = this.fb.group({
@@ -45,5 +43,4 @@ export class CategoryCreateComponent implements OnInit {
       console.log('error');
     }
   }
-
 }
