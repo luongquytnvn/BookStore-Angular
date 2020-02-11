@@ -10,7 +10,7 @@ import {BookService} from '../../admin/book/book.service';
 })
 export class SearchAdvancedComponent implements OnInit {
   bookList: IBook[];
-  nameSearch: string;
+  nameSearch: '';
 
   constructor(private route: ActivatedRoute,
               private bookService: BookService) {
@@ -18,19 +18,28 @@ export class SearchAdvancedComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(param => {
-        const name = param.name;
-        console.log(name);
-        this.nameSearch = name;
-        this.bookService.findAllByNameContaining(name).subscribe(
-          next => {
-            this.bookList = next;
-            console.log(this.bookList);
-          },
-          error => {
-            console.log(error);
-            this.bookList = null;
-          }
-        );
+        this.nameSearch = param.name;
+        if (this.nameSearch === '') {
+          this.bookService.getBookList().subscribe(
+            next => {
+              this.bookList = next;
+            },
+            error => {
+              console.log(error);
+              this.bookList = [];
+            }
+          );
+        } else {
+          this.bookService.findAllByNameContaining(this.nameSearch).subscribe(
+            next => {
+              this.bookList = next;
+            },
+            error => {
+              console.log(error);
+              this.bookList = [];
+            }
+          );
+        }
       }
     );
   }

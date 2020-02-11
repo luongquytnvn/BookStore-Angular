@@ -11,11 +11,20 @@
         <div class="container-fluid padding" align="center">
           <div class="row">
             <div class="col-md-3" *ngFor="let bookHot of bookList, index as i">
-              <app-card [book]="bookHot"></app-card>
+              <div *ngIf="i < page * 12 && i >= page * 12 - 12">
+                <app-card [book]="bookHot"></app-card>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <nav aria-label="Page navigation" *ngIf="pageTotal">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" (click)="changePage('previous')">Previous</a></li>
+        <li class="page-item"><a class="page-link">{{page}} / {{pageTotal}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="changePage('next')">Next</a></li>
+      </ul>
+    </nav>
   </div>
 </div>
