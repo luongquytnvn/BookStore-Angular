@@ -133,9 +133,7 @@
 
       <ul class="navbar-nav ml-auto">
         <app-search></app-search>
-        <div *ngIf="!showAdminBoard">
         <app-cart></app-cart>
-        </div>
         <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
           <li class="nav-item">
             <a routerLink="/register" class="nav-link">Sign Up</a>

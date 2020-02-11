@@ -9,15 +9,17 @@ import {BookService} from '../../admin/book/book.service';
 })
 export class SearchComponent implements OnInit {
   searchList: IBook[];
-  nameSearch: '';
+  nameSearch: string;
 
   constructor(private bookService: BookService) {
   }
 
   ngOnInit() {
+    this.nameSearch = '';
   }
 
   searchBook(event) {
+    console.log(event.value);
     this.nameSearch = event.value;
     this.bookService.findAllByNameContaining(event.value).subscribe(next => {
       this.searchList = next;

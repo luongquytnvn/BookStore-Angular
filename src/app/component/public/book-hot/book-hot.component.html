@@ -19,9 +19,10 @@
         </div>
       </div>
     </div>
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" *ngIf="pageTotal">
       <ul class="pagination justify-content-center">
         <li class="page-item"><a class="page-link" (click)="changePage('previous')">Previous</a></li>
+        <li class="page-item"><a class="page-link">{{page}} / {{pageTotal}}</a></li>
         <li class="page-item"><a class="page-link" (click)="changePage('next')">Next</a></li>
       </ul>
     </nav>
