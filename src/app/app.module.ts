@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireStorageModule} from 'angularfire2/storage';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing/app-routing.module';
@@ -68,11 +70,11 @@ import {AboutUsComponent} from './component/public/about-us/about-us.component';
 import { BookPriceComponent } from './component/public/book-price/book-price.component';
 import { BookCommentComponent } from './component/public/book-comment/book-comment.component';
 import { CommentComponent } from './component/public/comment/comment.component';
-import { PaymentCreateComponent } from './component/admin/payment/payment-create/payment-create.component';
-import { PaymentDeleteComponent } from './component/admin/payment/payment-delete/payment-delete.component';
-import { PaymentListComponent } from './component/admin/payment/payment-list/payment-list.component';
-import { OrderDetailComponent } from './component/admin/order-detail/order-detail.component';
-import { UserManagerComponent } from './component/admin/user-manager/user-manager.component';
+import {PaymentListComponent} from './component/admin/payment/payment-list/payment-list.component';
+import {PaymentDeleteComponent} from './component/admin/payment/payment-delete/payment-delete.component';
+import {PaymentCreateComponent} from './component/admin/payment/payment-create/payment-create.component';
+import {OrderDetailComponent} from './component/admin/order-detail/order-detail.component';
+import {UserManagerComponent} from './component/admin/user-manager/user-manager.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +144,7 @@ import { UserManagerComponent } from './component/admin/user-manager/user-manage
     PaymentDeleteComponent,
     PaymentListComponent,
     OrderDetailComponent,
-    UserManagerComponent,
+    UserManagerComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +152,14 @@ import { UserManagerComponent } from './component/admin/user-manager/user-manage
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyB1SkeN_WcpfH4Jf7RuqzDzBiFpYNf1WJs',
+      authDomain: 'book-store-6389f.firebaseapp.com',
+      projectId: 'book-store-6389f',
+      storageBucket: 'book-store-6389f.appspot.com'
+    }),
+    AngularFireStorageModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

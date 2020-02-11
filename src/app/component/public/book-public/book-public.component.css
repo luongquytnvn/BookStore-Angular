@@ -68,3 +68,15 @@ hr.light{
   border-top: 1px solid gray();
   width: 96%;
 }
+
+body {
+  background-color: #3498db;
+  color: #ecf0f1;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none;
+}

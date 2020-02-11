@@ -10,6 +10,8 @@ import {LanguageService} from '../../language/language.service';
 import {PublishingService} from '../../publishing/publishing.service';
 import {TokenStorageService} from '../../../../user/_services/token-storage.service';
 import {AppComponent} from '../../../../app.component';
+import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from 'angularfire2/storage';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-book-create',
@@ -17,6 +19,9 @@ import {AppComponent} from '../../../../app.component';
   styleUrls: ['./book-create.component.css']
 })
 export class BookCreateComponent implements OnInit {
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadProgress: Observable<number>;
   bookForm: FormGroup;
   useFile: any[];
   book: IBook;
@@ -42,7 +47,8 @@ export class BookCreateComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private token: TokenStorageService,
-    private app: AppComponent
+    private app: AppComponent,
+    private afStorage: AngularFireStorage
   ) {
   }
 
@@ -103,23 +109,17 @@ export class BookCreateComponent implements OnInit {
   }
 
   preview() {
-    // Show preview
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.useFile.length; i++) {
-      const mimeType = this.useFile[i].type;
-      if (mimeType.match(/image\/*/) == null) {
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.readAsDataURL(this.useFile[i]);
-      reader.onload = event => {
-        if (typeof reader.result === 'string') {
-          this.previewUrl[i] = reader.result;
-        }
-      };
+    this.previewUrl = [];
+    for (const file of this.useFile) {
+      const id = Math.random().toString(36).substring(2);
+      this.ref = this.afStorage.ref(id);
+      this.task = this.ref.put(file);
+      this.uploadProgress = this.task.percentageChanges();
+      this.task.then(async url => {
+        const downloadURL = await url.task.snapshot.ref.getDownloadURL();
+        this.previewUrl.push(downloadURL);
+      });
     }
-    console.log(this.previewUrl);
   }
 
   addAuthor(id) {
