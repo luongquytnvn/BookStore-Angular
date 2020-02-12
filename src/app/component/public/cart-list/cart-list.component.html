@@ -4,7 +4,7 @@
     <tr>
       <th>Book</th>
       <th>Price</th>
-      <th>Inventory</th>
+<!--      <th>Inventory</th>-->
       <th>Quantity</th>
       <th>Total</th>
       <th>Delete</th>
@@ -17,7 +17,7 @@
         </div>
       </td>
       <td>{{cart.book.price | currency: "VND" : "đ "}}</td>
-      <td>{{cart.book.amount}}</td>
+<!--      <td>{{cart.book.amount}}</td>-->
       <td><input type="number" style="width: 60px" [value]="cart.quantity" name="quantity"
                  (change)="checkNumber($event, cart)" step="1" min="1">
       </td>
