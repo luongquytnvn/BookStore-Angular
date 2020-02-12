@@ -4,12 +4,14 @@
     <table class="table">
       <tr>
         <td>User name:</td>
-        <td><div *ngIf="order.user">
-          {{order.user.username}}
-        </div>
+        <td>
+          <div *ngIf="order.user">
+            {{order.user.username}}
+          </div>
           <div *ngIf="!order.user">
             Guest
-          </div></td>
+          </div>
+        </td>
       </tr>
       <tr>
         <td>Phone:</td>
@@ -52,4 +54,9 @@
       <td>{{order.total | currency: "VND" : "đ "}}</td>
     </tr>
   </table>
+  <div class="col-6 offset-3">
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" value="Back to order list" routerLink="/order-manager">
+    </div>
+  </div>
 </div>

@@ -102,8 +102,8 @@ export class CartListComponent implements OnInit {
     });
   }
 
-  onChangeQuantity(event, cart) {
-    cart.quantity = event.target.value;
+  onChangeQuantity(quantity, cart) {
+    cart.quantity = quantity;
     this.orderItemService.editOrderItem({
       id: cart.id,
       quantity: cart.quantity,
