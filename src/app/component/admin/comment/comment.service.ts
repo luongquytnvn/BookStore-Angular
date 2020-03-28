@@ -2,12 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IComment} from './IComment';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
-  private url = 'http://localhost:8080/api/comment';
+  private url = `${environment.API_BOOK_STORE}/comment`;
 
   constructor(private http: HttpClient) {
   }

@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {OrderItem} from '../../component/public/cart/OrderItem';
 
 const ID_CART = 'idCart';
 

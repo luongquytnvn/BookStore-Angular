@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ICategory} from '../category/ICategory';
 import {ILanguage} from './ILanguage';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageService {
 
-  private url = 'http://localhost:8080/api/language';
+  private url = `${environment.API_BOOK_STORE}/language`;
 
   constructor(private http: HttpClient) {
   }

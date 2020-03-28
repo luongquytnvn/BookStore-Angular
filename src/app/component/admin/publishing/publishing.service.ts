@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ILanguage} from '../language/ILanguage';
 import {IPublishing} from './IPublishing';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublishingService {
 
-  private url = 'http://localhost:8080/api/publishing';
+  private url = `${environment.API_BOOK_STORE}/publishing`;
 
   constructor(private http: HttpClient) {
   }

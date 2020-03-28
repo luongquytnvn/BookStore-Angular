@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_BOOK_STORE: 'https://book-store-backend-api.herokuapp.com/api'
 };
 
 /*

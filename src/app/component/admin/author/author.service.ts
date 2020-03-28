@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IBook} from '../book/IBook';
 import {IAuthor} from './IAuthor';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorService {
 
-  private url = 'http://localhost:8080/api/author';
+  private url = `${environment.API_BOOK_STORE}/author`;
 
   constructor(private http: HttpClient) {
   }

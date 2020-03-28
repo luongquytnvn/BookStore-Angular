@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {IAuthor} from '../author/IAuthor';
 import {ICategory} from './ICategory';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private url = 'http://localhost:8080/api/category';
+  private url = `${environment.API_BOOK_STORE}/category`;
 
   constructor(private http: HttpClient) {
   }
