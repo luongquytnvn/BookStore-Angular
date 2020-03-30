@@ -189,4 +189,17 @@ export class BookCreateComponent implements OnInit {
       console.log(error);
     });
   }
+
+  checkValid() {
+    return !(this.bookForm.invalid
+      || this.authors === []
+      || this.languages === []
+      || this.category === undefined
+      || this.publishing === undefined
+      || this.previewUrl === []);
+  }
+
+  remove(id) {
+    console.log(id);
+  }
 }

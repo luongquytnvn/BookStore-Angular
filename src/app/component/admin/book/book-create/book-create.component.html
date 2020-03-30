@@ -17,7 +17,7 @@
     *ngIf="!message"
     name="form"
     [formGroup]="bookForm"
-    (ngSubmit)="bookForm.valid && onSubmit()"
+    (ngSubmit)="checkValid() && onSubmit()"
     novalidate
   >
     <div class="form-group">
@@ -55,24 +55,19 @@
 
     <div class="form-group">
       <strong>Author</strong>
-      <div *ngFor="let author of authors">
-          <p>{{author.name}}</p>
-      </div>
 
-      <div class="form-inline">
-        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchAuthor" role="button"
-             data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-          <input class="form-control" type="search" placeholder="Search author..." aria-label="Search" #search
-                 (focusout)="search.value=''" (keyup)="searchAuthor($event.currentTarget)">
-        </div>
+      <div style="padding: 0" class="nav-link" id="navbarDropdownSearchAuthor" role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+        <input class="form-control" type="search" placeholder="Search author..." aria-label="Search" #search
+               (focusout)="search.value=''" (keyup)="searchAuthor($event.currentTarget)">
+
         <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchAuthor">
           <div *ngFor="let author of authorList">
             <a class="dropdown-item" (click)="addAuthor(author.id)">{{author.name}}</a>
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="form-group">
@@ -80,17 +75,15 @@
       <div *ngFor="let language of languages">
         <p>{{language.name}}</p>
       </div>
-      <div class="form-inline">
-        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchLanguages" role="button"
-             data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-          <input class="form-control" type="search" placeholder="Search languages..." aria-label="Search" #search
-                 (focusout)="search.value=''" (keyup)="searchLanguages($event.currentTarget)">
-        </div>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchLanguages">
-          <div *ngFor="let language of languageList">
-            <a class="dropdown-item" (click)="addLanguage(language.id)">{{language.name}}</a>
-          </div>
+      <div style="padding: 0" class="nav-link" id="navbarDropdownSearchLanguages" role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+        <input class="form-control" type="search" placeholder="Search languages..." aria-label="Search" #search
+               (focusout)="search.value=''" (keyup)="searchLanguages($event.currentTarget)">
+      </div>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchLanguages">
+        <div *ngFor="let language of languageList">
+          <a class="dropdown-item" (click)="addLanguage(language.id)">{{language.name}}</a>
         </div>
       </div>
     </div>
@@ -100,17 +93,15 @@
       <div *ngIf="category">
         <p>{{category.name}}</p>
       </div>
-      <div class="form-inline">
-        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchCategory" role="button"
-             data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-          <input class="form-control" type="search" placeholder="Search category..." aria-label="Search" #search
-                 (focusout)="search.value=''" (keyup)="searchCategory($event.currentTarget)">
-        </div>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchCategory">
-          <div *ngFor="let c of categoryList">
-            <a class="dropdown-item" (click)="addCategory(c.id)">{{c.name}}</a>
-          </div>
+      <div style="padding: 0" class="nav-link" id="navbarDropdownSearchCategory" role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+        <input class="form-control" type="search" placeholder="Search category..." aria-label="Search" #search
+               (focusout)="search.value=''" (keyup)="searchCategory($event.currentTarget)">
+      </div>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchCategory">
+        <div *ngFor="let c of categoryList">
+          <a class="dropdown-item" (click)="addCategory(c.id)">{{c.name}}</a>
         </div>
       </div>
     </div>
@@ -120,17 +111,15 @@
       <div *ngIf="publishing">
         <p>{{publishing.name}}</p>
       </div>
-      <div class="form-inline">
-        <div style="padding: 0" class="nav-link dropdown-toggle" id="navbarDropdownSearchPublishing" role="button"
-             data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-          <input class="form-control" type="search" placeholder="Search publishing..." aria-label="Search" #search
-                 (focusout)="search.value=''" (keyup)="searchPublishing($event.currentTarget)">
-        </div>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchPublishing">
-          <div *ngFor="let publish of publishingList">
-            <a class="dropdown-item" (click)="addPublishing(publish.id)">{{publish.name}}</a>
-          </div>
+      <div style="padding: 0" class="nav-link" id="navbarDropdownSearchPublishing" role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+        <input class="form-control" type="search" placeholder="Search publishing..." aria-label="Search" #search
+               (focusout)="search.value=''" (keyup)="searchPublishing($event.currentTarget)">
+      </div>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownSearchPublishing">
+        <div *ngFor="let publish of publishingList">
+          <a class="dropdown-item" (click)="addPublishing(publish.id)">{{publish.name}}</a>
         </div>
       </div>
     </div>
@@ -140,7 +129,9 @@
       <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" multiple>
     </div>
     <div class="progress">
-      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+           [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+           aria-valuemin="0" aria-valuemax="100"></div>
     </div>
     <div class="form-group" style="height: 100px">
       <div class="image-preview" *ngIf="previewUrl">

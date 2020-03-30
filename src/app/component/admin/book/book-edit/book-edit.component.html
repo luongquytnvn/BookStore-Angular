@@ -17,7 +17,7 @@
     *ngIf="!message"
     name="form"
     [formGroup]="bookForm"
-    (ngSubmit)="bookForm.valid && onSubmit()"
+    (ngSubmit)="checkValid() && onSubmit()"
     novalidate
   >
     <div class="form-group">
