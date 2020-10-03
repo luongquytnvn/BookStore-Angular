@@ -14,7 +14,7 @@ export class CommentComponent implements OnInit {
   @Output() updateList = new EventEmitter();
   formEdit: FormGroup;
 
-  constructor(private token: TokenStorageService,
+  constructor(public token: TokenStorageService,
               private fb: FormBuilder,
               private commentService: CommentService) {
   }

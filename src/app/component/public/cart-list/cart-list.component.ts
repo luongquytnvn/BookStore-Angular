@@ -25,7 +25,7 @@ export class CartListComponent implements OnInit {
   paymentList: IPayment[];
 
   constructor(private orderItemService: OrderItemService,
-              private token: TokenStorageService,
+              public token: TokenStorageService,
               private orderService: OrderService,
               private storage: StorageService,
               private auth: AuthService,

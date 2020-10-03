@@ -17,7 +17,7 @@ export class BookCommentComponent implements OnInit {
   commentList: IComment[];
   @Input() book: IBook;
 
-  constructor(private token: TokenStorageService,
+  constructor(public token: TokenStorageService,
               private fb: FormBuilder,
               private commentService: CommentService) {
   }

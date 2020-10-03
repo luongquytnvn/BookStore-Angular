@@ -14,7 +14,7 @@ export class UserManagerComponent implements OnInit {
   content: string;
 
   constructor(private authService: AuthService,
-              private token: TokenStorageService) {
+              public token: TokenStorageService) {
   }
 
   ngOnInit() {
